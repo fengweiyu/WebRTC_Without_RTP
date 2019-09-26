@@ -8,19 +8,16 @@
  *  be found in the AUTHORS file in the root of the source tree.
  */
 
-#include "webrtc/examples/peerconnection/client/conductor.h"
+#include "conductor.h"
 
 #include <memory>
 #include <utility>
 #include <vector>
 
-#include "webrtc/api/test/fakeconstraints.h"
+
 #include "webrtc/base/checks.h"
 #include "webrtc/base/json.h"
 #include "webrtc/base/logging.h"
-#include "webrtc/examples/peerconnection/client/defaults.h"
-#include "webrtc/media/engine/webrtcvideocapturerfactory.h"
-#include "webrtc/modules/video_capture/video_capture_factory.h"
 
 // Names used for a IceCandidate JSON object.
 const char kCandidateSdpMidName[] = "sdpMid";
@@ -53,13 +50,9 @@ class DummySetSessionDescriptionObserver
   ~DummySetSessionDescriptionObserver() {}
 };
 
-Conductor::Conductor(PeerConnectionClient* client, MainWindow* main_wnd)
-  : peer_id_(-1),
-    loopback_(false),
-    client_(client),
-    main_wnd_(main_wnd) {
+Conductor::Conductor(PeerConnectionClient* client): peer_id_(-1),loopback_(false),client_(client),
+{
   client_->RegisterObserver(this);
-  main_wnd->RegisterObserver(this);
 }
 
 Conductor::~Conductor() {

@@ -17,24 +17,21 @@
 #include <set>
 #include <string>
 
-#include "webrtc/api/mediastreaminterface.h"
 #include "webrtc/api/peerconnectioninterface.h"
-#include "webrtc/examples/peerconnection/client/main_wnd.h"
-#include "webrtc/examples/peerconnection/client/peer_connection_client.h"
+#include "peer_connection_client.h"
 
-namespace webrtc {
-class VideoCaptureModule;
+namespace webrtc 
+{
+    class VideoCaptureModule;
 }  // namespace webrtc
 
-namespace cricket {
-class VideoRenderer;
+namespace cricket 
+{
+    class VideoRenderer;
 }  // namespace cricket
 
-class Conductor
-  : public webrtc::PeerConnectionObserver,
-    public webrtc::CreateSessionDescriptionObserver,
-    public PeerConnectionClientObserver,
-    public MainWndCallback {
+class Conductor: public webrtc::PeerConnectionObserver,public webrtc::CreateSessionDescriptionObserver,public PeerConnectionClientObserver
+{
  public:
   enum CallbackID {
     MEDIA_CHANNELS_INITIALIZED = 1,
@@ -44,7 +41,7 @@ class Conductor
     STREAM_REMOVED,
   };
 
-  Conductor(PeerConnectionClient* client, MainWindow* main_wnd);
+  Conductor(PeerConnectionClient* client);
 
   bool connection_active() const;
 
@@ -126,7 +123,6 @@ class Conductor
   rtc::scoped_refptr<webrtc::PeerConnectionFactoryInterface>
       peer_connection_factory_;
   PeerConnectionClient* client_;
-  MainWindow* main_wnd_;
   std::deque<std::string*> pending_messages_;
   std::map<std::string, rtc::scoped_refptr<webrtc::MediaStreamInterface> >
       active_streams_;
