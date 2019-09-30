@@ -345,7 +345,8 @@ void Conductor::DisconnectFromServer() {
     client_->SignOut();
 }
 
-void Conductor::ConnectToPeer(int peer_id) {
+void Conductor::ConnectToPeer(int peer_id) 
+{
   RTC_DCHECK(peer_id_ == -1);
   RTC_DCHECK(peer_id != -1);
 
@@ -355,10 +356,12 @@ void Conductor::ConnectToPeer(int peer_id) {
     return;
   }
 
-  if (InitializePeerConnection()) {
+  if (InitializePeerConnection()) 
+  {
     peer_id_ = peer_id;
     peer_connection_->CreateOffer(this, NULL);
-  } else 
+  } 
+  else 
   {
 
   }

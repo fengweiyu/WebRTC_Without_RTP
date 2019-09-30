@@ -8,7 +8,7 @@
  *  be found in the AUTHORS file in the root of the source tree.
  */
 
-#include "webrtc/examples/peerconnection/client/defaults.h"
+#include "defaults.h"
 
 #include <stdlib.h>
 #include <string.h>
