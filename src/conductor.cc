@@ -74,16 +74,14 @@ bool Conductor::InitializePeerConnection() {
 
   peer_connection_factory_  = webrtc::CreatePeerConnectionFactory();
 
-  if (!peer_connection_factory_.get()) {
-    main_wnd_->MessageBox("Error",
-        "Failed to initialize PeerConnectionFactory", true);
+  if (!peer_connection_factory_.get())
+  {
     DeletePeerConnection();
     return false;
   }
 
-  if (!CreatePeerConnection(DTLS_ON)) {
-    main_wnd_->MessageBox("Error",
-        "CreatePeerConnection failed", true);
+  if (!CreatePeerConnection(DTLS_ON)) 
+  {
     DeletePeerConnection();
   }
   AddStreams();
@@ -129,8 +127,6 @@ bool Conductor::CreatePeerConnection(bool dtls) {
 void Conductor::DeletePeerConnection() {
   peer_connection_ = NULL;
   active_streams_.clear();
-  main_wnd_->StopLocalRenderer();
-  main_wnd_->StopRemoteRenderer();
   peer_connection_factory_ = NULL;
   peer_id_ = -1;
   loopback_ = false;
@@ -138,10 +134,7 @@ void Conductor::DeletePeerConnection() {
 
 void Conductor::EnsureStreamingUI() {
   RTC_DCHECK(peer_connection_.get() != NULL);
-  if (main_wnd_->IsWindow()) {
-    if (main_wnd_->current_ui() != MainWindow::STREAMING)
-      main_wnd_->SwitchToStreamingUI();
-  }
+
 }
 
 //
@@ -149,16 +142,16 @@ void Conductor::EnsureStreamingUI() {
 //
 
 // Called when a remote stream is added
-void Conductor::OnAddStream(
-    rtc::scoped_refptr<webrtc::MediaStreamInterface> stream) {
+void Conductor::OnAddStream(rtc::scoped_refptr<webrtc::MediaStreamInterface> stream) 
+{
   LOG(INFO) << __FUNCTION__ << " " << stream->label();
-  main_wnd_->QueueUIThreadCallback(NEW_STREAM_ADDED, stream.release());
+  //main_wnd_->QueueUIThreadCallback(NEW_STREAM_ADDED, stream.release());
 }
 
-void Conductor::OnRemoveStream(
-    rtc::scoped_refptr<webrtc::MediaStreamInterface> stream) {
+void Conductor::OnRemoveStream(rtc::scoped_refptr<webrtc::MediaStreamInterface> stream) 
+ {
   LOG(INFO) << __FUNCTION__ << " " << stream->label();
-  main_wnd_->QueueUIThreadCallback(STREAM_REMOVED, stream.release());
+  //main_wnd_->QueueUIThreadCallback(STREAM_REMOVED, stream.release());
 }
 
 void Conductor::OnIceCandidate(const webrtc::IceCandidateInterface* candidate) {
@@ -189,36 +182,45 @@ void Conductor::OnIceCandidate(const webrtc::IceCandidateInterface* candidate) {
 // PeerConnectionClientObserver implementation.
 //
 
-void Conductor::OnSignedIn() {
+void Conductor::OnSignedIn() 
+{
   LOG(INFO) << __FUNCTION__;
-  main_wnd_->SwitchToPeerList(client_->peers());
+  int num=-1;
+  Peers peer = client_.peers();
+  Peers::const_iterator i = peer.begin;
+  for(;i!=peer.end();++i)
+  {
+    num = i->first;
+    break;
+  }
+  ConnectToPeer(num);
 }
 
-void Conductor::OnDisconnected() {
+void Conductor::OnDisconnected() 
+{
   LOG(INFO) << __FUNCTION__;
 
   DeletePeerConnection();
 
-  if (main_wnd_->IsWindow())
-    main_wnd_->SwitchToConnectUI();
 }
 
-void Conductor::OnPeerConnected(int id, const std::string& name) {
+void Conductor::OnPeerConnected(int id, const std::string& name) 
+{
   LOG(INFO) << __FUNCTION__;
-  // Refresh the list if we're showing it.
-  if (main_wnd_->current_ui() == MainWindow::LIST_PEERS)
-    main_wnd_->SwitchToPeerList(client_->peers());
+
 }
 
-void Conductor::OnPeerDisconnected(int id) {
+void Conductor::OnPeerDisconnected(int id) 
+{
   LOG(INFO) << __FUNCTION__;
-  if (id == peer_id_) {
+  if (id == peer_id_) 
+  {
     LOG(INFO) << "Our peer disconnected";
-    main_wnd_->QueueUIThreadCallback(PEER_CONNECTION_CLOSED, NULL);
-  } else {
+    //main_wnd_->QueueUIThreadCallback(PEER_CONNECTION_CLOSED, NULL);
+  } 
+  else 
+  {
     // Refresh the list if we're showing it.
-    if (main_wnd_->current_ui() == MainWindow::LIST_PEERS)
-      main_wnd_->SwitchToPeerList(client_->peers());
   }
 }
 
@@ -315,21 +317,23 @@ void Conductor::OnMessageFromPeer(int peer_id, const std::string& message) {
   }
 }
 
-void Conductor::OnMessageSent(int err) {
+void Conductor::OnMessageSent(int err) 
+{
   // Process the next pending message if any.
-  main_wnd_->QueueUIThreadCallback(SEND_MESSAGE_TO_PEER, NULL);
+  UIThreadCallback(SEND_MESSAGE_TO_PEER, NULL);
 }
 
-void Conductor::OnServerConnectionFailure() {
-    main_wnd_->MessageBox("Error", ("Failed to connect to " + server_).c_str(),
-                          true);
+void Conductor::OnServerConnectionFailure() 
+{
+
 }
 
 //
 // MainWndCallback implementation.
 //
 
-void Conductor::StartLogin(const std::string& server, int port) {
+void Conductor::StartLogin(const std::string& server, int port) 
+{
   if (client_->is_connected())
     return;
   server_ = server;
@@ -345,17 +349,18 @@ void Conductor::ConnectToPeer(int peer_id) {
   RTC_DCHECK(peer_id_ == -1);
   RTC_DCHECK(peer_id != -1);
 
-  if (peer_connection_.get()) {
-    main_wnd_->MessageBox("Error",
-        "We only support connecting to one peer at a time", true);
+  if (peer_connection_.get())
+  {
+
     return;
   }
 
   if (InitializePeerConnection()) {
     peer_id_ = peer_id;
     peer_connection_->CreateOffer(this, NULL);
-  } else {
-    main_wnd_->MessageBox("Error", "Failed to initialize PeerConnection", true);
+  } else 
+  {
+
   }
 }
 
@@ -402,7 +407,6 @@ void Conductor::AddStreams() {
           kVideoLabel,
           peer_connection_factory_->CreateVideoSource(OpenVideoCaptureDevice(),
                                                       NULL)));
-  main_wnd_->StartLocalRenderer(video_track);
 
   rtc::scoped_refptr<webrtc::MediaStreamInterface> stream =
       peer_connection_factory_->CreateLocalMediaStream(kStreamLabel);
@@ -416,7 +420,7 @@ void Conductor::AddStreams() {
                     rtc::scoped_refptr<webrtc::MediaStreamInterface> >
       MediaStreamPair;
   active_streams_.insert(MediaStreamPair(stream->label(), stream));
-  main_wnd_->SwitchToStreamingUI();
+
 }
 
 void Conductor::DisconnectFromCurrentPeer() {
@@ -426,8 +430,7 @@ void Conductor::DisconnectFromCurrentPeer() {
     DeletePeerConnection();
   }
 
-  if (main_wnd_->IsWindow())
-    main_wnd_->SwitchToPeerList(client_->peers());
+
 }
 
 void Conductor::UIThreadCallback(int msg_id, void* data) {
@@ -438,15 +441,8 @@ void Conductor::UIThreadCallback(int msg_id, void* data) {
 
       RTC_DCHECK(active_streams_.empty());
 
-      if (main_wnd_->IsWindow()) {
-        if (client_->is_connected()) {
-          main_wnd_->SwitchToPeerList(client_->peers());
-        } else {
-          main_wnd_->SwitchToConnectUI();
-        }
-      } else {
-        DisconnectFromServer();
-      }
+      DisconnectFromServer();
+
       break;
 
     case SEND_MESSAGE_TO_PEER: {
@@ -482,9 +478,10 @@ void Conductor::UIThreadCallback(int msg_id, void* data) {
           data);
       webrtc::VideoTrackVector tracks = stream->GetVideoTracks();
       // Only render the first track.
-      if (!tracks.empty()) {
+      if (!tracks.empty()) 
+      {
         webrtc::VideoTrackInterface* track = tracks[0];
-        main_wnd_->StartRemoteRenderer(track);
+
       }
       stream->Release();
       break;
@@ -533,7 +530,8 @@ void Conductor::OnFailure(const std::string& error) {
     LOG(LERROR) << error;
 }
 
-void Conductor::SendMessage(const std::string& json_object) {
+void Conductor::SendMessage(const std::string& json_object) 
+{
   std::string* msg = new std::string(json_object);
-  main_wnd_->QueueUIThreadCallback(SEND_MESSAGE_TO_PEER, msg);
+  UIThreadCallback(SEND_MESSAGE_TO_PEER, msg);
 }
