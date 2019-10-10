@@ -1,0 +1,82 @@
+1.create offer 最终会调用到 Conductor::OnSuccess ，来把sdp信息发送出去
+
+2.
+>>>Conductor::OnSuccess 会SetLocalDescription
+>>>SetLocalDescription 开始收集 candidate
+>>>收集 到candidate 触发 onicecandidate(OnTransportControllerCandidatesGathered
+transport_controller_->SignalCandidatesGathered.connect(
+      this, &WebRtcSession::OnTransportControllerCandidatesGathered);)
+>>>onicecandidate事件 发送candidate给对方
+
+
+设置 local sdp，开始收集 candidate
+onicecandidate事件触发来自 icecandidate事件，而icecandidate 是由RTCPeerConnection API 中setLocalDescription调用内部触发
+
+设置为 local description，同时会触发底层的 ICE candidate gathering，此时开始收集自己的 ICE candidate 当每收集到一个 candidate 之后，会触发 didGenerateIceCandidate 的回调，
+ 直接通过 Signaling server 传递
+
+3.
+Conductor::OnMessageFromPeer 会收到对方发来的candidate
+并调用peer_connection_->AddIceCandidate解析(WebRtcSession::ProcessIceMessage)
+
+ProcessIceMessage调用UseCandidate
+UseCandidate 调用 SetIceConnectionState 设置状态
+SetIceConnectionState 调用OnIceConnectionStateChange 回到出去到 Conductor
+
+
+4.ipc是offer还是answer?
+answer更合适
+
+Conductor::OnMessageFromPeer <<< PeerConnectionClient::OnHangingGetRead
+PeerConnectionClient::InitSocketSignals >>> PeerConnectionClient::OnHangingGetRead
+Conductor::StartLogin >>> Connect    >>> DoConnect >>> InitSocketSignals
+
+
+Conductor::OnMessageFromPeer >>> peer_connection_->CreateAnswer
+WebRtcSessionDescriptionFactory::CreateAnswer >>> WebRtcSessionDescriptionFactory::InternalCreateAnswer
+InternalCreateAnswer(MediaSessionDescriptionFactory::CreateAnswer) >>> Conductor::OnSuccess 会SetLocalDescription
+
+
+
+仿照类SessionDescriptionInterface(使用OnSuccess需注意SetLocalDescription)，或修改原有类的函数create answer(内部分部分组包，并且和codec有关联，不好弄个，
+抓包answer)
+
+构造类涉及到其他功能以及参数比较难搞，还是修改函数可能容易一点
+
+原版的sdp包含很多信息，有ice相关的，不好替换，是否可以直接使用h264的codec？
+
+关于sdp的组包函数BuildMediaDescription
+
+可以设想先使用h264，然后在BuildMediaDescription中拦住填入自己的数据
+
+
+原版的sdp包含很多信息，有ice相关的，不好替换，只有使用原先的框架，故而涉及到codec，
+计划是先使用h264，然后在BuildRtpMap >>>AddFmtpLine中拦住填入自己的数据 
+
+另一种，找codec，在里面修改：
+channel_manager->GetSupportedVideoCodecs(&video_codecs_);
+	session_desc_factory_(channel_manager, &transport_desc_factory_),
+	webrtc_session_desc_factory_.reset(new WebRtcSessionDescriptionFactory(signaling_thread(), channel_manager_, this, id(),std::unique_ptr<rtc::RTCCertificateGeneratorInterface>()));
+	channel_manager_ <<< media_controller_->channel_manager() <<<session_.reset(new WebRtcSession(media_controller_
+	media_controller_ <<< media_controller_.reset(factory_->CreateMediaController(   ////MediaController
+	PeerConnectionFactory::CreateMediaController <<< PeerConnectionFactory::channel_manager_
+	PeerConnectionFactory::Initialize  <<< media_engine =
+      worker_thread_->Invoke<std::unique_ptr<cricket::MediaEngineInterface>>(
+	PeerConnectionFactory::CreateMediaEngine_w  <<< MediaEngineInterface* CreateWebRtcMediaEngine
+    WebRtcMediaEngine2 <<< CompositeMediaEngine   <<< video_codecs() { return video_.codecs()
+	video_.codecs() <<<  WebRtcVideoEngine2::codecs()
+
+channel_manager->GetSupportedVideoCodecs(&video_codecs_); <<< ChannelManager::GetSupportedVideoCodecs
+ media_engine_->video_codecs();<<< WebRtcVideoEngine2::codecs()
+const std::vector<VideoCodec> internal_codecs =
+      InternalEncoderFactory().supported_codecs();
+InternalEncoderFactory::InternalEncoderFactory() >>> codec.SetParam
+
+
+可能就这里VideoCodec::SetDefaultParameters不同，需要修改
+<<<VideoCodec::VideoCodec
+
+
+最终 在 InternalEncoderFactory::InternalEncoderFactory里面加入codec.SetParam即可
+
+

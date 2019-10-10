@@ -1,0 +1,1347 @@
+(peer_connection_client.cc:306): Headers received
+(peer_connection_client.cc:483): PeerConnectionClient::OnClose
+(conductor.cc:295): Conductor::OnPeerConnected
+(conductor.cc:281): Conductor::OnSignedIn
+(conductor.cc:546): SEND_MESSAGE_TO_PEER
+(audio_processing_impl.cc:432): Capture post processor activated: 0
+Render pre processor activated: 0
+(webrtcvoiceengine.cc:211): WebRtcVoiceEngine::WebRtcVoiceEngine
+(webrtcvideoengine.cc:552): WebRtcVideoEngine::WebRtcVideoEngine()
+(webrtcvoiceengine.cc:234): WebRtcVoiceEngine::Init
+(webrtcvoiceengine.cc:241): Supported send codecs in order of preference:
+(webrtcvoiceengine.cc:244): opus/16000/2 { minptime=10 useinbandfec=1 } (111)
+(webrtcvoiceengine.cc:244): ISAC/16000/1 (103)
+(webrtcvoiceengine.cc:244): ISAC/32000/1 (104)
+(webrtcvoiceengine.cc:244): G722/8000/1 (9)
+(webrtcvoiceengine.cc:244): ILBC/8000/1 (102)
+(webrtcvoiceengine.cc:244): PCMU/8000/1 (0)
+(webrtcvoiceengine.cc:244): PCMA/8000/1 (8)
+(webrtcvoiceengine.cc:244): CN/32000/1 (106)
+(webrtcvoiceengine.cc:244): CN/16000/1 (105)
+(webrtcvoiceengine.cc:244): CN/8000/1 (13)
+(webrtcvoiceengine.cc:244): telephone-event/32000/1 (112)
+(webrtcvoiceengine.cc:244): telephone-event/16000/1 (113)
+(webrtcvoiceengine.cc:244): telephone-event/8000/1 (126)
+(webrtcvoiceengine.cc:247): Supported recv codecs in order of preference:
+(webrtcvoiceengine.cc:250): opus/16000/2 { minptime=10 useinbandfec=1 } (111)
+(webrtcvoiceengine.cc:250): ISAC/16000/1 (103)
+(webrtcvoiceengine.cc:250): ISAC/32000/1 (104)
+(webrtcvoiceengine.cc:250): G722/8000/1 (9)
+(webrtcvoiceengine.cc:250): ILBC/8000/1 (102)
+(webrtcvoiceengine.cc:250): PCMU/8000/1 (0)
+(webrtcvoiceengine.cc:250): PCMA/8000/1 (8)
+(webrtcvoiceengine.cc:250): CN/32000/1 (106)
+(webrtcvoiceengine.cc:250): CN/16000/1 (105)
+(webrtcvoiceengine.cc:250): CN/8000/1 (13)
+(webrtcvoiceengine.cc:250): telephone-event/32000/1 (112)
+(webrtcvoiceengine.cc:250): telephone-event/16000/1 (113)
+(webrtcvoiceengine.cc:250): telephone-event/8000/1 (126)
+(audio_device_impl.cc:74): Create
+(audio_device_buffer.cc:63): AudioDeviceBuffer::ctor
+(audio_device_impl.cc:108): AudioDeviceModuleImpl
+(audio_device_impl.cc:112): CheckPlatform
+(audio_device_impl.cc:117): current platform is Win32
+(audio_device_impl.cc:142): CreatePlatformSpecificObjects
+(audio_device_impl.cc:921): PlatformAudioLayer
+(audio_device_impl.cc:164): Attempting to use the Windows Core Audio APIs...
+(audio_device_core_win.cc:175): CoreAudioIsSupported
+(audio_device_core_win.cc:296): AudioDeviceWindowsCore::CoreAudioIsSupported() CoCreateInstance(MMDeviceEnumerator) succeeded (hr=0)
+(audio_device_core_win.cc:435): AudioDeviceWindowsCore created
+(audio_device_core_win.cc:445): AudioDeviceWindowsCore::AudioDeviceWindowsCore() The Avrt DLL module is now loaded
+(audio_device_core_win.cc:459): AudioDeviceWindowsCore::AudioDeviceWindowsCore() AvRevertMmThreadCharacteristics() is OK
+(audio_device_core_win.cc:462): AudioDeviceWindowsCore::AudioDeviceWindowsCore() AvSetMmThreadCharacteristicsA() is OK
+(audio_device_core_win.cc:465): AudioDeviceWindowsCore::AudioDeviceWindowsCore() AvSetMmThreadPriority() is OK
+(audio_device_core_win.cc:3981): _EnumerateEndpointDevicesAll
+(audio_device_core_win.cc:4010): #rendering endpoint devices (counting all): 1
+(audio_device_core_win.cc:4022): Endpoint 0:
+(audio_device_core_win.cc:4035): ID string    : 0000000000509270
+(audio_device_core_win.cc:4052): friendly name: "0000000000529D60"
+(audio_device_core_win.cc:4059): state (0x1)  : *ACTIVE*
+(audio_device_core_win.cc:4080): hwmask (0x3) : HARDWARE_SUPPORT_VOLUME
+(audio_device_core_win.cc:4084): hwmask (0x3) : HARDWARE_SUPPORT_MUTE
+(audio_device_core_win.cc:4096): #channels    : 2
+(audio_device_core_win.cc:4106): volume range : -65.25 (min), 0 (max), 0.75 (inc) [dB]
+(audio_device_core_win.cc:4116): #intervals   : 87
+(audio_device_core_win.cc:4130): volume steps : 17 (nStep), 51 (nStepCount)
+(audio_device_core_win.cc:3981): _EnumerateEndpointDevicesAll
+(audio_device_core_win.cc:4013): #capturing endpoint devices (counting all): 2
+(audio_device_core_win.cc:4022): Endpoint 0:
+(audio_device_core_win.cc:4035): ID string    : 00000000005092F0
+(audio_device_core_win.cc:4052): friendly name: "0000000000529D60"
+(audio_device_core_win.cc:4059): state (0x1)  : *ACTIVE*
+(audio_device_core_win.cc:4080): hwmask (0x3) : HARDWARE_SUPPORT_VOLUME
+(audio_device_core_win.cc:4084): hwmask (0x3) : HARDWARE_SUPPORT_MUTE
+(audio_device_core_win.cc:4096): #channels    : 2
+(audio_device_core_win.cc:4106): volume range : -17.25 (min), 30 (max), 0.75 (inc) [dB]
+(audio_device_core_win.cc:4116): #intervals   : 63
+(audio_device_core_win.cc:4130): volume steps : 50 (nStep), 51 (nStepCount)
+(audio_device_core_win.cc:4022): Endpoint 1:
+(audio_device_core_win.cc:4035): ID string    : 00000000005092F0
+(audio_device_core_win.cc:4052): friendly name: "0000000000529D60"
+(audio_device_core_win.cc:4068): state (0x8)  : UNPLUGGED
+(audio_device_core_win.cc:4135): Error when logging device information
+(audio_device_core_win.cc:3548): _RefreshDeviceList
+(audio_device_core_win.cc:3584): _DeviceListCount
+(audio_device_core_win.cc:3548): _RefreshDeviceList
+(audio_device_core_win.cc:3584): _DeviceListCount
+(audio_device_core_win.cc:3829): _GetDeviceName
+(audio_device_core_win.cc:1722): friendly name: "0000000003F9E9F0"
+(audio_device_core_win.cc:3548): _RefreshDeviceList
+(audio_device_core_win.cc:3584): _DeviceListCount
+(audio_device_core_win.cc:2190): Audio Engine's current capturing mix format:
+(audio_device_core_win.cc:2192): wFormatTag     : 0xfffe (65534)
+(audio_device_core_win.cc:2196): nChannels      : 2
+(audio_device_core_win.cc:2198): nSamplesPerSec : 44100
+(audio_device_core_win.cc:2200): nAvgBytesPerSec: 352800
+(audio_device_core_win.cc:2202): nBlockAlign    : 8
+(audio_device_core_win.cc:2204): wBitsPerSample : 32
+(audio_device_core_win.cc:2205): cbSize         : 22
+(audio_device_core_win.cc:2239): nChannels=2, nSamplesPerSec=48000 is not supported. Closest match: nChannels=2, nSamplesPerSec=44100
+(audio_device_core_win.cc:2239): nChannels=1, nSamplesPerSec=48000 is not supported. Closest match: nChannels=2, nSamplesPerSec=44100
+(audio_device_core_win.cc:2239): nChannels=4, nSamplesPerSec=48000 is not supported. Closest match: nChannels=2, nSamplesPerSec=44100
+(audio_device_core_win.cc:2264): VoE selected this capturing format:
+(audio_device_core_win.cc:2265): wFormatTag        : 0xfffe (65534)
+(audio_device_core_win.cc:2268): nChannels         : 2
+(audio_device_core_win.cc:2269): nSamplesPerSec    : 44100
+(audio_device_core_win.cc:2270): nAvgBytesPerSec   : 176400
+(audio_device_core_win.cc:2271): nBlockAlign       : 4
+(audio_device_core_win.cc:2272): wBitsPerSample    : 16
+(audio_device_core_win.cc:2273): cbSize            : 22
+(audio_device_core_win.cc:2274): Additional settings:
+(audio_device_core_win.cc:2275): _recAudioFrameSize: 4
+(audio_device_core_win.cc:2276): _recBlockSize     : 441
+(audio_device_core_win.cc:2277): _recChannels      : 2
+(audio_device_core_win.cc:2307): AudioDeviceBuffer must be attached before streaming can start
+(audio_device_core_win.cc:2316): IAudioClient::GetBufferSize() => 896 (<=> 3584 bytes)
+(audio_device_core_win.cc:2338): capture side is now initialized
+(audio_device_core_win.cc:2424): no capturing stream is active => close down WASAPI only
+(audio_device_core_win.cc:3548): _RefreshDeviceList
+(audio_device_core_win.cc:3584): _DeviceListCount
+(audio_device_core_win.cc:3548): _RefreshDeviceList
+(audio_device_core_win.cc:3584): _DeviceListCount
+(audio_device_core_win.cc:3548): _RefreshDeviceList
+(audio_device_core_win.cc:3584): _DeviceListCount
+(audio_device_core_win.cc:3829): _GetDeviceName
+(audio_device_core_win.cc:1459): friendly name: "0000000003F9E9F0"
+(audio_device_core_win.cc:3548): _RefreshDeviceList
+(audio_device_core_win.cc:3584): _DeviceListCount
+(audio_device_core_win.cc:1873): Audio Engine's current rendering mix format:
+(audio_device_core_win.cc:1875): wFormatTag     : 0xfffe (65534)
+(audio_device_core_win.cc:1879): nChannels      : 2
+(audio_device_core_win.cc:1881): nSamplesPerSec : 44100
+(audio_device_core_win.cc:1883): nAvgBytesPerSec: 352800
+(audio_device_core_win.cc:1885): nBlockAlign    : 8
+(audio_device_core_win.cc:1887): wBitsPerSample : 32
+(audio_device_core_win.cc:1888): cbSize         : 22
+(audio_device_core_win.cc:1917): nChannels=2, nSamplesPerSec=48000 is not supported. Closest match: nChannels=2, nSamplesPerSec=44100
+(audio_device_core_win.cc:1917): nChannels=1, nSamplesPerSec=48000 is not supported. Closest match: nChannels=2, nSamplesPerSec=44100
+(audio_device_core_win.cc:1949): VoE selected this rendering format:
+(audio_device_core_win.cc:1950): wFormatTag         : 0x1 (1)
+(audio_device_core_win.cc:1953): nChannels          : 2
+(audio_device_core_win.cc:1954): nSamplesPerSec     : 44100
+(audio_device_core_win.cc:1955): nAvgBytesPerSec    : 176400
+(audio_device_core_win.cc:1956): nBlockAlign        : 4
+(audio_device_core_win.cc:1957): wBitsPerSample     : 16
+(audio_device_core_win.cc:1958): cbSize             : 0
+(audio_device_core_win.cc:1959): Additional settings:
+(audio_device_core_win.cc:1960): _playAudioFrameSize: 4
+(audio_device_core_win.cc:1961): _playBlockSize     : 441
+(audio_device_core_win.cc:1963): _playChannels      : 2
+(audio_device_core_win.cc:2018): AudioDeviceBuffer must be attached before streaming can start
+(audio_device_core_win.cc:2027): IAudioClient::GetBufferSize() => 1323 (<=> 5292 bytes)
+(audio_device_core_win.cc:2049): render side is now initialized
+(audio_device_core_win.cc:2563): no rendering stream is active => close down WASAPI only
+(audio_device_core_win.cc:3548): _RefreshDeviceList
+(audio_device_core_win.cc:3584): _DeviceListCount
+(audio_device_core_win.cc:532): ~AudioDeviceWindowsCore destroyed
+(audio_device_core_win.cc:579): AudioDeviceWindowsCore::~AudioDeviceWindowsCore() the Avrt DLL module is now unloaded
+(audio_device_core_win.cc:365): *** Windows Core Audio is supported ***
+(audio_device_core_win.cc:435): AudioDeviceWindowsCore created
+(audio_device_core_win.cc:445): AudioDeviceWindowsCore::AudioDeviceWindowsCore() The Avrt DLL module is now loaded
+(audio_device_core_win.cc:459): AudioDeviceWindowsCore::AudioDeviceWindowsCore() AvRevertMmThreadCharacteristics() is OK
+(audio_device_core_win.cc:462): AudioDeviceWindowsCore::AudioDeviceWindowsCore() AvSetMmThreadCharacteristicsA() is OK
+(audio_device_core_win.cc:465): AudioDeviceWindowsCore::AudioDeviceWindowsCore() AvSetMmThreadPriority() is OK
+(audio_device_impl.cc:167): Windows Core Audio APIs will be utilized
+(audio_device_impl.cc:297): AttachAudioBuffer
+(audio_device_buffer.cc:185): SetRecordingSampleRate(0)
+(audio_device_buffer.cc:192): SetPlayoutSampleRate(0)
+(audio_device_buffer.cc:209): SetRecordingChannels(0)
+(audio_device_buffer.cc:216): SetPlayoutChannels(0)
+(audio_device_impl.cc:317): Init
+(audio_device_core_win.cc:3981): _EnumerateEndpointDevicesAll
+(audio_device_core_win.cc:4010): #rendering endpoint devices (counting all): 1
+(audio_device_core_win.cc:4022): Endpoint 0:
+(audio_device_core_win.cc:4035): ID string    : 0000000000509470
+(audio_device_core_win.cc:4052): friendly name: "0000000000529D60"
+(audio_device_core_win.cc:4059): state (0x1)  : *ACTIVE*
+(audio_device_core_win.cc:4080): hwmask (0x3) : HARDWARE_SUPPORT_VOLUME
+(audio_device_core_win.cc:4084): hwmask (0x3) : HARDWARE_SUPPORT_MUTE
+(audio_device_core_win.cc:4096): #channels    : 2
+(audio_device_core_win.cc:4106): volume range : -65.25 (min), 0 (max), 0.75 (inc) [dB]
+(audio_device_core_win.cc:4116): #intervals   : 87
+(audio_device_core_win.cc:4130): volume steps : 17 (nStep), 51 (nStepCount)
+(audio_device_core_win.cc:3981): _EnumerateEndpointDevicesAll
+(audio_device_core_win.cc:4013): #capturing endpoint devices (counting all): 2
+(audio_device_core_win.cc:4022): Endpoint 0:
+(audio_device_core_win.cc:4035): ID string    : 00000000005094F0
+(audio_device_core_win.cc:4052): friendly name: "0000000000529D60"
+(audio_device_core_win.cc:4059): state (0x1)  : *ACTIVE*
+(audio_device_core_win.cc:4080): hwmask (0x3) : HARDWARE_SUPPORT_VOLUME
+(audio_device_core_win.cc:4084): hwmask (0x3) : HARDWARE_SUPPORT_MUTE
+(audio_device_core_win.cc:4096): #channels    : 2
+(audio_device_core_win.cc:4106): volume range : -17.25 (min), 30 (max), 0.75 (inc) [dB]
+(audio_device_core_win.cc:4116): #intervals   : 63
+(audio_device_core_win.cc:4130): volume steps : 50 (nStep), 51 (nStepCount)
+(audio_device_core_win.cc:4022): Endpoint 1:
+(audio_device_core_win.cc:4035): ID string    : 00000000005094F0
+(audio_device_core_win.cc:4052): friendly name: "0000000000529D60"
+(audio_device_core_win.cc:4068): state (0x8)  : UNPLUGGED
+(audio_device_core_win.cc:4135): Error when logging device information
+(audio_device_impl.cc:664): SetPlayoutDevice
+(audio_device_core_win.cc:3548): _RefreshDeviceList
+(audio_device_core_win.cc:3829): _GetDeviceName
+(audio_device_core_win.cc:1509): friendly name: "0000000003F9F0F0"
+(audio_device_impl.cc:350): InitSpeaker
+(audio_device_core_win.cc:3927): _GetDefaultDevice
+(audio_device_impl.cc:562): StereoPlayoutIsAvailable
+(audio_device_impl.cc:569): output: 1
+(audio_device_impl.cc:574): SetStereoPlayout(1)
+(audio_device_buffer.cc:216): SetPlayoutChannels(2)
+(audio_device_impl.cc:726): SetRecordingDevice
+(audio_device_core_win.cc:3548): _RefreshDeviceList
+(audio_device_core_win.cc:3829): _GetDeviceName
+(audio_device_core_win.cc:1772): friendly name: "0000000003F9F0F0"
+(audio_device_impl.cc:356): InitMicrophone
+(audio_device_core_win.cc:3927): _GetDefaultDevice
+(audio_device_impl.cc:519): StereoRecordingIsAvailable
+(audio_device_impl.cc:526): output: 1
+(audio_device_impl.cc:531): SetStereoRecording(1)
+(audio_device_buffer.cc:209): SetRecordingChannels(2)
+(audio_processing_impl.cc:432): Capture post processor activated: 0
+Render pre processor activated: 0
+(audio_processing_impl.cc:695): Highpass filter activated: 0
+(audio_processing_impl.cc:709): Gain Controller 2 activated: 0
+(audio_processing_impl.cc:711): Pre-amplifier activated: 0
+(audio_device_impl.cc:833): RegisterAudioCallback
+(audio_device_buffer.cc:83): RegisterAudioCallback
+(webrtcvoiceengine.cc:324): WebRtcVoiceEngine::ApplyOptions: AudioOptions {aec: true, agc: true, ns: true, hf: true, swap: false, audio_jitter_buffer_max_packets: 50, audio_jitter_buffer_fast_accelerate: false, typing: true, experimental_agc: false, extended_filter_aec: false, delay_agnostic_aec: false, experimental_ns: false, intelligibility_enhancer: false, residual_echo_detector: true, }
+(audio_device_impl.cc:849): BuiltInAECIsAvailable
+(audio_device_impl.cc:852): output: 1
+(audio_device_impl.cc:857): EnableBuiltInAEC(1)
+(audio_device_impl.cc:860): output: 0
+(webrtcvoiceengine.cc:435): Disabling EC since built-in EC will be used instead
+(apm_helpers.cc:118): Echo control set to 0 with mode 0
+(apm_helpers.cc:128): EC metrics set to 0
+(audio_device_impl.cc:865): BuiltInAGCIsAvailable
+(audio_device_generic.cc:27): BuiltInAGCIsAvailable: Not supported on this platform
+(audio_device_impl.cc:868): output: 0
+(apm_helpers.cc:82): AGC set to 1 with mode 0
+(audio_device_impl.cc:881): BuiltInNSIsAvailable
+(audio_device_generic.cc:37): BuiltInNSIsAvailable: Not supported on this platform
+(audio_device_impl.cc:884): output: 0
+(apm_helpers.cc:153): NS set to 1
+(webrtcvoiceengine.cc:507): Stereo swapping enabled? 0
+(webrtcvoiceengine.cc:512): NetEq capacity is 50
+(webrtcvoiceengine.cc:518): NetEq fast mode? 0
+(webrtcvoiceengine.cc:525): Typing detection is enabled? 1
+(apm_helpers.cc:167): VAD set to 1 for typing detection.
+(webrtcvoiceengine.cc:536): Delay agnostic aec is enabled? 0
+(webrtcvoiceengine.cc:546): Extended filter aec is enabled? 0
+(webrtcvoiceengine.cc:556): Experimental ns is enabled? 0
+(webrtcvoiceengine.cc:562): Intelligibility Enhancer is enabled? 0
+(audio_processing_impl.cc:695): Highpass filter activated: 1
+(audio_processing_impl.cc:709): Gain Controller 2 activated: 0
+(audio_processing_impl.cc:711): Pre-amplifier activated: 0
+(peerconnectionfactory.cc:415): Using default network controller factory
+(alr_experiment.cc:65): Using ALR experiment settings: pacing factor: 1, max pacer queue length: 2875, ALR start bandwidth usage percent: 80, ALR end budget level percent: 40, ALR end budget level percent: -60, ALR experiment group ID: 3
+(bitrate_prober.cc:62): Bandwidth probing enabled, set to inactive
+(rtp_transport_controller_send.cc:45): Using Legacy SSCC
+(aimd_rate_control.cc:75): Using aimd rate control with back off factor 0.85
+(delay_based_bwe.cc:105): Using Trendline filter for delay change estimation with window size 20
+(send_side_congestion_controller.cc:276): SignalNetworkState Down
+(delay_based_bwe.cc:313): BWE Setting start bitrate to: 300000
+(paced_sender.cc:356): ProcessThreadAttached 0x00000000004FF650
+(cpu_info.cc:46): Available number of cores: 4
+(rw_lock_win.cc:72): Loaded Kernel.dll
+(rw_lock_win.cc:89): Loaded Native RW Lock
+(aimd_rate_control.cc:75): Using aimd rate control with back off factor 0.85
+(remote_bitrate_estimator_single_stream.cc:56): RemoteBitrateEstimatorSingleStream: Instantiating.
+(webrtcsessiondescriptionfactory.cc:172): DTLS-SRTP enabled; sending DTLS identity request (key type: 1).
+(opensslidentity.cc:44): Making key pair
+(peerconnection.cc:1247): Adding audio transceiver in response to a call to AddTrack.
+(opensslidentity.cc:92): Returning key pair
+(opensslcertificate.cc:58): Making certificate for WebRTC
+(opensslcertificate.cc:105): Returning certificate
+(device_info_ds.cc:205): GetDeviceInfo USB HD Webcam
+(device_info_ds.cc:205): GetDeviceInfo USB HD Webcam
+(device_info_ds.cc:311): CreateCapabilityMap called for device \\?\usb#vid_5986&pid_0523&mi_00#7&ae79133&0&0000#{65e8773d-8f56-11d0-a3b9-00a0c9223196}\global
+(paced_sender.cc:97): PacedSender paused.
+(device_info_ds.cc:388): Device support FORMAT_VideoInfo2
+(device_info_ds.cc:377): Device support FORMAT_VideoInfo2
+(device_info_ds.cc:388): Device support FORMAT_VideoInfo2
+(device_info_ds.cc:377): Device support FORMAT_VideoInfo2
+(device_info_ds.cc:388): Device support FORMAT_VideoInfo2
+(device_info_ds.cc:377): Device support FORMAT_VideoInfo2
+(device_info_ds.cc:388): Device support FORMAT_VideoInfo2
+(device_info_ds.cc:377): Device support FORMAT_VideoInfo2
+(device_info_ds.cc:388): Device support FORMAT_VideoInfo2
+(device_info_ds.cc:377): Device support FORMAT_VideoInfo2
+(device_info_ds.cc:388): Device support FORMAT_VideoInfo2
+(device_info_ds.cc:377): Device support FORMAT_VideoInfo2
+(device_info_ds.cc:388): Device support FORMAT_VideoInfo2
+(device_info_ds.cc:377): Device support FORMAT_VideoInfo2
+(device_info_ds.cc:388): Device support FORMAT_VideoInfo2
+(device_info_ds.cc:377): Device support FORMAT_VideoInfo2
+(device_info_ds.cc:388): Device support FORMAT_VideoInfo2
+(device_info_ds.cc:377): Device support FORMAT_VideoInfo2
+(device_info_ds.cc:388): Device support FORMAT_VideoInfo2
+(device_info_ds.cc:377): Device support FORMAT_VideoInfo2
+(device_info_ds.cc:388): Device support FORMAT_VideoInfo2
+(device_info_ds.cc:377): Device support FORMAT_VideoInfo2
+(device_info_ds.cc:388): Device support FORMAT_VideoInfo2
+(device_info_ds.cc:377): Device support FORMAT_VideoInfo2
+(device_info_ds.cc:388): Device support FORMAT_VideoInfo2
+(device_info_ds.cc:377): Device support FORMAT_VideoInfo2
+(device_info_ds.cc:388): Device support FORMAT_VideoInfo2
+(device_info_ds.cc:377): Device support FORMAT_VideoInfo2
+(device_info_ds.cc:388): Device support FORMAT_VideoInfo2
+(device_info_ds.cc:377): Device support FORMAT_VideoInfo2
+(device_info_ds.cc:518): Camera capability, width:640 height:480 type:9 fps:30
+(device_info_ds.cc:518): Camera capability, width:320 height:240 type:9 fps:30
+(device_info_ds.cc:518): Camera capability, width:352 height:288 type:9 fps:30
+(device_info_ds.cc:518): Camera capability, width:424 height:240 type:9 fps:30
+(device_info_ds.cc:518): Camera capability, width:640 height:360 type:9 fps:30
+(device_info_ds.cc:518): Camera capability, width:800 height:448 type:9 fps:15
+(device_info_ds.cc:518): Camera capability, width:960 height:544 type:9 fps:10
+(device_info_ds.cc:518): Camera capability, width:1280 height:720 type:9 fps:8
+(device_info_ds.cc:518): Camera capability, width:640 height:480 type:12 fps:30
+(device_info_ds.cc:518): Camera capability, width:320 height:240 type:12 fps:30
+(device_info_ds.cc:518): Camera capability, width:352 height:288 type:12 fps:30
+(device_info_ds.cc:518): Camera capability, width:640 height:360 type:12 fps:30
+(device_info_ds.cc:518): Camera capability, width:800 height:448 type:12 fps:30
+(device_info_ds.cc:518): Camera capability, width:960 height:544 type:12 fps:30
+(device_info_ds.cc:518): Camera capability, width:1280 height:720 type:12 fps:30
+(device_info_ds.cc:537): CreateCapabilityMap 15
+(device_info_ds.cc:311): CreateCapabilityMap called for device \\?\usb#vid_5986&pid_0523&mi_00#7&ae79133&0&0000#{65e8773d-8f56-11d0-a3b9-00a0c9223196}\global
+(device_info_ds.cc:388): Device support FORMAT_VideoInfo2
+(device_info_ds.cc:377): Device support FORMAT_VideoInfo2
+(device_info_ds.cc:388): Device support FORMAT_VideoInfo2
+(device_info_ds.cc:377): Device support FORMAT_VideoInfo2
+(device_info_ds.cc:388): Device support FORMAT_VideoInfo2
+(device_info_ds.cc:377): Device support FORMAT_VideoInfo2
+(device_info_ds.cc:388): Device support FORMAT_VideoInfo2
+(device_info_ds.cc:377): Device support FORMAT_VideoInfo2
+(device_info_ds.cc:388): Device support FORMAT_VideoInfo2
+(device_info_ds.cc:377): Device support FORMAT_VideoInfo2
+(device_info_ds.cc:388): Device support FORMAT_VideoInfo2
+(device_info_ds.cc:377): Device support FORMAT_VideoInfo2
+(device_info_ds.cc:388): Device support FORMAT_VideoInfo2
+(device_info_ds.cc:377): Device support FORMAT_VideoInfo2
+(device_info_ds.cc:388): Device support FORMAT_VideoInfo2
+(device_info_ds.cc:377): Device support FORMAT_VideoInfo2
+(device_info_ds.cc:388): Device support FORMAT_VideoInfo2
+(device_info_ds.cc:377): Device support FORMAT_VideoInfo2
+(device_info_ds.cc:388): Device support FORMAT_VideoInfo2
+(device_info_ds.cc:377): Device support FORMAT_VideoInfo2
+(device_info_ds.cc:388): Device support FORMAT_VideoInfo2
+(device_info_ds.cc:377): Device support FORMAT_VideoInfo2
+(device_info_ds.cc:388): Device support FORMAT_VideoInfo2
+(device_info_ds.cc:377): Device support FORMAT_VideoInfo2
+(device_info_ds.cc:388): Device support FORMAT_VideoInfo2
+(device_info_ds.cc:377): Device support FORMAT_VideoInfo2
+(device_info_ds.cc:388): Device support FORMAT_VideoInfo2
+(device_info_ds.cc:377): Device support FORMAT_VideoInfo2
+(device_info_ds.cc:388): Device support FORMAT_VideoInfo2
+(device_info_ds.cc:377): Device support FORMAT_VideoInfo2
+(device_info_ds.cc:518): Camera capability, width:640 height:480 type:9 fps:30
+(device_info_ds.cc:518): Camera capability, width:320 height:240 type:9 fps:30
+(device_info_ds.cc:518): Camera capability, width:352 height:288 type:9 fps:30
+(device_info_ds.cc:518): Camera capability, width:424 height:240 type:9 fps:30
+(device_info_ds.cc:518): Camera capability, width:640 height:360 type:9 fps:30
+(device_info_ds.cc:518): Camera capability, width:800 height:448 type:9 fps:15
+(device_info_ds.cc:518): Camera capability, width:960 height:544 type:9 fps:10
+(device_info_ds.cc:518): Camera capability, width:1280 height:720 type:9 fps:8
+(device_info_ds.cc:518): Camera capability, width:640 height:480 type:12 fps:30
+(device_info_ds.cc:518): Camera capability, width:320 height:240 type:12 fps:30
+(device_info_ds.cc:518): Camera capability, width:352 height:288 type:12 fps:30
+(device_info_ds.cc:518): Camera capability, width:640 height:360 type:12 fps:30
+(device_info_ds.cc:518): Camera capability, width:800 height:448 type:12 fps:30
+(device_info_ds.cc:518): Camera capability, width:960 height:544 type:12 fps:30
+(device_info_ds.cc:518): Camera capability, width:1280 height:720 type:12 fps:30
+(device_info_ds.cc:537): CreateCapabilityMap 15
+(device_info_impl.cc:212): Best camera format: 640x480@30fps, color format: 9
+(sink_filter_ds.cc:148): GetMediaType position 0, width 640, height 480, biCompression 0x32595559
+(sink_filter_ds.cc:189): CheckMediaType width:640 height:480 Compression:0x32595559
+(video_capture_ds.cc:125): Capture device '\\?\usb#vid_5986&pid_0523&mi_00#7&ae79133&0&0000#{65e8773d-8f56-11d0-a3b9-00a0c9223196}\global' initialized.
+(device_info_impl.cc:212): Best camera format: 640x480@30fps, color format: 9
+(sink_filter_ds.cc:148): GetMediaType position 0, width 640, height 480, biCompression 0x32595559
+(sink_filter_ds.cc:189): CheckMediaType width:640 height:480 Compression:0x32595559
+(webrtcvideocapturer.cc:280): Camera '0' started with format YUY2 640x480x30, elapsed time 114 ms
+(peerconnection.cc:1247): Adding video transceiver in response to a call to AddTrack.
+(webrtcsessiondescriptionfactory.cc:463): Setting new certificate.
+(mediasession.cc:356): Duplicate id found. Reassigning from 102 to 127
+(p2ptransportchannel.cc:437): Set backup connection ping interval to 25000 milliseconds.
+(p2ptransportchannel.cc:446): Set ICE receiving timeout to 2500 milliseconds
+(p2ptransportchannel.cc:453): Set ping most likely connection to 0
+(p2ptransportchannel.cc:460): Set stable_writable_connection_ping_interval to 2500
+(p2ptransportchannel.cc:473): Set presume writable when fully relayed to 0
+(p2ptransportchannel.cc:482): Set regather_on_failed_networks_interval to 300000
+(p2ptransportchannel.cc:501): Set receiving_switching_delay to 1000
+(dtlssrtptransport.cc:57): Setting RTCP Transport on 0 transport 0000000000000000
+(dtlssrtptransport.cc:62): Setting RTP Transport on 0 transport 0000000003776FA0
+(p2ptransportchannel.cc:437): Set backup connection ping interval to 25000 milliseconds.
+(p2ptransportchannel.cc:446): Set ICE receiving timeout to 2500 milliseconds
+(p2ptransportchannel.cc:453): Set ping most likely connection to 0
+(p2ptransportchannel.cc:460): Set stable_writable_connection_ping_interval to 2500
+(p2ptransportchannel.cc:473): Set presume writable when fully relayed to 0
+(p2ptransportchannel.cc:482): Set regather_on_failed_networks_interval to 300000
+(p2ptransportchannel.cc:501): Set receiving_switching_delay to 1000
+(dtlssrtptransport.cc:57): Setting RTCP Transport on 1 transport 0000000000000000
+(dtlssrtptransport.cc:62): Setting RTP Transport on 1 transport 0000000003781800
+(p2ptransportchannel.cc:374): Set ICE ufrag: IYSq pwd: SCYFW+XgDgkRsVdPqJctESE1 on transport 0
+(p2ptransportchannel.cc:374): Set ICE ufrag: IYSq pwd: SCYFW+XgDgkRsVdPqJctESE1 on transport 1
+(webrtcvoiceengine.cc:1271): WebRtcVoiceMediaChannel::WebRtcVoiceMediaChannel
+(webrtcvoiceengine.cc:1482): Setting voice channel options: AudioOptions {audio_jitter_buffer_max_packets: 50, audio_jitter_buffer_fast_accelerate: false, }
+(webrtcvoiceengine.cc:324): WebRtcVoiceEngine::ApplyOptions: AudioOptions {audio_jitter_buffer_max_packets: 50, audio_jitter_buffer_fast_accelerate: false, }
+(webrtcvoiceengine.cc:512): NetEq capacity is 50
+(webrtcvoiceengine.cc:518): NetEq fast mode? 0
+(webrtcvoiceengine.cc:536): Delay agnostic aec is enabled? 0
+(webrtcvoiceengine.cc:546): Extended filter aec is enabled? 0
+(webrtcvoiceengine.cc:556): Experimental ns is enabled? 0
+(webrtcvoiceengine.cc:562): Intelligibility Enhancer is enabled? 0
+(audio_processing_impl.cc:695): Highpass filter activated: 1
+(audio_processing_impl.cc:709): Gain Controller 2 activated: 0
+(audio_processing_impl.cc:711): Pre-amplifier activated: 0
+(webrtcvoiceengine.cc:1500): Set voice channel options. Current options: AudioOptions {audio_jitter_buffer_max_packets: 50, audio_jitter_buffer_fast_accelerate: false, }
+(channel.cc:113): Created channel for 0
+(webrtcvoiceengine.cc:2109): OnReadyToSend: Not ready.
+(call.cc:1056): UpdateAggregateNetworkState: aggregate_state=down
+(send_side_congestion_controller.cc:276): SignalNetworkState Down
+(webrtcvideoengine.cc:563): CreateChannel. Options: VideoOptions {}
+(channel.cc:113): Created channel for 1
+(webrtcvideoengine.cc:1505): OnReadyToSend: Not ready.
+(call.cc:1056): UpdateAggregateNetworkState: aggregate_state=down
+(send_side_congestion_controller.cc:276): SignalNetworkState Down
+(peerconnection.cc:3506): Session: 4478677094510127467 Old state: kStable New state: kHaveLocalOffer
+(channel.cc:802): Setting local voice description
+(webrtcvoiceengine.cc:1338): WebRtcVoiceMediaChannel::SetRecvParameters: {codecs: [AudioCodec[111:opus:16000:0:2], AudioCodec[103:ISAC:16000:0:1], AudioCodec[104:ISAC:32000:0:1], AudioCodec[9:G722:8000:0:1], AudioCodec[102:ILBC:8000:0:1], AudioCodec[0:PCMU:8000:0:1], AudioCodec[8:PCMA:8000:0:1], AudioCodec[106:CN:32000:0:1], AudioCodec[105:CN:16000:0:1], AudioCodec[13:CN:8000:0:1], AudioCodec[112:telephone-event:32000:0:1], AudioCodec[113:telephone-event:16000:0:1], AudioCodec[126:telephone-event:8000:0:1]], extensions: [{uri: urn:ietf:params:rtp-hdrext:ssrc-audio-level, id: 1}, {uri: urn:ietf:params:rtp-hdrext:sdes:mid, id: 9}]}
+(webrtcvoiceengine.cc:1510): Setting receive voice codecs.
+(webrtcvoiceengine.cc:1780): AddSendStream: {id:audio_label;ssrcs:[26574455];ssrc_groups:;cname:czVcV9SB55E5Z1Av;stream_ids:stream_id;}
+(neteq_impl.cc:114): NetEq config: sample_rate_hz=16000, enable_post_decode_vad=true, max_packets_in_buffer=0, playout_mode=0, enable_fast_accelerate=false, enable_muted_state= true
+(neteq_impl.cc:2051): SetSampleRateAndChannels 16000 1
+(neteq_impl.cc:484): FlushBuffers
+(audio_coding_module.cc:462): Created
+(neteq_impl.cc:484): FlushBuffers
+(audio_send_stream.cc:134): AudioSendStream: 26574455
+(audio_send_stream.cc:199): AudioSendStream::ConfigureStream: {rtp: {ssrc: 26574455, extensions: [], nack: {rtp_history_ms: 0}, c_name: czVcV9SB55E5Z1Av}, send_transport: (Transport), min_bitrate_bps: -1, max_bitrate_bps: -1, send_codec_spec: <unset>}
+(call.cc:1056): UpdateAggregateNetworkState: aggregate_state=down
+(send_side_congestion_controller.cc:276): SignalNetworkState Down
+(channel.cc:625): Add send stream ssrc: 26574455
+(channel.cc:794): Changing voice state, recv=0 send=0
+(channel.cc:937): Setting local video description
+(webrtcvideoengine.cc:990): SetRecvParameters: {codecs: [VideoCodec[96:VP8], VideoCodec[97:rtx], VideoCodec[98:VP9], VideoCodec[99:rtx], VideoCodec[100:red], VideoCodec[101:rtx], VideoCodec[127:ulpfec]], extensions: [{uri: urn:ietf:params:rtp-hdrext:toffset, id: 2}, {uri: http://www.webrtc.org/experiments/rtp-hdrext/abs-send-time, id: 3}, {uri: urn:3gpp:video-orientation, id: 4}, {uri: http://www.ietf.org/id/draft-holmer-rmcat-transport-wide-cc-extensions-01, id: 5}, {uri: http://www.webrtc.org/experiments/rtp-hdrext/playout-delay, id: 6}, {uri: http://www.webrtc.org/experiments/rtp-hdrext/video-content-type, id: 7}, {uri: http://www.webrtc.org/experiments/rtp-hdrext/video-timing, id: 8}, {uri: urn:ietf:params:rtp-hdrext:sdes:mid, id: 9}]}
+(webrtcvideoengine.cc:1005): Changing recv codecs from {VideoCodec[96:VP8], VideoCodec[98:VP9]} to {VideoCodec[96:VP8], VideoCodec[98:VP9]}
+(webrtcvideoengine.cc:1110): AddSendStream: {id:video_label;ssrcs:[2393749781,3633525226];ssrc_groups:{semantics:FID;ssrcs:[2393749781,3633525226]};cname:czVcV9SB55E5Z1Av;stream_ids:stream_id;}
+(webrtcvideoengine.cc:1142): SetLocalSsrc on all the receive streams because we added a send stream.
+(channel.cc:625): Add send stream ssrc: 2393749781
+(webrtcvideoengine.cc:1047): SetSend: false
+(channel.cc:924): Changing video state, send=0
+(peerconnection.cc:4756): Local and Remote descriptions must be applied to get the SSL Role of the SCTP transport.
+(webrtcvoiceengine.cc:1482): Setting voice channel options: AudioOptions {}
+(webrtcvoiceengine.cc:324): WebRtcVoiceEngine::ApplyOptions: AudioOptions {audio_jitter_buffer_max_packets: 50, audio_jitter_buffer_fast_accelerate: false, }
+(webrtcvoiceengine.cc:512): NetEq capacity is 50
+(webrtcvoiceengine.cc:518): NetEq fast mode? 0
+(webrtcvoiceengine.cc:536): Delay agnostic aec is enabled? 0
+(webrtcvoiceengine.cc:546): Extended filter aec is enabled? 0
+(webrtcvoiceengine.cc:556): Experimental ns is enabled? 0
+(webrtcvoiceengine.cc:562): Intelligibility Enhancer is enabled? 0
+(audio_processing_impl.cc:695): Highpass filter activated: 1
+(audio_processing_impl.cc:709): Gain Controller 2 activated: 0
+(audio_processing_impl.cc:711): Pre-amplifier activated: 0
+(webrtcvoiceengine.cc:1500): Set voice channel options. Current options: AudioOptions {audio_jitter_buffer_max_packets: 50, audio_jitter_buffer_fast_accelerate: false, }
+(webrtcvideoengine.cc:1068): SetVideoSend (ssrc= 2393749781, options: VideoOptions {is_screencast : false, }, source = (source))
+(basicportallocator.cc:339): Start getting ports with prune_turn_ports disabled
+(basicportallocator.cc:339): Start getting ports with prune_turn_ports disabled
+(conductor.cc:619): SDP£¨json£©{
+   "sdp" : "v=0\r\no=- 4478677094510127467 2 IN IP4 127.0.0.1\r\ns=-\r\nt=0 0\r\na=group:BUNDLE 0 1\r\na=msid-semantic: WMS stream_id\r\nm=audio 9 UDP/TLS/RTP/SAVPF 111 103 104 9 102 0 8 106 105 13 112 113 126\r\nc=IN IP4 0.0.0.0\r\na=rtcp:9 IN IP4 0.0.0.0\r\na=ice-ufrag:IYSq\r\na=ice-pwd:SCYFW+XgDgkRsVdPqJctESE1\r\na=ice-options:trickle\r\na=fingerprint:sha-256 53:34:0D:69:3A:3D:9D:E7:55:55:EC:04:7C:61:1E:72:07:A9:84:5E:41:54:7A:FB:4B:0F:BC:88:0D:D3:C0:44\r\na=setup:actpass\r\na=mid:0\r\na=extmap:1 urn:ietf:params:rtp-hdrext:ssrc-audio-level\r\na=extmap:9 urn:ietf:params:rtp-hdrext:sdes:mid\r\na=sendrecv\r\na=msid:stream_id audio_label\r\na=rtcp-mux\r\na=rtpmap:111 opus/16000/2\r\na=rtcp-fb:111 transport-cc\r\na=fmtp:111 minptime=10;useinbandfec=1\r\na=rtpmap:103 ISAC/16000\r\na=rtpmap:104 ISAC/32000\r\na=rtpmap:9 G722/8000\r\na=rtpmap:102 ILBC/8000\r\na=rtpmap:0 PCMU/8000\r\na=rtpmap:8 PCMA/8000\r\na=rtpmap:106 CN/32000\r\na=rtpmap:105 CN/16000\r\na=rtpmap:13 CN/8000\r\na=rtpmap:112 telephone-event/32000\r\na=rtpmap:113 telephone-event/16000\r\na=rtpmap:126 telephone-event/8000\r\na=ssrc:26574455 cname:czVcV9SB55E5Z1Av\r\na=ssrc:26574455 msid:stream_id audio_label\r\na=ssrc:26574455 mslabel:stream_id\r\na=ssrc:26574455 label:audio_label\r\nm=video 9 UDP/TLS/RTP/SAVPF 96 97 98 99 100 101 127\r\nc=IN IP4 0.0.0.0\r\na=rtcp:9 IN IP4 0.0.0.0\r\na=ice-ufrag:IYSq\r\na=ice-pwd:SCYFW+XgDgkRsVdPqJctESE1\r\na=ice-options:trickle\r\na=fingerprint:sha-256 53:34:0D:69:3A:3D:9D:E7:55:55:EC:04:7C:61:1E:72:07:A9:84:5E:41:54:7A:FB:4B:0F:BC:88:0D:D3:C0:44\r\na=setup:actpass\r\na=mid:1\r\na=extmap:2 urn:ietf:params:rtp-hdrext:toffset\r\na=extmap:3 http://www.webrtc.org/experiments/rtp-hdrext/abs-send-time\r\na=extmap:4 urn:3gpp:video-orientation\r\na=extmap:5 http://www.ietf.org/id/draft-holmer-rmcat-transport-wide-cc-extensions-01\r\na=extmap:6 http://www.webrtc.org/experiments/rtp-hdrext/playout-delay\r\na=extmap:7 http://www.webrtc.org/experiments/rtp-hdrext/video-content-type\r\na=extmap:8 http://www.webrtc.org/experiments/rtp-hdrext/video-timing\r\na=extmap:9 urn:ietf:params:rtp-hdrext:sdes:mid\r\na=sendrecv\r\na=msid:stream_id video_label\r\na=rtcp-mux\r\na=rtcp-rsize\r\na=rtpmap:96 VP8/90000\r\na=rtcp-fb:96 goog-remb\r\na=rtcp-fb:96 transport-cc\r\na=rtcp-fb:96 ccm fir\r\na=rtcp-fb:96 nack\r\na=rtcp-fb:96 nack pli\r\na=rtpmap:97 rtx/90000\r\na=fmtp:97 apt=96\r\na=rtpmap:98 VP9/90000\r\na=rtcp-fb:98 goog-remb\r\na=rtcp-fb:98 transport-cc\r\na=rtcp-fb:98 ccm fir\r\na=rtcp-fb:98 nack\r\na=rtcp-fb:98 nack pli\r\na=rtpmap:99 rtx/90000\r\na=fmtp:99 apt=98\r\na=rtpmap:100 red/90000\r\na=rtpmap:101 rtx/90000\r\na=fmtp:101 apt=100\r\na=rtpmap:127 ulpfec/90000\r\na=ssrc-group:FID 2393749781 3633525226\r\na=ssrc:2393749781 cname:czVcV9SB55E5Z1Av\r\na=ssrc:2393749781 msid:stream_id video_label\r\na=ssrc:2393749781 mslabel:stream_id\r\na=ssrc:2393749781 label:video_label\r\na=ssrc:3633525226 cname:czVcV9SB55E5Z1Av\r\na=ssrc:3633525226 msid:stream_id video_label\r\na=ssrc:3633525226 mslabel:stream_id\r\na=ssrc:3633525226 label:video_label\r\n",
+   "type" : "offer"
+}
+
+(conductor.cc:80): DummySetSessionDescriptionObserver::OnSuccess
+(conductor.cc:546): SEND_MESSAGE_TO_PEER
+(basicportallocator.cc:107): Filtered out ignored networks:
+(basicportallocator.cc:109): Net[Software:0:0:0:x:x:x:x:x/128:Loopback:id=3]
+(basicportallocator.cc:109): Net[Software:127.0.0.x/32:Loopback:id=2]
+(basicportallocator.cc:829): Network manager has started
+(basicportallocator.cc:107): Filtered out ignored networks:
+(basicportallocator.cc:109): Net[Software:0:0:0:x:x:x:x:x/128:Loopback:id=3]
+(basicportallocator.cc:109): Net[Software:127.0.0.x/32:Loopback:id=2]
+(basicportallocator.cc:829): Network manager has started
+(basicportallocator.cc:107): Filtered out ignored networks:
+(basicportallocator.cc:109): Net[Software:0:0:0:x:x:x:x:x/128:Loopback:id=3]
+(basicportallocator.cc:109): Net[Software:127.0.0.x/32:Loopback:id=2]
+(basicportallocator.cc:744): Allocate ports on 1 networks
+(basicportallocator.cc:107): Filtered out ignored networks:
+(basicportallocator.cc:109): Net[Software:0:0:0:x:x:x:x:x/128:Loopback:id=3]
+(basicportallocator.cc:109): Net[Software:127.0.0.x/32:Loopback:id=2]
+(basicportallocator.cc:744): Allocate ports on 1 networks
+(basicportallocator.cc:1284): Net[Realtek:192.168.0.x/32:Wifi:id=1]: Allocation Phase=Udp
+(port.cc:328): Port[00000000062BAAC0::1:0:local:Net[Realtek:192.168.0.x/32:Wifi:id=1]]: Port created with network cost 10
+(basicportallocator.cc:851): Adding allocated port for 0
+(basicportallocator.cc:871): Port[00000000062BAAC0:0:1:0:local:Net[Realtek:192.168.0.x/32:Wifi:id=1]]: Added port to allocator
+(basicportallocator.cc:889): Port[00000000062BAAC0:0:1:0:local:Net[Realtek:192.168.0.x/32:Wifi:id=1]]: Gathered candidate: Cand[:4022866446:1:udp:2122260223:192.168.0.x:54294:local::0:IYSq:SCYFW+XgDgkRsVdPqJctESE1:1:10:0]
+(basicportallocator.cc:917): Port[00000000062BAAC0:0:1:0:local:Net[Realtek:192.168.0.x/32:Wifi:id=1]]: Port ready.
+(physicalsocketserver.cc:592): Socket::OPT_DSCP not supported.
+(p2ptransportchannel.cc:711): Port[00000000062BAAC0:0:1:0:local:Net[Realtek:192.168.0.x/32:Wifi:id=1]]: SetOption(5, 0) failed: 0
+(p2ptransportchannel.cc:1538): Sorting 0 available connections
+(basicportallocator.cc:991): Port[00000000062BAAC0:0:1:0:local:Net[Realtek:192.168.0.x/32:Wifi:id=1]]: Port completed gathering candidates.
+(basicportallocator.cc:1284): Net[Realtek:192.168.0.x/32:Wifi:id=1]: Allocation Phase=Udp
+(port.cc:328): Port[00000000062A8D80::1:0:local:Net[Realtek:192.168.0.x/32:Wifi:id=1]]: Port created with network cost 10
+(conductor.cc:224): Conductor::OnIceCandidate 0
+(conductor.cc:234): ice candidate ip 192.168.0.197
+(basicportallocator.cc:851): Adding allocated port for 1
+(conductor.cc:235): ice candidate port 54294
+(basicportallocator.cc:871): Port[00000000062A8D80:1:1:0:local:Net[Realtek:192.168.0.x/32:Wifi:id=1]]: Added port to allocator
+(basicportallocator.cc:889): Port[00000000062A8D80:1:1:0:local:Net[Realtek:192.168.0.x/32:Wifi:id=1]]: Gathered candidate: Cand[:4022866446:1:udp:2122260223:192.168.0.x:54295:local::0:IYSq:SCYFW+XgDgkRsVdPqJctESE1:1:10:0]
+(conductor.cc:546): SEND_MESSAGE_TO_PEER
+(basicportallocator.cc:917): Port[00000000062A8D80:1:1:0:local:Net[Realtek:192.168.0.x/32:Wifi:id=1]]: Port ready.
+(physicalsocketserver.cc:592): Socket::OPT_DSCP not supported.
+(p2ptransportchannel.cc:711): Port[00000000062A8D80:1:1:0:local:Net[Realtek:192.168.0.x/32:Wifi:id=1]]: SetOption(5, 0) failed: 0
+(p2ptransportchannel.cc:1538): Sorting 0 available connections
+(basicportallocator.cc:991): Port[00000000062A8D80:1:1:0:local:Net[Realtek:192.168.0.x/32:Wifi:id=1]]: Port completed gathering candidates.
+(conductor.cc:224): Conductor::OnIceCandidate 1
+(conductor.cc:234): ice candidate ip 192.168.0.197
+(conductor.cc:235): ice candidate port 54295
+(conductor.cc:546): SEND_MESSAGE_TO_PEER
+(peer_connection_client.cc:306): Headers received
+(peer_connection_client.cc:483): PeerConnectionClient::OnClose
+(conductor.cc:546): SEND_MESSAGE_TO_PEER
+(peer_connection_client.cc:306): Headers received
+(peer_connection_client.cc:483): PeerConnectionClient::OnClose
+(conductor.cc:546): SEND_MESSAGE_TO_PEER
+(peer_connection_client.cc:306): Headers received
+(peer_connection_client.cc:483): PeerConnectionClient::OnClose
+(conductor.cc:546): SEND_MESSAGE_TO_PEER
+(basicportallocator.cc:1284): Net[Realtek:192.168.0.x/32:Wifi:id=1]: Allocation Phase=Relay
+(basicportallocator.cc:1416): AllocationSequence: Relay ports disabled, skipping.
+(basicportallocator.cc:1284): Net[Realtek:192.168.0.x/32:Wifi:id=1]: Allocation Phase=Relay
+(basicportallocator.cc:1416): AllocationSequence: Relay ports disabled, skipping.
+(basicportallocator.cc:1284): Net[Realtek:192.168.0.x/32:Wifi:id=1]: Allocation Phase=Tcp
+(port.cc:328): Port[00000000062AB510::1:0:local:Net[Realtek:192.168.0.x/32:Wifi:id=1]]: Port created with network cost 10
+(basicportallocator.cc:851): Adding allocated port for 0
+(basicportallocator.cc:871): Port[00000000062AB510:0:1:0:local:Net[Realtek:192.168.0.x/32:Wifi:id=1]]: Added port to allocator
+(tcpport.cc:168): Preparing TCP address, current state: 2
+(basicportallocator.cc:889): Port[00000000062AB510:0:1:0:local:Net[Realtek:192.168.0.x/32:Wifi:id=1]]: Gathered candidate: Cand[:2706108158:1:tcp:1518280447:192.168.0.x:51133:local::0:IYSq:SCYFW+XgDgkRsVdPqJctESE1:1:10:0]
+(basicportallocator.cc:917): Port[00000000062AB510:0:1:0:local:Net[Realtek:192.168.0.x/32:Wifi:id=1]]: Port ready.
+(physicalsocketserver.cc:592): Socket::OPT_DSCP not supported.
+(p2ptransportchannel.cc:711): Port[00000000062AB510:0:1:0:local:Net[Realtek:192.168.0.x/32:Wifi:id=1]]: SetOption(5, 0) failed: 0
+(p2ptransportchannel.cc:1538): Sorting 0 available connections
+(basicportallocator.cc:991): Port[00000000062AB510:0:1:0:local:Net[Realtek:192.168.0.x/32:Wifi:id=1]]: Port completed gathering candidates.
+(basicportallocator.cc:1087): All candidates gathered for 0:1:0
+(p2ptransportchannel.cc:766): P2PTransportChannel: 0, component 1 gathering complete
+(basicportallocator.cc:1284): Net[Realtek:192.168.0.x/32:Wifi:id=1]: Allocation Phase=Tcp
+(port.cc:328): Port[00000000062ACD80::1:0:local:Net[Realtek:192.168.0.x/32:Wifi:id=1]]: Port created with network cost 10
+(basicportallocator.cc:851): Adding allocated port for 1
+(basicportallocator.cc:871): Port[00000000062ACD80:1:1:0:local:Net[Realtek:192.168.0.x/32:Wifi:id=1]]: Added port to allocator
+(tcpport.cc:168): Preparing TCP address, current state: 2
+(basicportallocator.cc:889): Port[00000000062ACD80:1:1:0:local:Net[Realtek:192.168.0.x/32:Wifi:id=1]]: Gathered candidate: Cand[:2706108158:1:tcp:1518280447:192.168.0.x:51134:local::0:IYSq:SCYFW+XgDgkRsVdPqJctESE1:1:10:0]
+(basicportallocator.cc:917): Port[00000000062ACD80:1:1:0:local:Net[Realtek:192.168.0.x/32:Wifi:id=1]]: Port ready.
+(physicalsocketserver.cc:592): Socket::OPT_DSCP not supported.
+(p2ptransportchannel.cc:711): Port[00000000062ACD80:1:1:0:local:Net[Realtek:192.168.0.x/32:Wifi:id=1]]: SetOption(5, 0) failed: 0
+(p2ptransportchannel.cc:1538): Sorting 0 available connections
+(basicportallocator.cc:991): Port[00000000062ACD80:1:1:0:local:Net[Realtek:192.168.0.x/32:Wifi:id=1]]: Port completed gathering candidates.
+(basicportallocator.cc:1087): All candidates gathered for 1:1:0
+(p2ptransportchannel.cc:766): P2PTransportChannel: 1, component 1 gathering complete
+(conductor.cc:224): Conductor::OnIceCandidate 0
+(conductor.cc:234): ice candidate ip 192.168.0.197
+(conductor.cc:235): ice candidate port 51133
+(conductor.cc:224): Conductor::OnIceCandidate 1
+(conductor.cc:234): ice candidate ip 192.168.0.197
+(conductor.cc:235): ice candidate port 51134
+(conductor.cc:546): SEND_MESSAGE_TO_PEER
+(conductor.cc:546): SEND_MESSAGE_TO_PEER
+(peer_connection_client.cc:306): Headers received
+(peer_connection_client.cc:483): PeerConnectionClient::OnClose
+(conductor.cc:546): SEND_MESSAGE_TO_PEER
+(peer_connection_client.cc:306): Headers received
+(peer_connection_client.cc:483): PeerConnectionClient::OnClose
+(conductor.cc:546): SEND_MESSAGE_TO_PEER
+(port.cc:487): Received STUN ping id=4a425642394c506837395662 from unknown address 192.168.0.x:58203
+(port.cc:1086): Conn[00000000062AF8E0:0:Net[Realtek:192.168.0.x/32:Wifi:id=1]:vASWFFBd:1:0:local:udp:192.168.0.x:54294->TRCdxQJu:1:1853824767:prflx:udp:192.168.0.x:58203|C--W|-|0|0|7962116751024340479|-]: Connection created
+(p2ptransportchannel.cc:883): Adding connection from peer reflexive candidate: Cand[:209100108:1:udp:1853824767:192.168.0.119:58203:prflx::0:fGEX::1:0:0]
+(port.cc:1156): Conn[00000000062AF8E0:0:Net[Realtek:192.168.0.x/32:Wifi:id=1]:vASWFFBd:1:0:local:udp:192.168.0.x:54294->TRCdxQJu:1:1853824767:prflx:udp:192.168.0.x:58203|C--W|-|0|0|7962116751024340479|-]: set_receiving to 1
+(port.cc:807): Port[00000000062BAAC0:0:1:0:local:Net[Realtek:192.168.0.x/32:Wifi:id=1]]: Sent STUN ping response, to=192.168.0.x:58203, id=4a425642394c506837395662
+(port.cc:1409): Conn[00000000062AF8E0:0:Net[Realtek:192.168.0.x/32:Wifi:id=1]:vASWFFBd:1:0:local:udp:192.168.0.x:54294->TRCdxQJu:1:1853824767:prflx:udp:192.168.0.x:58203|CR-W|-|0|0|7962116751024340479|-]: UpdateState(), ms since last received response=16516648, ms since last received data=16516648, rtt=6000, pings_since_last_response=
+(p2ptransportchannel.cc:1538): Sorting 1 available connections
+(p2ptransportchannel.cc:1541): Conn[00000000062AF8E0:0:Net[Realtek:192.168.0.x/32:Wifi:id=1]:vASWFFBd:1:0:local:udp:192.168.0.x:54294->TRCdxQJu:1:1853824767:prflx:udp:192.168.0.x:58203|CR-W|-|0|0|7962116751024340479|-]
+(p2ptransportchannel.cc:1716): Channel[0|1|__]: Transport channel state changed from 0 to 2
+(jseptransportcontroller.cc:1158): 0 Transport 1 state changed. Check if state is complete.
+(dtlstransport.cc:532): DtlsTransport[0|1|__]: ice_transport receiving state changed to 1
+(port.cc:1409): Conn[00000000062AF8E0:0:Net[Realtek:192.168.0.x/32:Wifi:id=1]:vASWFFBd:1:0:local:udp:192.168.0.x:54294->TRCdxQJu:1:1853824767:prflx:udp:192.168.0.x:58203|CR-W|-|0|0|7962116751024340479|-]: UpdateState(), ms since last received response=16516649, ms since last received data=16516649, rtt=6000, pings_since_last_response=
+(p2ptransportchannel.cc:1538): Sorting 1 available connections
+(p2ptransportchannel.cc:1541): Conn[00000000062AF8E0:0:Net[Realtek:192.168.0.x/32:Wifi:id=1]:vASWFFBd:1:0:local:udp:192.168.0.x:54294->TRCdxQJu:1:1853824767:prflx:udp:192.168.0.x:58203|CR-W|-|0|0|7962116751024340479|-]
+(peer_connection_client.cc:384): PeerConnectionClient::OnHangingGetRead
+(peer_connection_client.cc:306): Headers received
+(dtlstransport.cc:563): DtlsTransport[0|1|__]: Packet received before we know if we are doing DTLS or not.
+(dtlstransport.cc:569): DtlsTransport[0|1|__]: Caching DTLS ClientHello packet until DTLS is started.
+(dtlstransport.cc:383): DtlsTransport[0|1|__]: DTLS setup complete.
+(peer_connection_client.cc:384): PeerConnectionClient::OnHangingGetRead
+(peer_connection_client.cc:306): Headers received
+(peer_connection_client.cc:483): PeerConnectionClient::OnClose
+(conductor.cc:367):  Received session description :{
+   "sdp" : "v=0\r\no=- 1933596897428170920 2 IN IP4 127.0.0.1\r\ns=-\r\nt=0 0\r\na=group:BUNDLE 0 1\r\na=msid-semantic: WMS stream_id\r\nm=audio 9 UDP/TLS/RTP/SAVPF 103 104 9 102 0 8 106 105 13 112 113 126\r\nc=IN IP4 0.0.0.0\r\na=rtcp:9 IN IP4 0.0.0.0\r\na=ice-ufrag:fGEX\r\na=ice-pwd:Z8ay/8dqVhidY8oaZ+gcKfE/\r\na=ice-options:trickle\r\na=fingerprint:sha-256 7C:0D:2D:47:66:04:0B:59:37:E2:5E:6D:44:F7:47:93:8B:E1:E6:E0:77:BA:88:36:7D:BC:DA:26:5B:55:41:4D\r\na=setup:active\r\na=mid:0\r\na=extmap:1 urn:ietf:params:rtp-hdrext:ssrc-audio-level\r\na=extmap:9 urn:ietf:params:rtp-hdrext:sdes:mid\r\na=sendrecv\r\na=msid:stream_id audio_label\r\na=rtcp-mux\r\na=rtpmap:103 ISAC/16000\r\na=rtpmap:104 ISAC/32000\r\na=rtpmap:9 G722/8000\r\na=rtpmap:102 ILBC/8000\r\na=rtpmap:0 PCMU/8000\r\na=rtpmap:8 PCMA/8000\r\na=rtpmap:106 CN/32000\r\na=rtpmap:105 CN/16000\r\na=rtpmap:13 CN/8000\r\na=rtpmap:112 telephone-event/32000\r\na=rtpmap:113 telephone-event/16000\r\na=rtpmap:126 telephone-event/8000\r\na=ssrc:733244108 cname:cs9U35ZCRC1/Vtgn\r\nm=video 9 UDP/TLS/RTP/SAVPF 96 97 98 99 100 101 127\r\nc=IN IP4 0.0.0.0\r\na=rtcp:9 IN IP4 0.0.0.0\r\na=ice-ufrag:fGEX\r\na=ice-pwd:Z8ay/8dqVhidY8oaZ+gcKfE/\r\na=ice-options:trickle\r\na=fingerprint:sha-256 7C:0D:2D:47:66:04:0B:59:37:E2:5E:6D:44:F7:47:93:8B:E1:E6:E0:77:BA:88:36:7D:BC:DA:26:5B:55:41:4D\r\na=setup:active\r\na=mid:1\r\na=extmap:2 urn:ietf:params:rtp-hdrext:toffset\r\na=extmap:3 http://www.webrtc.org/experiments/rtp-hdrext/abs-send-time\r\na=extmap:4 urn:3gpp:video-orientation\r\na=extmap:5 http://www.ietf.org/id/draft-holmer-rmcat-transport-wide-cc-extensions-01\r\na=extmap:6 http://www.webrtc.org/experiments/rtp-hdrext/playout-delay\r\na=extmap:7 http://www.webrtc.org/experiments/rtp-hdrext/video-content-type\r\na=extmap:8 http://www.webrtc.org/experiments/rtp-hdrext/video-timing\r\na=extmap:9 urn:ietf:params:rtp-hdrext:sdes:mid\r\na=sendrecv\r\na=msid:stream_id video_label\r\na=rtcp-mux\r\na=rtcp-rsize\r\na=rtpmap:96 VP8/90000\r\na=rtcp-fb:96 goog-remb\r\na=rtcp-fb:96 transport-cc\r\na=rtcp-fb:96 ccm fir\r\na=rtcp-fb:96 nack\r\na=rtcp-fb:96 nack pli\r\na=rtpmap:97 rtx/90000\r\na=fmtp:97 apt=96\r\na=rtpmap:98 VP9/90000\r\na=rtcp-fb:98 goog-remb\r\na=rtcp-fb:98 transport-cc\r\na=rtcp-fb:98 ccm fir\r\na=rtcp-fb:98 nack\r\na=rtcp-fb:98 nack pli\r\na=rtpmap:99 rtx/90000\r\na=fmtp:99 apt=98\r\na=rtpmap:100 red/90000\r\na=rtpmap:101 rtx/90000\r\na=fmtp:101 apt=100\r\na=rtpmap:127 ulpfec/90000\r\na=ssrc-group:FID 2145093703 299575151\r\na=ssrc:2145093703 cname:cs9U35ZCRC1/Vtgn\r\na=ssrc:299575151 cname:cs9U35ZCRC1/Vtgn\r\n",
+   "type" : "answer"
+}
+
+(webrtcvideoengine.cc:1383): Call stats: 16516691, {send_bw_bps: 0, recv_bw_bps: 0, max_pad_bps: 0, pacer_delay_ms: 0, rtt_ms: -1}
+(dtlssrtptransport.cc:57): Setting RTCP Transport on 0 transport 0000000000000000
+(dtlssrtptransport.cc:62): Setting RTP Transport on 0 transport 0000000003776FA0
+(p2ptransportchannel.cc:385): Received remote ICE parameters: ufrag=fGEX, renomination disabled
+(webrtcvideoengine.cc:1505): OnReadyToSend: Not ready.
+(call.cc:1056): UpdateAggregateNetworkState: aggregate_state=down
+(send_side_congestion_controller.cc:276): SignalNetworkState Down
+(port.cc:1409): Conn[00000000062AF8E0:0:Net[Realtek:192.168.0.x/32:Wifi:id=1]:vASWFFBd:1:0:local:udp:192.168.0.x:54294->TRCdxQJu:1:1853824767:prflx:udp:192.168.0.x:58203|CR-W|-|0|0|7962116751024340479|-]: UpdateState(), ms since last received response=16516692, ms since last received data=19, rtt=6000, pings_since_last_response=
+(p2ptransportchannel.cc:1538): Sorting 1 available connections
+(channel.cc:545): Channel enabled
+(p2ptransportchannel.cc:1541): Conn[00000000062AF8E0:0:Net[Realtek:192.168.0.x/32:Wifi:id=1]:vASWFFBd:1:0:local:udp:192.168.0.x:54294->TRCdxQJu:1:1853824767:prflx:udp:192.168.0.x:58203|CR-W|-|0|0|7962116751024340479|-]
+(p2ptransportchannel.cc:1288): Channel[0|1|R_]: Have a pingable connection for the first time; starting to ping.
+(channel.cc:794): Changing voice state, recv=1 send=0
+(port.cc:1409): Conn[00000000062AF8E0:0:Net[Realtek:192.168.0.x/32:Wifi:id=1]:vASWFFBd:1:0:local:udp:192.168.0.x:54294->TRCdxQJu:1:1853824767:prflx:udp:192.168.0.x:58203|CR-W|-|0|0|7962116751024340479|-]: UpdateState(), ms since last received response=16516692, ms since last received data=19, rtt=6000, pings_since_last_response=
+(channel.cc:545): Channel enabled
+(p2ptransportchannel.cc:2285): Selecting connection for triggered check: Conn[00000000062AF8E0:0:Net[Realtek:192.168.0.x/32:Wifi:id=1]:vASWFFBd:1:0:local:udp:192.168.0.x:54294->TRCdxQJu:1:1853824767:prflx:udp:192.168.0.x:58203|CR-W|-|0|0|7962116751024340479|-]
+(port.cc:1473): Conn[00000000062AF8E0:0:Net[Realtek:192.168.0.x/32:Wifi:id=1]:vASWFFBd:1:0:local:udp:192.168.0.x:54294->TRCdxQJu:1:1853824767:prflx:udp:192.168.0.x:58203|CR-W|-|0|0|7962116751024340479|-]: Sending STUN ping, id=2f59746c414b4d4c51427776, nomination=0
+(port.cc:1711): Conn[00000000062AF8E0:0:Net[Realtek:192.168.0.x/32:Wifi:id=1]:vASWFFBd:1:0:local:udp:192.168.0.x:54294->TRCdxQJu:1:1853824767:prflx:udp:192.168.0.x:58203|CR-W|-|0|0|7962116751024340479|-]: Sent STUN ping, id=2f59746c414b4d4c51427776, use_candidate=1, nomination=0
+(webrtcvideoengine.cc:1047): SetSend: false
+(channel.cc:924): Changing video state, send=0
+(peerconnection.cc:3506): Session: 4478677094510127467 Old state: kHaveLocalOffer New state: kStable
+(channel.cc:853): Setting remote voice description
+(webrtcvoiceengine.cc:1300): WebRtcVoiceMediaChannel::SetSendParameters: {codecs: [AudioCodec[103:ISAC:16000:0:1], AudioCodec[104:ISAC:32000:0:1], AudioCodec[9:G722:8000:0:1], AudioCodec[102:ILBC:8000:0:1], AudioCodec[0:PCMU:8000:0:1], AudioCodec[8:PCMA:8000:0:1], AudioCodec[106:CN:32000:0:1], AudioCodec[105:CN:16000:0:1], AudioCodec[13:CN:8000:0:1], AudioCodec[112:telephone-event:32000:0:1], AudioCodec[113:telephone-event:16000:0:1], AudioCodec[126:telephone-event:8000:0:1]], extensions: [{uri: urn:ietf:params:rtp-hdrext:ssrc-audio-level, id: 1}, {uri: urn:ietf:params:rtp-hdrext:sdes:mid, id: 9}], max_bandwidth_bps: -1, mid: 0, options: AudioOptions {}}
+(audio_send_stream.cc:199): AudioSendStream::ConfigureStream: {rtp: {ssrc: 26574455, extensions: [], nack: {rtp_history_ms: 0}, c_name: czVcV9SB55E5Z1Av}, send_transport: (Transport), min_bitrate_bps: -1, max_bitrate_bps: -1, send_codec_spec: {nack_enabled: false, transport_cc_enabled: false, cng_payload_type: 105, payload_type: 103, format: {name: ISAC, clockrate_hz: 16000, num_channels: 1, parameters: {}}}}
+(audio_send_stream.cc:199): AudioSendStream::ConfigureStream: {rtp: {ssrc: 26574455, extensions: [{uri: urn:ietf:params:rtp-hdrext:sdes:mid, id: 9}, {uri: urn:ietf:params:rtp-hdrext:ssrc-audio-level, id: 1}], nack: {rtp_history_ms: 0}, c_name: czVcV9SB55E5Z1Av}, send_transport: (Transport), min_bitrate_bps: -1, max_bitrate_bps: -1, send_codec_spec: {nack_enabled: false, transport_cc_enabled: false, cng_payload_type: 105, payload_type: 103, format: {name: ISAC, clockrate_hz: 16000, num_channels: 1, parameters: {}}}}
+(audio_send_stream.cc:199): AudioSendStream::ConfigureStream: {rtp: {ssrc: 26574455, extensions: [{uri: urn:ietf:params:rtp-hdrext:sdes:mid, id: 9}, {uri: urn:ietf:params:rtp-hdrext:ssrc-audio-level, id: 1}], nack: {rtp_history_ms: 0}, c_name: czVcV9SB55E5Z1Av}, send_transport: (Transport), min_bitrate_bps: -1, max_bitrate_bps: -1, send_codec_spec: {nack_enabled: false, transport_cc_enabled: false, cng_payload_type: 105, payload_type: 103, format: {name: ISAC, clockrate_hz: 16000, num_channels: 1, parameters: {}}}}
+(webrtcvoiceengine.cc:2096): WebRtcVoiceMediaChannel::SetMaxSendBitrate.
+(webrtcvoiceengine.cc:1482): Setting voice channel options: AudioOptions {}
+(webrtcvoiceengine.cc:324): WebRtcVoiceEngine::ApplyOptions: AudioOptions {audio_jitter_buffer_max_packets: 50, audio_jitter_buffer_fast_accelerate: false, }
+(webrtcvoiceengine.cc:512): NetEq capacity is 50
+(webrtcvoiceengine.cc:518): NetEq fast mode? 0
+(webrtcvoiceengine.cc:536): Delay agnostic aec is enabled? 0
+(webrtcvoiceengine.cc:546): Extended filter aec is enabled? 0
+(webrtcvoiceengine.cc:556): Experimental ns is enabled? 0
+(webrtcvoiceengine.cc:562): Intelligibility Enhancer is enabled? 0
+(audio_processing_impl.cc:695): Highpass filter activated: 1
+(audio_processing_impl.cc:709): Gain Controller 2 activated: 0
+(audio_processing_impl.cc:711): Pre-amplifier activated: 0
+(webrtcvoiceengine.cc:1500): Set voice channel options. Current options: AudioOptions {audio_jitter_buffer_max_packets: 50, audio_jitter_buffer_fast_accelerate: false, }
+(webrtcvoiceengine.cc:1843): AddRecvStream: {id:audio_label;ssrcs:[733244108];ssrc_groups:;cname:cs9U35ZCRC1/Vtgn;stream_ids:stream_id;}
+(neteq_impl.cc:114): NetEq config: sample_rate_hz=16000, enable_post_decode_vad=true, max_packets_in_buffer=50, playout_mode=0, enable_fast_accelerate=false, enable_muted_state= true
+(neteq_impl.cc:2051): SetSampleRateAndChannels 16000 1
+(neteq_impl.cc:484): FlushBuffers
+(audio_coding_module.cc:462): Created
+(webrtcvideocapturer.cc:337): Captured frame size 640x480. Expected format YUY2 640x480x30
+(neteq_impl.cc:484): FlushBuffers
+(audio_receive_stream.cc:107): AudioReceiveStream: 733244108
+(audio_receive_stream.cc:347): AudioReceiveStream::ConfigureStream: {rtp: {remote_ssrc: 733244108, local_ssrc: 26574455, transport_cc: off, nack: {rtp_history_ms: 0}, extensions: [{uri: urn:ietf:params:rtp-hdrext:sdes:mid, id: 9}, {uri: urn:ietf:params:rtp-hdrext:ssrc-audio-level, id: 1}]}, rtcp_send_transport: (Transport), sync_group: stream_id}
+(call.cc:1056): UpdateAggregateNetworkState: aggregate_state=down
+(send_side_congestion_controller.cc:276): SignalNetworkState Down
+(audio_device_impl.cc:795): Playing
+(audio_device_impl.cc:732): InitPlayout
+(audio_device_impl.cc:758): PlayoutIsInitialized
+(port.cc:1243): Conn[00000000062AF8E0:0:Net[Realtek:192.168.0.x/32:Wifi:id=1]:vASWFFBd:1:0:local:udp:192.168.0.x:54294->TRCdxQJu:1:1853824767:prflx:udp:192.168.0.x:58203|CR-I|-|0|0|7962116751024340479|-]: Received STUN ping, id=2b4f496c7874716374774363
+(port.cc:807): Port[00000000062BAAC0:0:1:0:local:Net[Realtek:192.168.0.x/32:Wifi:id=1]]: Sent STUN ping response, to=192.168.0.x:58203, id=2b4f496c7874716374774363
+(port.cc:1655): Conn[00000000062AF8E0:0:Net[Realtek:192.168.0.x/32:Wifi:id=1]:vASWFFBd:1:0:local:udp:192.168.0.x:54294->TRCdxQJu:1:1853824767:prflx:udp:192.168.0.x:58203|CR-I|-|0|0|7962116751024340479|-]: Received STUN ping response, id=2f59746c414b4d4c51427776, code=0, rtt=2, pings_since_last_response=2f59746c414b4d4c51427776 
+(port.cc:1130): Conn[00000000062AF8E0:0:Net[Realtek:192.168.0.x/32:Wifi:id=1]:vASWFFBd:1:0:local:udp:192.168.0.x:54294->TRCdxQJu:1:1853824767:prflx:udp:192.168.0.x:58203|CRWI|-|0|0|7962116751024340479|-]: set_write_state from: 2 to 0
+(port.cc:1167): Conn[00000000062AF8E0:0:Net[Realtek:192.168.0.x/32:Wifi:id=1]:vASWFFBd:1:0:local:udp:192.168.0.x:54294->TRCdxQJu:1:1853824767:prflx:udp:192.168.0.x:58203|CRWS|-|0|0|7962116751024340479|-]: set_state
+(port.cc:1409): Conn[00000000062AF8E0:0:Net[Realtek:192.168.0.x/32:Wifi:id=1]:vASWFFBd:1:0:local:udp:192.168.0.x:54294->TRCdxQJu:1:1853824767:prflx:udp:192.168.0.x:58203|CRWS|-|0|0|7962116751024340479|2]: UpdateState(), ms since last received response=0, ms since last received data=22, rtt=100, pings_since_last_response=
+(p2ptransportchannel.cc:1538): Sorting 1 available connections
+(p2ptransportchannel.cc:1541): Conn[00000000062AF8E0:0:Net[Realtek:192.168.0.x/32:Wifi:id=1]:vASWFFBd:1:0:local:udp:192.168.0.x:54294->TRCdxQJu:1:1853824767:prflx:udp:192.168.0.x:58203|CRWS|-|0|0|7962116751024340479|2]
+(p2ptransportchannel.cc:253): Switching selected connection due to: candidate pair state changed
+(p2ptransportchannel.cc:1674): Channel[0|1|R_]: New selected connection: Conn[00000000062AF8E0:0:Net[Realtek:192.168.0.x/32:Wifi:id=1]:vASWFFBd:1:0:local:udp:192.168.0.x:54294->TRCdxQJu:1:1853824767:prflx:udp:192.168.0.x:58203|CRWS|S|0|0|7962116751024340479|2]
+(p2ptransportchannel.cc:2349): Channel[0|1|R_]: Changed writable_ to 1
+(dtlstransport.cc:499): DtlsTransport[0|1|__]: ice_transport writable state changed to 1
+(dtlstransport.cc:808): DtlsTransport[0|1|__]: configuring DTLS handshake timeout 50 based on ICE RTT 2
+(opensslstreamadapter.cc:760): BeginSSL with peer.
+(opensslstreamadapter.cc:814): ContinueSSL
+(audio_device_core_win.cc:3927): _GetDefaultDevice
+(opensslstreamadapter.cc:845):  -- error want read
+(dtlstransport.cc:717): DtlsTransport[0|1|__]: DtlsTransport: Started DTLS handshake
+(dtlstransport.cc:789): DtlsTransport[0|1|__]: set_dtls_state from:0 to 1
+(srtptransport.cc:354): The params in SRTP transport are reset.
+(dtlstransport.cc:724): DtlsTransport[0|1|__]: Handling cached DTLS ClientHello packet.
+(opensslstreamadapter.cc:721): OpenSSLStreamAdapter::OnEvent SE_READ
+(opensslstreamadapter.cc:814): ContinueSSL
+(opensslstreamadapter.cc:845):  -- error want read
+(opensslstreamadapter.cc:721): OpenSSLStreamAdapter::OnEvent SE_READ
+(opensslstreamadapter.cc:814): ContinueSSL
+(opensslstreamadapter.cc:1084): Accepted peer certificate.
+(opensslstreamadapter.cc:824):  -- success
+(dtlstransport.cc:645): DtlsTransport[0|1|__]: DTLS handshake complete.
+(dtlstransport.cc:789): DtlsTransport[0|1|__]: set_dtls_state from:1 to 2
+(dtlstransport.cc:776): DtlsTransport[0|1|__]: set_writable to: 1
+(jseptransportcontroller.cc:1088):  Transport 0 writability changed to 1.
+(dtlssrtptransport.cc:215): Extracting keys from transport: 0
+(srtptransport.cc:294): SRTP activated with negotiated parameters: send cipher_suite 1 recv cipher_suite 1
+(channel.cc:575): Channel writable (0) for the first time
+(channel.cc:575): Channel writable (1) for the first time
+(opensslstreamadapter.cc:576): OpenSSLStreamAdapter::Read(2048)
+(opensslstreamadapter.cc:635):  -- error want read
+(audio_device_core_win.cc:1873): Audio Engine's current rendering mix format:
+(audio_device_core_win.cc:1875): wFormatTag     : 0xfffe (65534)
+(audio_device_core_win.cc:1879): nChannels      : 2
+(audio_device_core_win.cc:1881): nSamplesPerSec : 44100
+(audio_device_core_win.cc:1883): nAvgBytesPerSec: 352800
+(audio_device_core_win.cc:1885): nBlockAlign    : 8
+(audio_device_core_win.cc:1887): wBitsPerSample : 32
+(audio_device_core_win.cc:1888): cbSize         : 22
+(audio_device_core_win.cc:1917): nChannels=2, nSamplesPerSec=48000 is not supported. Closest match: nChannels=2, nSamplesPerSec=44100
+(audio_device_core_win.cc:1917): nChannels=1, nSamplesPerSec=48000 is not supported. Closest match: nChannels=2, nSamplesPerSec=44100
+(audio_device_core_win.cc:1949): VoE selected this rendering format:
+(audio_device_core_win.cc:1950): wFormatTag         : 0x1 (1)
+(audio_device_core_win.cc:1953): nChannels          : 2
+(audio_device_core_win.cc:1954): nSamplesPerSec     : 44100
+(audio_device_core_win.cc:1955): nAvgBytesPerSec    : 176400
+(audio_device_core_win.cc:1956): nBlockAlign        : 4
+(audio_device_core_win.cc:1957): wBitsPerSample     : 16
+(audio_device_core_win.cc:1958): cbSize             : 0
+(audio_device_core_win.cc:1959): Additional settings:
+(audio_device_core_win.cc:1960): _playAudioFrameSize: 4
+(audio_device_core_win.cc:1961): _playBlockSize     : 441
+(audio_device_core_win.cc:1963): _playChannels      : 2
+(port.cc:1409): Conn[00000000062AF8E0:0:Net[Realtek:192.168.0.x/32:Wifi:id=1]:vASWFFBd:1:0:local:udp:192.168.0.x:54294->TRCdxQJu:1:1853824767:prflx:udp:192.168.0.x:58203|CRWS|S|0|0|7962116751024340479|2]: UpdateState(), ms since last received response=46, ms since last received data=2, rtt=100, pings_since_last_response=
+(port.cc:1473): Conn[00000000062AF8E0:0:Net[Realtek:192.168.0.x/32:Wifi:id=1]:vASWFFBd:1:0:local:udp:192.168.0.x:54294->TRCdxQJu:1:1853824767:prflx:udp:192.168.0.x:58203|CRWS|S|0|0|7962116751024340479|2]: Sending STUN ping, id=3150702f634f36336e476b48, nomination=0
+(port.cc:1711): Conn[00000000062AF8E0:0:Net[Realtek:192.168.0.x/32:Wifi:id=1]:vASWFFBd:1:0:local:udp:192.168.0.x:54294->TRCdxQJu:1:1853824767:prflx:udp:192.168.0.x:58203|CRWS|S|0|0|7962116751024340479|2]: Sent STUN ping, id=3150702f634f36336e476b48, use_candidate=1, nomination=0
+(port.cc:1243): Conn[00000000062AF8E0:0:Net[Realtek:192.168.0.x/32:Wifi:id=1]:vASWFFBd:1:0:local:udp:192.168.0.x:54294->TRCdxQJu:1:1853824767:prflx:udp:192.168.0.x:58203|CRWI|S|0|0|7962116751024340479|2]: Received STUN ping, id=4836635a67574b7346733567
+(port.cc:807): Port[00000000062BAAC0:0:1:0:local:Net[Realtek:192.168.0.x/32:Wifi:id=1]]: Sent STUN ping response, to=192.168.0.x:58203, id=4836635a67574b7346733567
+(port.cc:1655): Conn[00000000062AF8E0:0:Net[Realtek:192.168.0.x/32:Wifi:id=1]:vASWFFBd:1:0:local:udp:192.168.0.x:54294->TRCdxQJu:1:1853824767:prflx:udp:192.168.0.x:58203|CRWI|S|0|0|7962116751024340479|2]: Received STUN ping response, id=3150702f634f36336e476b48, code=0, rtt=2, pings_since_last_response=3150702f634f36336e476b48 
+(port.cc:1167): Conn[00000000062AF8E0:0:Net[Realtek:192.168.0.x/32:Wifi:id=1]:vASWFFBd:1:0:local:udp:192.168.0.x:54294->TRCdxQJu:1:1853824767:prflx:udp:192.168.0.x:58203|CRWS|S|0|0|7962116751024340479|2]: set_state
+(audio_device_buffer.cc:192): SetPlayoutSampleRate(44100)
+(audio_device_buffer.cc:216): SetPlayoutChannels(2)
+(audio_device_core_win.cc:2027): IAudioClient::GetBufferSize() => 1323 (<=> 5292 bytes)
+(audio_device_core_win.cc:2049): render side is now initialized
+(audio_device_impl.cc:738): output: 0
+(audio_device_impl.cc:770): StartPlayout
+(audio_device_impl.cc:795): Playing
+(audio_device_buffer.cc:100): StartPlayout
+(audio_device_core_win.cc:2703): render thread is now registered with MMCSS (taskIndex=76)
+(audio_device_core_win.cc:2724): [REND] size of buffer       : 1323
+(audio_device_core_win.cc:2731): [REND] max stream latency   : 58050 (5.805 ms)
+(audio_device_core_win.cc:2747): [REND] device period        : 101587 (10.1587 ms)
+(audio_device_core_win.cc:2757): [REND] initial delay        : 45
+(audio_device_core_win.cc:2761): [REND] endpointBufferSizeMS : 30
+(audio_device_core_win.cc:2545): rendering audio stream has now started...
+(audio_device_impl.cc:777): output: 0
+(channel.cc:671): Add remote ssrc: 733244108
+(webrtcvoiceengine.cc:324): WebRtcVoiceEngine::ApplyOptions: AudioOptions {audio_jitter_buffer_max_packets: 50, audio_jitter_buffer_fast_accelerate: false, }
+(webrtcvoiceengine.cc:512): NetEq capacity is 50
+(webrtcvoiceengine.cc:518): NetEq fast mode? 0
+(webrtcvoiceengine.cc:536): Delay agnostic aec is enabled? 0
+(webrtcvoiceengine.cc:546): Extended filter aec is enabled? 0
+(webrtcvoiceengine.cc:556): Experimental ns is enabled? 0
+(webrtcvoiceengine.cc:562): Intelligibility Enhancer is enabled? 0
+(audio_processing_impl.cc:695): Highpass filter activated: 1
+(audio_processing_impl.cc:709): Gain Controller 2 activated: 0
+(audio_processing_impl.cc:711): Pre-amplifier activated: 0
+(audio_device_impl.cc:764): RecordingIsInitialized
+(audio_device_impl.cc:826): Recording
+(audio_device_impl.cc:745): InitRecording
+(audio_device_impl.cc:764): RecordingIsInitialized
+(audio_device_core_win.cc:3927): _GetDefaultDevice
+(audio_device_core_win.cc:3756): _GetDefaultDeviceIndex
+(audio_device_core_win.cc:3731): _GetDefaultDeviceID
+(audio_device_core_win.cc:3894): _GetDeviceID
+(audio_device_core_win.cc:3894): _GetDeviceID
+(audio_device_core_win.cc:3756): _GetDefaultDeviceIndex
+(audio_device_core_win.cc:3731): _GetDefaultDeviceID
+(audio_device_core_win.cc:3894): _GetDeviceID
+(audio_device_core_win.cc:3894): _GetDeviceID
+(audio_device_core_win.cc:3498): Capture device index: 0, render device index: 0
+(audio_device_buffer.cc:185): SetRecordingSampleRate(16000)
+(audio_device_buffer.cc:209): SetRecordingChannels(1)
+(audio_device_core_win.cc:2131): Capture side is now initialized
+(audio_device_impl.cc:751): output: 0
+(audio_device_impl.cc:826): Recording
+(audio_device_impl.cc:745): InitRecording
+(audio_device_impl.cc:764): RecordingIsInitialized
+(audio_device_impl.cc:801): StartRecording
+(audio_device_buffer.cc:315): Size of playout buffer: 882
+(audio_device_impl.cc:826): Recording
+(audio_device_buffer.cc:120): StartRecording
+(audio_device_core_win.cc:2964): capture thread is now registered with MMCSS (taskIndex=78)
+(audio_device_core_win.cc:2403): capture audio stream has now started...
+(audio_device_impl.cc:808): output: 0
+(channel.cc:794): Changing voice state, recv=1 send=1
+(webrtcvoiceengine.cc:2109): OnReadyToSend: Ready.
+(call.cc:1056): UpdateAggregateNetworkState: aggregate_state=up
+(send_side_congestion_controller.cc:276): SignalNetworkState Up
+(bitrate_prober.cc:108): Probe cluster (bitrate:min bytes:min packets): (900000:1687:5)
+(bitrate_prober.cc:108): Probe cluster (bitrate:min bytes:min packets): (1800000:3375:5)
+(send_side_congestion_controller.cc:477): Bitrate estimate state changed, BWE: 300000 bps.
+(bitrate_allocator.cc:104): Current BWE 300000
+(channel.cc:988): Setting remote video description
+(webrtcvideoengine.cc:753): SetSendParameters: {codecs: [VideoCodec[96:VP8], VideoCodec[97:rtx], VideoCodec[98:VP9], VideoCodec[99:rtx], VideoCodec[100:red], VideoCodec[101:rtx], VideoCodec[127:ulpfec]], conference_mode: no, extensions: [{uri: urn:ietf:params:rtp-hdrext:toffset, id: 2}, {uri: http://www.webrtc.org/experiments/rtp-hdrext/abs-send-time, id: 3}, {uri: urn:3gpp:video-orientation, id: 4}, {uri: http://www.ietf.org/id/draft-holmer-rmcat-transport-wide-cc-extensions-01, id: 5}, {uri: http://www.webrtc.org/experiments/rtp-hdrext/playout-delay, id: 6}, {uri: http://www.webrtc.org/experiments/rtp-hdrext/video-content-type, id: 7}, {uri: http://www.webrtc.org/experiments/rtp-hdrext/video-timing, id: 8}, {uri: urn:ietf:params:rtp-hdrext:sdes:mid, id: 9}], max_bandwidth_bps: -1, mid: 1}
+(webrtcvideoengine.cc:762): Using codec: VideoCodec[96:VP8]
+(rtp_transport_controller_send.cc:247): WebRTC.RtpTransportControllerSend.SetSdpBitrateParameters: nothing to update
+(webrtcvideoengine.cc:1752): RecreateWebRtcStream (send) because of SetCodec.
+(alr_experiment.cc:65): Using ALR experiment settings: pacing factor: 1, max pacer queue length: 2875, ALR start bandwidth usage percent: 80, ALR end budget level percent: 40, ALR end budget level percent: -60, ALR experiment group ID: 3
+(video_send_stream_impl.cc:341): VideoSendStreamInternal: {encoder_settings: {encoder_factory: (VideoEncoderFactory)}, rtp: {ssrcs: [2393749781], rtcp_mode: RtcpMode::kReducedSize, max_packet_size: 1200, extensions: [{uri: http://www.ietf.org/id/draft-holmer-rmcat-transport-wide-cc-extensions-01, id: 5}, {uri: http://www.webrtc.org/experiments/rtp-hdrext/playout-delay, id: 6}, {uri: http://www.webrtc.org/experiments/rtp-hdrext/video-content-type, id: 7}, {uri: http://www.webrtc.org/experiments/rtp-hdrext/video-timing, id: 8}, {uri: urn:3gpp:video-orientation, id: 4}, {uri: urn:ietf:params:rtp-hdrext:sdes:mid, id: 9}], nack: {rtp_history_ms: 1000}, ulpfec: {ulpfec_payload_type: 127, red_payload_type: 100, red_rtx_payload_type: 101}, payload_name: VP8, payload_type: 96, flexfec: {payload_type: -1, ssrc: 0, protected_media_ssrcs: []}, rtx: {ssrcs: [3633525226], payload_type: 97}, c_name: czVcV9SB55E5Z1Av}, rtcp: {video_report_interval_ms: 1000, audio_report_interval_ms: 5000}, pre_encode_callback: nullptr, post_encode_callback: nullptr, render_delay_ms: 0, target_delay_ms: 0, suspend_below_min_bitrate: off}
+(video_stream_encoder.cc:459): ConfigureEncoder requested.
+(call.cc:1056): UpdateAggregateNetworkState: aggregate_state=up
+(send_side_congestion_controller.cc:276): SignalNetworkState Up
+(video_send_stream.cc:153): VideoSendStream::Stop
+(webrtcvideoengine.cc:811): SetFeedbackOptions on all the receive streams because the send codec or RTCP mode has changed.
+(video_send_stream_impl.cc:555): VideoSendStream::Stop
+(webrtcvideoengine.cc:1207): AddRecvStream: {id:video_label;ssrcs:[2145093703,299575151];ssrc_groups:{semantics:FID;ssrcs:[2145093703,299575151]};cname:cs9U35ZCRC1/Vtgn;stream_ids:stream_id;}
+(video_receive_stream.cc:114): VideoReceiveStream: {decoders: [{decoder: (VideoDecoder), payload_type: 96, payload_name: VP8, codec_params: {}}, {decoder: (VideoDecoder), payload_type: 98, payload_name: VP9, codec_params: {}}], rtp: {remote_ssrc: 2145093703, local_ssrc: 2393749781, rtcp_mode: RtcpMode::kReducedSize, rtcp_xr: {receiver_reference_time_report: off}, remb: on, transport_cc: on, nack: {rtp_history_ms: 1000}, ulpfec_payload_type: 127, red_type: 100, rtx_ssrc: 299575151, rtx_payload_types: {97 (pt) -> 96 (apt), 99 (pt) -> 98 (apt), 101 (pt) -> 100 (apt), }, extensions: [{uri: http://www.ietf.org/id/draft-holmer-rmcat-transport-wide-cc-extensions-01, id: 5}, {uri: http://www.webrtc.org/experiments/rtp-hdrext/abs-send-time, id: 3}, {uri: http://www.webrtc.org/experiments/rtp-hdrext/playout-delay, id: 6}, {uri: http://www.webrtc.org/experiments/rtp-hdrext/video-content-type, id: 7}, {uri: http://www.webrtc.org/experiments/rtp-hdrext/video-timing, id: 8}, {uri: urn:3gpp:video-orientation, id: 4}, {uri: urn:ietf:params:rtp-hdrext:sdes:mid, id: 9}, {uri: urn:ietf:params:rtp-hdrext:toffset, id: 2}]}, renderer: (renderer), render_delay_ms: 10, sync_group: stream_id, pre_decode_callback: nullptr, target_delay_ms: 0}
+(call.cc:1056): UpdateAggregateNetworkState: aggregate_state=up
+(send_side_congestion_controller.cc:276): SignalNetworkState Up
+(channel.cc:671): Add remote ssrc: 2145093703
+(webrtcvideoengine.cc:1047): SetSend: true
+(video_send_stream.cc:126): VideoSendStream::UpdateActiveSimulcastLayers
+(video_send_stream_impl.cc:509): VideoSendStream::UpdateActiveSimulcastLayers
+(bitrate_allocator.cc:221): UpdateAllocationLimits : total_requested_min_bitrate: 0bps, total_requested_padding_bitrate: 0bps, total_requested_max_bitrate: 10000000bps
+(channel.cc:924): Changing video state, send=1
+(video_stream_encoder.cc:924): OnBitrateUpdated, bitrate 300000 packet loss 0 rtt 0
+(video_stream_encoder.cc:939): Video suspend state changed to: not suspended
+(webrtcvideoengine.cc:1505): OnReadyToSend: Ready.
+(call.cc:1056): UpdateAggregateNetworkState: aggregate_state=up
+(send_side_congestion_controller.cc:276): SignalNetworkState Up
+(peerconnection.cc:3463): Changing IceConnectionState 0 => 1
+(peerconnection.cc:4762): Non-rejected SCTP m= section is needed to get the SSL Role of the SCTP transport.
+(channel.cc:794): Changing voice state, recv=1 send=1
+(peerconnection.cc:2392): Processing the addition of a new track for MID=0 (added to streams=[stream_id]).
+(webrtcvideoengine.cc:1047): SetSend: true
+(video_send_stream.cc:126): VideoSendStream::UpdateActiveSimulcastLayers
+(rtptransceiver.cc:174): Changing transceiver (MID=0) current direction from <not set> to kSendRecv.
+(video_send_stream_impl.cc:509): VideoSendStream::UpdateActiveSimulcastLayers
+(channel.cc:924): Changing video state, send=1
+(webrtcvoiceengine.cc:2223): WebRtcVoiceMediaChannel::SetRawAudioSink: ssrc:733244108 (ptr)
+(rtp_video_stream_receiver.cc:286): Packet received on SSRC: 2145093703 with payload type: 100, timestamp: 4004658353, sequence number: 334, arrival time: 16516718
+(rtp_receiver_video.cc:69): Received first video RTP packet
+(webrtcvoiceengine.cc:1952): SetOutputVolume() to 1 for recv stream with ssrc 733244108
+(peerconnection.cc:2392): Processing the addition of a new track for MID=1 (added to streams=[stream_id]).
+(rtptransceiver.cc:174): Changing transceiver (MID=1) current direction from <not set> to kSendRecv.
+(webrtcvideoengine.cc:1337): SetSink: ssrc:2145093703 (ptr)
+(conductor.cc:211): Conductor::OnAddTrack da36f459-1ee8-4471-95a7-3034c0f320ff
+(decoder_database.cc:182): Initializing decoder with payload type '96'.
+(conductor.cc:211): Conductor::OnAddTrack 4234f845-6141-40ea-a9a4-cfe34c90343c
+(peerconnection.cc:5228): Changing to ICE completed state because all transports are complete.
+(peerconnection.cc:3463): Changing IceConnectionState 1 => 2
+(peerconnection.cc:3463): Changing IceConnectionState 2 => 3
+(conductor.cc:80): DummySetSessionDescriptionObserver::OnSuccess
+(paced_sender.cc:112): PacedSender resumed.
+(peer_connection_client.cc:384): PeerConnectionClient::OnHangingGetRead
+(peer_connection_client.cc:306): Headers received
+(peer_connection_client.cc:483): PeerConnectionClient::OnClose
+(port.cc:1409): Conn[00000000062AF8E0:0:Net[Realtek:192.168.0.x/32:Wifi:id=1]:vASWFFBd:1:0:local:udp:192.168.0.x:54294->TRCdxQJu:1:1853824767:prflx:udp:192.168.0.x:58203|CRWS|S|0|0|7962116751024340479|2]: UpdateState(), ms since last received response=46, ms since last received data=18, rtt=100, pings_since_last_response=
+(port.cc:1473): Conn[00000000062AF8E0:0:Net[Realtek:192.168.0.x/32:Wifi:id=1]:vASWFFBd:1:0:local:udp:192.168.0.x:54294->TRCdxQJu:1:1853824767:prflx:udp:192.168.0.x:58203|CRWS|S|0|0|7962116751024340479|2]: Sending STUN ping, id=5572514a65743077332f5256, nomination=0
+(port.cc:1711): Conn[00000000062AF8E0:0:Net[Realtek:192.168.0.x/32:Wifi:id=1]:vASWFFBd:1:0:local:udp:192.168.0.x:54294->TRCdxQJu:1:1853824767:prflx:udp:192.168.0.x:58203|CRWS|S|0|0|7962116751024340479|2]: Sent STUN ping, id=5572514a65743077332f5256, use_candidate=1, nomination=0
+(port.cc:1409): Conn[00000000062AF8E0:0:Net[Realtek:192.168.0.x/32:Wifi:id=1]:vASWFFBd:1:0:local:udp:192.168.0.x:54294->YTzyDb0z:1:2122260223:local:udp:192.168.0.x:58203|CRWI|S|0|0|9115038255631187454|2]: UpdateState(), ms since last received response=46, ms since last received data=18, rtt=100, pings_since_last_response=5572514a65743077332f5256 
+(p2ptransportchannel.cc:1538): Sorting 1 available connections
+(p2ptransportchannel.cc:1541): Conn[00000000062AF8E0:0:Net[Realtek:192.168.0.x/32:Wifi:id=1]:vASWFFBd:1:0:local:udp:192.168.0.x:54294->YTzyDb0z:1:2122260223:local:udp:192.168.0.x:58203|CRWI|S|0|0|9115038255631187454|2]
+(conductor.cc:399):  Received candidate :{
+   "candidate" : "candidate:1063726844 1 udp 2122260223 192.168.0.119 58203 typ host generation 0 ufrag fGEX network-id 1",
+   "sdpMLineIndex" : 0,
+   "sdpMid" : "0"
+}
+
+(port.cc:1655): Conn[00000000062AF8E0:0:Net[Realtek:192.168.0.x/32:Wifi:id=1]:vASWFFBd:1:0:local:udp:192.168.0.x:54294->YTzyDb0z:1:2122260223:local:udp:192.168.0.x:58203|CRWI|S|0|0|9115038255631187454|2]: Received STUN ping response, id=5572514a65743077332f5256, code=0, rtt=2, pings_since_last_response=5572514a65743077332f5256 
+(port.cc:1167): Conn[00000000062AF8E0:0:Net[Realtek:192.168.0.x/32:Wifi:id=1]:vASWFFBd:1:0:local:udp:192.168.0.x:54294->YTzyDb0z:1:2122260223:local:udp:192.168.0.x:58203|CRWS|S|0|0|9115038255631187454|2]: set_state
+(audio_device_buffer.cc:264): Size of recording buffer: 160
+(rtp_sender_audio.cc:243): First audio RTP packet sent to pacer
+(video_stream_encoder.cc:739): Video frame parameters changed: dimensions=640x480, texture=0.
+(video_sender.cc:112):  max bitrate 1700 start bitrate 300 max frame rate 60 max payload size 1091
+(quality_scaler.cc:72): Created CheckQpTask. Scheduling on queue...
+(quality_scaler.cc:125): QP thresholds: low: 29, high: 95
+(rtp_sender_video.cc:423): Sent first RTP packet of the first video frame (pre-pacer)
+(rtp_sender_video.cc:427): Sent last RTP packet of the first video frame (pre-pacer)
+(port.cc:1409): Conn[00000000062AF8E0:0:Net[Realtek:192.168.0.x/32:Wifi:id=1]:vASWFFBd:1:0:local:udp:192.168.0.x:54294->YTzyDb0z:1:2122260223:local:udp:192.168.0.x:58203|CRWS|S|0|0|9115038255631187454|2]: UpdateState(), ms since last received response=48, ms since last received data=30, rtt=100, pings_since_last_response=
+(bitrate_allocator.cc:221): UpdateAllocationLimits : total_requested_min_bitrate: 30000bps, total_requested_padding_bitrate: 0bps, total_requested_max_bitrate: 1700000bps
+(video_stream_encoder.cc:924): OnBitrateUpdated, bitrate 300000 packet loss 0 rtt 0
+(probe_bitrate_estimator.cc:149): Probing successful [cluster id: 0] [send: 23664 bytes / 27 ms = 876.444 kb/s] [receive: 23664 bytes / 27 ms = 876.444 kb/s]
+(probe_bitrate_estimator.cc:149): Probing successful [cluster id: 0] [send: 31552 bytes / 36 ms = 876.444 kb/s] [receive: 31432 bytes / 36 ms = 873.111 kb/s]
+(probe_controller.cc:185): Measured bitrate: 873111 Minimum to probe further: 1260000
+(video_stream_encoder.cc:924): OnBitrateUpdated, bitrate 873111 packet loss 0 rtt 0
+(probe_bitrate_estimator.cc:149): Probing successful [cluster id: 1] [send: 19904 bytes / 11 ms = 1809.45 kb/s] [receive: 19920 bytes / 11 ms = 1810.91 kb/s]
+(probe_bitrate_estimator.cc:149): Probing successful [cluster id: 1] [send: 26544 bytes / 15 ms = 1769.6 kb/s] [receive: 26560 bytes / 15 ms = 1770.67 kb/s]
+(probe_controller.cc:185): Measured bitrate: 1769600 Minimum to probe further: 1260000
+(bitrate_prober.cc:108): Probe cluster (bitrate:min bytes:min packets): (3539200:6636:5)
+(video_stream_encoder.cc:924): OnBitrateUpdated, bitrate 1700000 packet loss 0 rtt 0
+(probe_bitrate_estimator.cc:149): Probing successful [cluster id: 2] [send: 35104 bytes / 10 ms = 3510.4 kb/s] [receive: 35112 bytes / 10 ms = 3511.2 kb/s]
+(probe_bitrate_estimator.cc:149): Probing successful [cluster id: 2] [send: 43888 bytes / 12 ms = 3657.33 kb/s] [receive: 41752 bytes / 12 ms = 3479.33 kb/s]
+(probe_bitrate_estimator.cc:149): Probing successful [cluster id: 2] [send: 49272 bytes / 12 ms = 4106 kb/s] [receive: 47136 bytes / 12 ms = 3928 kb/s]
+(probe_controller.cc:185): Measured bitrate: 3928000 Minimum to probe further: 2477440
+(bitrate_prober.cc:108): Probe cluster (bitrate:min bytes:min packets): (5000000:9375:5)
+(video_stream_encoder.cc:924): OnBitrateUpdated, bitrate 1700000 packet loss 0 rtt 0
+(probe_bitrate_estimator.cc:149): Probing successful [cluster id: 3] [send: 57696 bytes / 12 ms = 4808 kb/s] [receive: 58880 bytes / 11 ms = 5352.73 kb/s]
+(probe_bitrate_estimator.cc:149): Probing successful [cluster id: 3] [send: 66496 bytes / 13 ms = 5115.08 kb/s] [receive: 64264 bytes / 11 ms = 5842.18 kb/s]
+(probe_bitrate_estimator.cc:149): Probing successful [cluster id: 3] [send: 71880 bytes / 14 ms = 5134.29 kb/s] [receive: 73064 bytes / 21 ms = 3479.24 kb/s]
+(probe_bitrate_estimator.cc:149): Probing successful [cluster id: 3] [send: 77264 bytes / 14 ms = 5518.86 kb/s] [receive: 78448 bytes / 22 ms = 3565.82 kb/s]
+(video_stream_encoder.cc:924): OnBitrateUpdated, bitrate 1700000 packet loss 0 rtt 0
+(port.cc:1409): Conn[00000000062AF8E0:0:Net[Realtek:192.168.0.x/32:Wifi:id=1]:vASWFFBd:1:0:local:udp:192.168.0.x:54294->YTzyDb0z:1:2122260223:local:udp:192.168.0.x:58203|CRWS|S|0|0|9115038255631187454|2]: UpdateState(), ms since last received response=298, ms since last received data=4, rtt=100, pings_since_last_response=
+(video_stream_encoder.cc:924): OnBitrateUpdated, bitrate 1700000 packet loss 0 rtt 0
+(video_stream_encoder.cc:924): OnBitrateUpdated, bitrate 1700000 packet loss 0 rtt 0
+(video_stream_encoder.cc:924): OnBitrateUpdated, bitrate 1700000 packet loss 0 rtt 0
+(port.cc:1409): Conn[00000000062AF8E0:0:Net[Realtek:192.168.0.x/32:Wifi:id=1]:vASWFFBd:1:0:local:udp:192.168.0.x:54294->YTzyDb0z:1:2122260223:local:udp:192.168.0.x:58203|CRWS|S|0|0|9115038255631187454|2]: UpdateState(), ms since last received response=548, ms since last received data=4, rtt=100, pings_since_last_response=
+(video_stream_encoder.cc:924): OnBitrateUpdated, bitrate 1700000 packet loss 0 rtt 0
+(port.cc:1409): Conn[00000000062AF8E0:0:Net[Realtek:192.168.0.x/32:Wifi:id=1]:vASWFFBd:1:0:local:udp:192.168.0.x:54294->YTzyDb0z:1:2122260223:local:udp:192.168.0.x:58203|CRWS|S|0|0|9115038255631187454|2]: UpdateState(), ms since last received response=798, ms since last received data=4, rtt=100, pings_since_last_response=
+(receive_statistics_proxy.cc:525): SAMPLE: sample_length: 1000 fps: 24.1206 fps_bad: 0 qp: 66 qp_bad: 0 variance_bad: 0 fps_variance: 0
+(port.cc:1243): Conn[00000000062AF8E0:0:Net[Realtek:192.168.0.x/32:Wifi:id=1]:vASWFFBd:1:0:local:udp:192.168.0.x:54294->YTzyDb0z:1:2122260223:local:udp:192.168.0.x:58203|CRWS|S|0|0|9115038255631187454|2]: Received STUN ping, id=746531547441515769434172
+(port.cc:807): Port[00000000062BAAC0:0:1:0:local:Net[Realtek:192.168.0.x/32:Wifi:id=1]]: Sent STUN ping response, to=192.168.0.x:58203, id=746531547441515769434172
+(port.cc:1409): Conn[00000000062AF8E0:0:Net[Realtek:192.168.0.x/32:Wifi:id=1]:vASWFFBd:1:0:local:udp:192.168.0.x:54294->YTzyDb0z:1:2122260223:local:udp:192.168.0.x:58203|CRWS|S|0|0|9115038255631187454|2]: UpdateState(), ms since last received response=1048, ms since last received data=4, rtt=100, pings_since_last_response=
+(port.cc:1473): Conn[00000000062AF8E0:0:Net[Realtek:192.168.0.x/32:Wifi:id=1]:vASWFFBd:1:0:local:udp:192.168.0.x:54294->YTzyDb0z:1:2122260223:local:udp:192.168.0.x:58203|CRWS|S|0|0|9115038255631187454|2]: Sending STUN ping, id=6c37664a3366316776466d61, nomination=0
+(port.cc:1711): Conn[00000000062AF8E0:0:Net[Realtek:192.168.0.x/32:Wifi:id=1]:vASWFFBd:1:0:local:udp:192.168.0.x:54294->YTzyDb0z:1:2122260223:local:udp:192.168.0.x:58203|CRWS|S|0|0|9115038255631187454|2]: Sent STUN ping, id=6c37664a3366316776466d61, use_candidate=1, nomination=0
+(port.cc:1655): Conn[00000000062AF8E0:0:Net[Realtek:192.168.0.x/32:Wifi:id=1]:vASWFFBd:1:0:local:udp:192.168.0.x:54294->YTzyDb0z:1:2122260223:local:udp:192.168.0.x:58203|CRWI|S|0|0|9115038255631187454|2]: Received STUN ping response, id=6c37664a3366316776466d61, code=0, rtt=1, pings_since_last_response=6c37664a3366316776466d61 
+(port.cc:1167): Conn[00000000062AF8E0:0:Net[Realtek:192.168.0.x/32:Wifi:id=1]:vASWFFBd:1:0:local:udp:192.168.0.x:54294->YTzyDb0z:1:2122260223:local:udp:192.168.0.x:58203|CRWS|S|0|0|9115038255631187454|2]: set_state
+(rtcp_receiver.cc:981): Incoming NACK length: 1
+(rtcp_receiver.cc:981): Incoming NACK length: 1
+(rtcp_receiver.cc:981): Incoming NACK length: 1
+(rtcp_receiver.cc:981): Incoming NACK length: 1
+(video_stream_encoder.cc:924): OnBitrateUpdated, bitrate 1700000 packet loss 10 rtt 1
+(port.cc:1409): Conn[00000000062AF8E0:0:Net[Realtek:192.168.0.x/32:Wifi:id=1]:vASWFFBd:1:0:local:udp:192.168.0.x:54294->YTzyDb0z:1:2122260223:local:udp:192.168.0.x:58203|CRWS|S|0|0|9115038255631187454|1]: UpdateState(), ms since last received response=249, ms since last received data=5, rtt=100, pings_since_last_response=
+(port.cc:1409): Conn[00000000062AF8E0:0:Net[Realtek:192.168.0.x/32:Wifi:id=1]:vASWFFBd:1:0:local:udp:192.168.0.x:54294->YTzyDb0z:1:2122260223:local:udp:192.168.0.x:58203|CRWS|S|0|0|9115038255631187454|1]: UpdateState(), ms since last received response=499, ms since last received data=5, rtt=100, pings_since_last_response=
+(port.cc:1409): Conn[00000000062AF8E0:0:Net[Realtek:192.168.0.x/32:Wifi:id=1]:vASWFFBd:1:0:local:udp:192.168.0.x:54294->YTzyDb0z:1:2122260223:local:udp:192.168.0.x:58203|CRWS|S|0|0|9115038255631187454|1]: UpdateState(), ms since last received response=749, ms since last received data=4, rtt=100, pings_since_last_response=
+(receive_statistics_proxy.cc:525): SAMPLE: sample_length: 1000 fps: 25 fps_bad: 0 qp: 62 qp_bad: 0 variance_bad: 0 fps_variance: 0
+(port.cc:1243): Conn[00000000062AF8E0:0:Net[Realtek:192.168.0.x/32:Wifi:id=1]:vASWFFBd:1:0:local:udp:192.168.0.x:54294->YTzyDb0z:1:2122260223:local:udp:192.168.0.x:58203|CRWS|S|0|0|9115038255631187454|1]: Received STUN ping, id=312f30525a515a5937315254
+(port.cc:807): Port[00000000062BAAC0:0:1:0:local:Net[Realtek:192.168.0.x/32:Wifi:id=1]]: Sent STUN ping response, to=192.168.0.x:58203, id=312f30525a515a5937315254
+(port.cc:1409): Conn[00000000062AF8E0:0:Net[Realtek:192.168.0.x/32:Wifi:id=1]:vASWFFBd:1:0:local:udp:192.168.0.x:54294->YTzyDb0z:1:2122260223:local:udp:192.168.0.x:58203|CRWS|S|0|0|9115038255631187454|1]: UpdateState(), ms since last received response=1001, ms since last received data=5, rtt=100, pings_since_last_response=
+(port.cc:1473): Conn[00000000062AF8E0:0:Net[Realtek:192.168.0.x/32:Wifi:id=1]:vASWFFBd:1:0:local:udp:192.168.0.x:54294->YTzyDb0z:1:2122260223:local:udp:192.168.0.x:58203|CRWS|S|0|0|9115038255631187454|1]: Sending STUN ping, id=734f56666c493564356d6862, nomination=0
+(port.cc:1711): Conn[00000000062AF8E0:0:Net[Realtek:192.168.0.x/32:Wifi:id=1]:vASWFFBd:1:0:local:udp:192.168.0.x:54294->YTzyDb0z:1:2122260223:local:udp:192.168.0.x:58203|CRWS|S|0|0|9115038255631187454|1]: Sent STUN ping, id=734f56666c493564356d6862, use_candidate=1, nomination=0
+(port.cc:1655): Conn[00000000062AF8E0:0:Net[Realtek:192.168.0.x/32:Wifi:id=1]:vASWFFBd:1:0:local:udp:192.168.0.x:54294->YTzyDb0z:1:2122260223:local:udp:192.168.0.x:58203|CRWI|S|0|0|9115038255631187454|1]: Received STUN ping response, id=734f56666c493564356d6862, code=0, rtt=3, pings_since_last_response=734f56666c493564356d6862 
+(port.cc:1167): Conn[00000000062AF8E0:0:Net[Realtek:192.168.0.x/32:Wifi:id=1]:vASWFFBd:1:0:local:udp:192.168.0.x:54294->YTzyDb0z:1:2122260223:local:udp:192.168.0.x:58203|CRWS|S|0|0|9115038255631187454|1]: set_state
+(video_stream_encoder.cc:924): OnBitrateUpdated, bitrate 1700000 packet loss 0 rtt 2
+(port.cc:1409): Conn[00000000062AF8E0:0:Net[Realtek:192.168.0.x/32:Wifi:id=1]:vASWFFBd:1:0:local:udp:192.168.0.x:54294->YTzyDb0z:1:2122260223:local:udp:192.168.0.x:58203|CRWS|S|0|0|9115038255631187454|1]: UpdateState(), ms since last received response=248, ms since last received data=1, rtt=100, pings_since_last_response=
+(port.cc:1409): Conn[00000000062AF8E0:0:Net[Realtek:192.168.0.x/32:Wifi:id=1]:vASWFFBd:1:0:local:udp:192.168.0.x:54294->YTzyDb0z:1:2122260223:local:udp:192.168.0.x:58203|CRWS|S|0|0|9115038255631187454|1]: UpdateState(), ms since last received response=498, ms since last received data=2, rtt=100, pings_since_last_response=
+(rtcp_receiver.cc:981): Incoming NACK length: 1
+(rtcp_receiver.cc:981): Incoming NACK length: 1
+(rtcp_receiver.cc:981): Incoming NACK length: 1
+(port.cc:1409): Conn[00000000062AF8E0:0:Net[Realtek:192.168.0.x/32:Wifi:id=1]:vASWFFBd:1:0:local:udp:192.168.0.x:54294->YTzyDb0z:1:2122260223:local:udp:192.168.0.x:58203|CRWS|S|0|0|9115038255631187454|1]: UpdateState(), ms since last received response=748, ms since last received data=6, rtt=100, pings_since_last_response=
+(video_stream_encoder.cc:924): OnBitrateUpdated, bitrate 1700000 packet loss 3 rtt 3
+(rtcp_receiver.cc:981): Incoming NACK length: 1
+(receive_statistics_proxy.cc:525): SAMPLE: sample_length: 1000 fps: 25 fps_bad: 0 qp: 33 qp_bad: 0 variance_bad: 0 fps_variance: 0
+(rtcp_receiver.cc:981): Incoming NACK length: 1
+(port.cc:1409): Conn[00000000062AF8E0:0:Net[Realtek:192.168.0.x/32:Wifi:id=1]:vASWFFBd:1:0:local:udp:192.168.0.x:54294->YTzyDb0z:1:2122260223:local:udp:192.168.0.x:58203|CRWS|S|0|0|9115038255631187454|1]: UpdateState(), ms since last received response=998, ms since last received data=6, rtt=100, pings_since_last_response=
+(rtcp_receiver.cc:981): Incoming NACK length: 1
+(rtcp_receiver.cc:981): Incoming NACK length: 1
+(rtcp_receiver.cc:981): Incoming NACK length: 1
+(rtcp_receiver.cc:981): Incoming NACK length: 2
+(rtcp_receiver.cc:981): Incoming NACK length: 1
+(remote_ntp_time_estimator.cc:74): RTP timestamp: 4004957153 in NTP clock: 3778213863744 estimated time in receiver clock: 16520006 converted to NTP clock: 3778213861759
+(rtcp_receiver.cc:981): Incoming NACK length: 1
+(rtcp_receiver.cc:981): Incoming NACK length: 3
+(rtcp_receiver.cc:981): Incoming NACK length: 1
+(rtcp_receiver.cc:981): Incoming NACK length: 1
+(port.cc:1409): Conn[00000000062AF8E0:0:Net[Realtek:192.168.0.x/32:Wifi:id=1]:vASWFFBd:1:0:local:udp:192.168.0.x:54294->YTzyDb0z:1:2122260223:local:udp:192.168.0.x:58203|CRWS|S|0|0|9115038255631187454|1]: UpdateState(), ms since last received response=1248, ms since last received data=6, rtt=100, pings_since_last_response=
+(rtcp_receiver.cc:981): Incoming NACK length: 1
+(rtcp_receiver.cc:981): Incoming NACK length: 1
+(rtcp_receiver.cc:981): Incoming NACK length: 2
+(rtcp_receiver.cc:981): Incoming NACK length: 1
+(rtcp_receiver.cc:981): Incoming NACK length: 1
+(video_stream_encoder.cc:924): OnBitrateUpdated, bitrate 1700000 packet loss 34 rtt 2
+(rtcp_receiver.cc:981): Incoming NACK length: 1
+(rtcp_receiver.cc:981): Incoming NACK length: 1
+(rtcp_receiver.cc:981): Incoming NACK length: 2
+(rtcp_receiver.cc:981): Incoming NACK length: 1
+(rtcp_receiver.cc:981): Incoming NACK length: 1
+(rtcp_receiver.cc:981): Incoming NACK length: 2
+(rtcp_receiver.cc:981): Incoming NACK length: 1
+(rtcp_receiver.cc:981): Incoming NACK length: 1
+(port.cc:1409): Conn[00000000062AF8E0:0:Net[Realtek:192.168.0.x/32:Wifi:id=1]:vASWFFBd:1:0:local:udp:192.168.0.x:54294->YTzyDb0z:1:2122260223:local:udp:192.168.0.x:58203|CRWS|S|0|0|9115038255631187454|1]: UpdateState(), ms since last received response=1498, ms since last received data=1, rtt=100, pings_since_last_response=
+(rtcp_receiver.cc:981): Incoming NACK length: 1
+(rtcp_receiver.cc:981): Incoming NACK length: 2
+(rtcp_receiver.cc:981): Incoming NACK length: 1
+(port.cc:1409): Conn[00000000062AF8E0:0:Net[Realtek:192.168.0.x/32:Wifi:id=1]:vASWFFBd:1:0:local:udp:192.168.0.x:54294->YTzyDb0z:1:2122260223:local:udp:192.168.0.x:58203|CRWS|S|0|0|9115038255631187454|1]: UpdateState(), ms since last received response=1748, ms since last received data=5, rtt=100, pings_since_last_response=
+(rtcp_receiver.cc:981): Incoming NACK length: 1
+(rtcp_receiver.cc:981): Incoming NACK length: 2
+(rtcp_receiver.cc:981): Incoming NACK length: 1
+(rtcp_receiver.cc:981): Incoming NACK length: 1
+(rtcp_receiver.cc:981): Incoming NACK length: 3
+(video_stream_encoder.cc:924): OnBitrateUpdated, bitrate 1700000 packet loss 40 rtt 2
+(rtcp_receiver.cc:981): Incoming NACK length: 1
+(receive_statistics_proxy.cc:525): SAMPLE: sample_length: 1000 fps: 25 fps_bad: 0 qp: 12 qp_bad: 0 variance_bad: 0 fps_variance: 0
+(rtcp_receiver.cc:981): Incoming NACK length: 2
+(rtcp_receiver.cc:981): Incoming NACK length: 2
+(quality_scaler.cc:201): Checking average QP 15 (15).
+(rtcp_receiver.cc:981): Incoming NACK length: 1
+(rtcp_receiver.cc:981): Incoming NACK length: 2
+(rtcp_receiver.cc:981): Incoming NACK length: 1
+(port.cc:1409): Conn[00000000062AF8E0:0:Net[Realtek:192.168.0.x/32:Wifi:id=1]:vASWFFBd:1:0:local:udp:192.168.0.x:54294->YTzyDb0z:1:2122260223:local:udp:192.168.0.x:58203|CRWS|S|0|0|9115038255631187454|1]: UpdateState(), ms since last received response=1998, ms since last received data=5, rtt=100, pings_since_last_response=
+(rtcp_receiver.cc:981): Incoming NACK length: 1
+(rtcp_receiver.cc:981): Incoming NACK length: 2
+(rtcp_receiver.cc:981): Incoming NACK length: 1
+(rtcp_receiver.cc:981): Incoming NACK length: 1
+(rtcp_receiver.cc:981): Incoming NACK length: 1
+(port.cc:1409): Conn[00000000062AF8E0:0:Net[Realtek:192.168.0.x/32:Wifi:id=1]:vASWFFBd:1:0:local:udp:192.168.0.x:54294->YTzyDb0z:1:2122260223:local:udp:192.168.0.x:58203|CRWS|S|0|0|9115038255631187454|1]: UpdateState(), ms since last received response=2248, ms since last received data=2, rtt=100, pings_since_last_response=
+(rtcp_receiver.cc:981): Incoming NACK length: 1
+(rtcp_receiver.cc:981): Incoming NACK length: 2
+(port.cc:1243): Conn[00000000062AF8E0:0:Net[Realtek:192.168.0.x/32:Wifi:id=1]:vASWFFBd:1:0:local:udp:192.168.0.x:54294->YTzyDb0z:1:2122260223:local:udp:192.168.0.x:58203|CRWS|S|0|0|9115038255631187454|1]: Received STUN ping, id=6b686e4942574246312b7865
+(port.cc:807): Port[00000000062BAAC0:0:1:0:local:Net[Realtek:192.168.0.x/32:Wifi:id=1]]: Sent STUN ping response, to=192.168.0.x:58203, id=6b686e4942574246312b7865
+(rtcp_receiver.cc:981): Incoming NACK length: 1
+(rtcp_receiver.cc:981): Incoming NACK length: 1
+(rtcp_receiver.cc:981): Incoming NACK length: 2
+(port.cc:1409): Conn[00000000062AF8E0:0:Net[Realtek:192.168.0.x/32:Wifi:id=1]:vASWFFBd:1:0:local:udp:192.168.0.x:54294->YTzyDb0z:1:2122260223:local:udp:192.168.0.x:58203|CRWS|S|0|0|9115038255631187454|1]: UpdateState(), ms since last received response=2498, ms since last received data=4, rtt=100, pings_since_last_response=
+(port.cc:1473): Conn[00000000062AF8E0:0:Net[Realtek:192.168.0.x/32:Wifi:id=1]:vASWFFBd:1:0:local:udp:192.168.0.x:54294->YTzyDb0z:1:2122260223:local:udp:192.168.0.x:58203|CRWS|S|0|0|9115038255631187454|1]: Sending STUN ping, id=3955594b654b484578583637, nomination=0
+(port.cc:1711): Conn[00000000062AF8E0:0:Net[Realtek:192.168.0.x/32:Wifi:id=1]:vASWFFBd:1:0:local:udp:192.168.0.x:54294->YTzyDb0z:1:2122260223:local:udp:192.168.0.x:58203|CRWS|S|0|0|9115038255631187454|1]: Sent STUN ping, id=3955594b654b484578583637, use_candidate=1, nomination=0
+(port.cc:1655): Conn[00000000062AF8E0:0:Net[Realtek:192.168.0.x/32:Wifi:id=1]:vASWFFBd:1:0:local:udp:192.168.0.x:54294->YTzyDb0z:1:2122260223:local:udp:192.168.0.x:58203|CRWI|S|0|0|9115038255631187454|1]: Received STUN ping response, id=3955594b654b484578583637, code=0, rtt=2, pings_since_last_response=3955594b654b484578583637 
+(port.cc:1167): Conn[00000000062AF8E0:0:Net[Realtek:192.168.0.x/32:Wifi:id=1]:vASWFFBd:1:0:local:udp:192.168.0.x:54294->YTzyDb0z:1:2122260223:local:udp:192.168.0.x:58203|CRWS|S|0|0|9115038255631187454|1]: set_state
+(port.cc:1409): Conn[00000000062AF8E0:0:Net[Realtek:192.168.0.x/32:Wifi:id=1]:vASWFFBd:1:0:local:udp:192.168.0.x:54294->YTzyDb0z:1:2122260223:local:udp:192.168.0.x:58203|CRWS|S|0|0|9115038255631187454|1]: UpdateState(), ms since last received response=248, ms since last received data=3, rtt=100, pings_since_last_response=
+(rtcp_receiver.cc:981): Incoming NACK length: 1
+(rtcp_receiver.cc:981): Incoming NACK length: 1
+(rtcp_receiver.cc:981): Incoming NACK length: 1
+(receive_statistics_proxy.cc:525): SAMPLE: sample_length: 1000 fps: 25 fps_bad: 0 qp: 9 qp_bad: 0 variance_bad: 0 fps_variance: 0
+(port.cc:1409): Conn[00000000062AF8E0:0:Net[Realtek:192.168.0.x/32:Wifi:id=1]:vASWFFBd:1:0:local:udp:192.168.0.x:54294->YTzyDb0z:1:2122260223:local:udp:192.168.0.x:58203|CRWS|S|0|0|9115038255631187454|1]: UpdateState(), ms since last received response=498, ms since last received data=3, rtt=100, pings_since_last_response=
+(rtcp_receiver.cc:981): Incoming NACK length: 1
+(rtcp_receiver.cc:981): Incoming NACK length: 2
+(rtcp_receiver.cc:981): Incoming NACK length: 1
+(rtcp_receiver.cc:981): Incoming NACK length: 1
+(bitrate_allocator.cc:104): Current BWE 2950219
+(video_stream_encoder.cc:924): OnBitrateUpdated, bitrate 1700000 packet loss 24 rtt 2
+(port.cc:1409): Conn[00000000062AF8E0:0:Net[Realtek:192.168.0.x/32:Wifi:id=1]:vASWFFBd:1:0:local:udp:192.168.0.x:54294->YTzyDb0z:1:2122260223:local:udp:192.168.0.x:58203|CRWS|S|0|0|9115038255631187454|1]: UpdateState(), ms since last received response=748, ms since last received data=3, rtt=100, pings_since_last_response=
+(rtcp_receiver.cc:981): Incoming NACK length: 1
+(rtcp_receiver.cc:981): Incoming NACK length: 1
+(rtcp_receiver.cc:981): Incoming NACK length: 2
+(port.cc:1409): Conn[00000000062AF8E0:0:Net[Realtek:192.168.0.x/32:Wifi:id=1]:vASWFFBd:1:0:local:udp:192.168.0.x:54294->YTzyDb0z:1:2122260223:local:udp:192.168.0.x:58203|CRWS|S|0|0|9115038255631187454|1]: UpdateState(), ms since last received response=998, ms since last received data=2, rtt=100, pings_since_last_response=
+(port.cc:1409): Conn[00000000062AF8E0:0:Net[Realtek:192.168.0.x/32:Wifi:id=1]:vASWFFBd:1:0:local:udp:192.168.0.x:54294->YTzyDb0z:1:2122260223:local:udp:192.168.0.x:58203|CRWS|S|0|0|9115038255631187454|1]: UpdateState(), ms since last received response=1248, ms since last received data=3, rtt=100, pings_since_last_response=
+(rtcp_receiver.cc:981): Incoming NACK length: 1
+(rtcp_receiver.cc:981): Incoming NACK length: 1
+(rtcp_receiver.cc:981): Incoming NACK length: 1
+(receive_statistics_proxy.cc:525): SAMPLE: sample_length: 1001 fps: 25 fps_bad: 0 qp: 9 qp_bad: 0 variance_bad: 0 fps_variance: 0
+(rtcp_receiver.cc:981): Incoming NACK length: 1
+(port.cc:1409): Conn[00000000062AF8E0:0:Net[Realtek:192.168.0.x/32:Wifi:id=1]:vASWFFBd:1:0:local:udp:192.168.0.x:54294->YTzyDb0z:1:2122260223:local:udp:192.168.0.x:58203|CRWS|S|0|0|9115038255631187454|1]: UpdateState(), ms since last received response=1498, ms since last received data=3, rtt=100, pings_since_last_response=
+(rtcp_receiver.cc:981): Incoming NACK length: 1
+(rtcp_receiver.cc:981): Incoming NACK length: 1
+(rtcp_receiver.cc:981): Incoming NACK length: 1
+(rtcp_receiver.cc:981): Incoming NACK length: 1
+(rtcp_receiver.cc:981): Incoming NACK length: 1
+(port.cc:1409): Conn[00000000062AF8E0:0:Net[Realtek:192.168.0.x/32:Wifi:id=1]:vASWFFBd:1:0:local:udp:192.168.0.x:54294->YTzyDb0z:1:2122260223:local:udp:192.168.0.x:58203|CRWS|S|0|0|9115038255631187454|1]: UpdateState(), ms since last received response=1748, ms since last received data=9, rtt=100, pings_since_last_response=
+(video_stream_encoder.cc:924): OnBitrateUpdated, bitrate 1700000 packet loss 9 rtt 1
+(port.cc:1409): Conn[00000000062AF8E0:0:Net[Realtek:192.168.0.x/32:Wifi:id=1]:vASWFFBd:1:0:local:udp:192.168.0.x:54294->YTzyDb0z:1:2122260223:local:udp:192.168.0.x:58203|CRWS|S|0|0|9115038255631187454|1]: UpdateState(), ms since last received response=1998, ms since last received data=42, rtt=100, pings_since_last_response=
+(rtcp_receiver.cc:981): Incoming NACK length: 1
+(rtcp_receiver.cc:981): Incoming NACK length: 1
+(rtcp_receiver.cc:981): Incoming NACK length: 1
+(rtcp_receiver.cc:981): Incoming NACK length: 2
+(rtcp_receiver.cc:981): Incoming NACK length: 1
+(rtcp_receiver.cc:981): Incoming NACK length: 1
+(rtcp_receiver.cc:981): Incoming NACK length: 1
+(rtcp_receiver.cc:981): Incoming NACK length: 3
+(port.cc:1409): Conn[00000000062AF8E0:0:Net[Realtek:192.168.0.x/32:Wifi:id=1]:vASWFFBd:1:0:local:udp:192.168.0.x:54294->YTzyDb0z:1:2122260223:local:udp:192.168.0.x:58203|CRWS|S|0|0|9115038255631187454|1]: UpdateState(), ms since last received response=2248, ms since last received data=6, rtt=100, pings_since_last_response=
+(receive_statistics_proxy.cc:525): SAMPLE: sample_length: 1000 fps: 25 fps_bad: 0 qp: 15 qp_bad: 0 variance_bad: 0 fps_variance: 0
+(port.cc:1243): Conn[00000000062AF8E0:0:Net[Realtek:192.168.0.x/32:Wifi:id=1]:vASWFFBd:1:0:local:udp:192.168.0.x:54294->YTzyDb0z:1:2122260223:local:udp:192.168.0.x:58203|CRWS|S|0|0|9115038255631187454|1]: Received STUN ping, id=5643486d6357334a6c335639
+(port.cc:807): Port[00000000062BAAC0:0:1:0:local:Net[Realtek:192.168.0.x/32:Wifi:id=1]]: Sent STUN ping response, to=192.168.0.x:58203, id=5643486d6357334a6c335639
+(port.cc:1409): Conn[00000000062AF8E0:0:Net[Realtek:192.168.0.x/32:Wifi:id=1]:vASWFFBd:1:0:local:udp:192.168.0.x:54294->YTzyDb0z:1:2122260223:local:udp:192.168.0.x:58203|CRWS|S|0|0|9115038255631187454|1]: UpdateState(), ms since last received response=2498, ms since last received data=25, rtt=100, pings_since_last_response=
+(port.cc:1473): Conn[00000000062AF8E0:0:Net[Realtek:192.168.0.x/32:Wifi:id=1]:vASWFFBd:1:0:local:udp:192.168.0.x:54294->YTzyDb0z:1:2122260223:local:udp:192.168.0.x:58203|CRWS|S|0|0|9115038255631187454|1]: Sending STUN ping, id=5044565a7834575847304d62, nomination=0
+(port.cc:1711): Conn[00000000062AF8E0:0:Net[Realtek:192.168.0.x/32:Wifi:id=1]:vASWFFBd:1:0:local:udp:192.168.0.x:54294->YTzyDb0z:1:2122260223:local:udp:192.168.0.x:58203|CRWS|S|0|0|9115038255631187454|1]: Sent STUN ping, id=5044565a7834575847304d62, use_candidate=1, nomination=0
+(port.cc:1655): Conn[00000000062AF8E0:0:Net[Realtek:192.168.0.x/32:Wifi:id=1]:vASWFFBd:1:0:local:udp:192.168.0.x:54294->YTzyDb0z:1:2122260223:local:udp:192.168.0.x:58203|CRWI|S|0|0|9115038255631187454|1]: Received STUN ping response, id=5044565a7834575847304d62, code=0, rtt=3, pings_since_last_response=5044565a7834575847304d62 
+(port.cc:1167): Conn[00000000062AF8E0:0:Net[Realtek:192.168.0.x/32:Wifi:id=1]:vASWFFBd:1:0:local:udp:192.168.0.x:54294->YTzyDb0z:1:2122260223:local:udp:192.168.0.x:58203|CRWS|S|0|0|9115038255631187454|1]: set_state
+(rtcp_receiver.cc:981): Incoming NACK length: 1
+(rtcp_receiver.cc:981): Incoming NACK length: 3
+(rtcp_receiver.cc:981): Incoming NACK length: 1
+(rtcp_receiver.cc:981): Incoming NACK length: 2
+(rtcp_receiver.cc:981): Incoming NACK length: 2
+(rtcp_receiver.cc:981): Incoming NACK length: 3
+(rtcp_receiver.cc:981): Incoming NACK length: 1
+(port.cc:1409): Conn[00000000062AF8E0:0:Net[Realtek:192.168.0.x/32:Wifi:id=1]:vASWFFBd:1:0:local:udp:192.168.0.x:54294->YTzyDb0z:1:2122260223:local:udp:192.168.0.x:58203|CRWS|S|0|0|9115038255631187454|1]: UpdateState(), ms since last received response=246, ms since last received data=30, rtt=100, pings_since_last_response=
+(rtcp_receiver.cc:981): Incoming NACK length: 1
+(rtcp_receiver.cc:981): Incoming NACK length: 2
+(rtcp_receiver.cc:981): Incoming NACK length: 1
+(rtcp_receiver.cc:981): Incoming NACK length: 1
+(rtcp_receiver.cc:981): Incoming NACK length: 1
+(rtcp_receiver.cc:981): Incoming NACK length: 1
+(rtcp_receiver.cc:981): Incoming NACK length: 1
+(port.cc:1409): Conn[00000000062AF8E0:0:Net[Realtek:192.168.0.x/32:Wifi:id=1]:vASWFFBd:1:0:local:udp:192.168.0.x:54294->YTzyDb0z:1:2122260223:local:udp:192.168.0.x:58203|CRWS|S|0|0|9115038255631187454|1]: UpdateState(), ms since last received response=496, ms since last received data=1, rtt=100, pings_since_last_response=
+(rtcp_receiver.cc:981): Incoming NACK length: 1
+(rtcp_receiver.cc:981): Incoming NACK length: 1
+(port.cc:1409): Conn[00000000062AF8E0:0:Net[Realtek:192.168.0.x/32:Wifi:id=1]:vASWFFBd:1:0:local:udp:192.168.0.x:54294->YTzyDb0z:1:2122260223:local:udp:192.168.0.x:58203|CRWS|S|0|0|9115038255631187454|1]: UpdateState(), ms since last received response=746, ms since last received data=4, rtt=100, pings_since_last_response=
+(video_stream_encoder.cc:924): OnBitrateUpdated, bitrate 1700000 packet loss 17 rtt 2
+(receive_statistics_proxy.cc:525): SAMPLE: sample_length: 1009 fps: 25 fps_bad: 0 qp: 16 qp_bad: 0 variance_bad: 0 fps_variance: 0
+(rtcp_receiver.cc:981): Incoming NACK length: 1
+(quality_scaler.cc:201): Checking average QP 12 (12).
+(rtcp_receiver.cc:981): Incoming NACK length: 1
+(port.cc:1409): Conn[00000000062AF8E0:0:Net[Realtek:192.168.0.x/32:Wifi:id=1]:vASWFFBd:1:0:local:udp:192.168.0.x:54294->YTzyDb0z:1:2122260223:local:udp:192.168.0.x:58203|CRWS|S|0|0|9115038255631187454|1]: UpdateState(), ms since last received response=996, ms since last received data=0, rtt=100, pings_since_last_response=
+(rtcp_receiver.cc:981): Incoming NACK length: 1
+(rtcp_receiver.cc:981): Incoming NACK length: 1
+(rtcp_receiver.cc:981): Incoming NACK length: 1
+(port.cc:1409): Conn[00000000062AF8E0:0:Net[Realtek:192.168.0.x/32:Wifi:id=1]:vASWFFBd:1:0:local:udp:192.168.0.x:54294->YTzyDb0z:1:2122260223:local:udp:192.168.0.x:58203|CRWS|S|0|0|9115038255631187454|1]: UpdateState(), ms since last received response=1246, ms since last received data=19, rtt=100, pings_since_last_response=
+(rtcp_receiver.cc:981): Incoming NACK length: 1
+(rtcp_receiver.cc:981): Incoming NACK length: 2
+(rtcp_receiver.cc:981): Incoming NACK length: 1
+(rtcp_receiver.cc:981): Incoming NACK length: 1
+(video_stream_encoder.cc:924): OnBitrateUpdated, bitrate 1700000 packet loss 21 rtt 9
+(rtcp_receiver.cc:981): Incoming NACK length: 1
+(rtcp_receiver.cc:981): Incoming NACK length: 1
+(rtcp_receiver.cc:981): Incoming NACK length: 1
+(rtcp_receiver.cc:981): Incoming NACK length: 1
+(rtcp_receiver.cc:981): Incoming NACK length: 2
+(rtcp_receiver.cc:981): Incoming NACK length: 2
+(port.cc:1409): Conn[00000000062AF8E0:0:Net[Realtek:192.168.0.x/32:Wifi:id=1]:vASWFFBd:1:0:local:udp:192.168.0.x:54294->YTzyDb0z:1:2122260223:local:udp:192.168.0.x:58203|CRWS|S|0|0|9115038255631187454|1]: UpdateState(), ms since last received response=1496, ms since last received data=3, rtt=100, pings_since_last_response=
+(rtcp_receiver.cc:981): Incoming NACK length: 2
+(rtcp_receiver.cc:981): Incoming NACK length: 2
+(rtcp_receiver.cc:981): Incoming NACK length: 1
+(rtcp_receiver.cc:981): Incoming NACK length: 1
+(rtcp_receiver.cc:981): Incoming NACK length: 1
+(rtcp_receiver.cc:981): Incoming NACK length: 2
+(rtcp_receiver.cc:981): Incoming NACK length: 1
+(port.cc:1409): Conn[00000000062AF8E0:0:Net[Realtek:192.168.0.x/32:Wifi:id=1]:vASWFFBd:1:0:local:udp:192.168.0.x:54294->YTzyDb0z:1:2122260223:local:udp:192.168.0.x:58203|CRWS|S|0|0|9115038255631187454|1]: UpdateState(), ms since last received response=1746, ms since last received data=4, rtt=100, pings_since_last_response=
+(rtcp_receiver.cc:981): Incoming NACK length: 1
+(rtcp_receiver.cc:981): Incoming NACK length: 2
+(rtcp_receiver.cc:981): Incoming NACK length: 1
+(rtcp_receiver.cc:981): Incoming NACK length: 1
+(rtcp_receiver.cc:981): Incoming NACK length: 2
+(receive_statistics_proxy.cc:525): SAMPLE: sample_length: 1000 fps: 25 fps_bad: 0 qp: 36 qp_bad: 0 variance_bad: 0 fps_variance: 0
+(port.cc:1409): Conn[00000000062AF8E0:0:Net[Realtek:192.168.0.x/32:Wifi:id=1]:vASWFFBd:1:0:local:udp:192.168.0.x:54294->YTzyDb0z:1:2122260223:local:udp:192.168.0.x:58203|CRWS|S|0|0|9115038255631187454|1]: UpdateState(), ms since last received response=1996, ms since last received data=28, rtt=100, pings_since_last_response=
+(video_stream_encoder.cc:924): OnBitrateUpdated, bitrate 1700000 packet loss 32 rtt 3
+(port.cc:1409): Conn[00000000062AF8E0:0:Net[Realtek:192.168.0.x/32:Wifi:id=1]:vASWFFBd:1:0:local:udp:192.168.0.x:54294->YTzyDb0z:1:2122260223:local:udp:192.168.0.x:58203|CRWS|S|0|0|9115038255631187454|1]: UpdateState(), ms since last received response=2246, ms since last received data=32, rtt=100, pings_since_last_response=
+(rtcp_receiver.cc:981): Incoming NACK length: 1
+(rtcp_receiver.cc:981): Incoming NACK length: 1
+(rtcp_receiver.cc:981): Incoming NACK length: 1
+(rtcp_receiver.cc:981): Incoming NACK length: 2
+(rtcp_receiver.cc:981): Incoming NACK length: 1
+(rtcp_receiver.cc:981): Incoming NACK length: 1
+(port.cc:1243): Conn[00000000062AF8E0:0:Net[Realtek:192.168.0.x/32:Wifi:id=1]:vASWFFBd:1:0:local:udp:192.168.0.x:54294->YTzyDb0z:1:2122260223:local:udp:192.168.0.x:58203|CRWS|S|0|0|9115038255631187454|1]: Received STUN ping, id=495478442f55445242456565
+(port.cc:807): Port[00000000062BAAC0:0:1:0:local:Net[Realtek:192.168.0.x/32:Wifi:id=1]]: Sent STUN ping response, to=192.168.0.x:58203, id=495478442f55445242456565
+(rtcp_receiver.cc:981): Incoming NACK length: 1
+(rtcp_receiver.cc:981): Incoming NACK length: 2
+(rtcp_receiver.cc:981): Incoming NACK length: 2
+(port.cc:1409): Conn[00000000062AF8E0:0:Net[Realtek:192.168.0.x/32:Wifi:id=1]:vASWFFBd:1:0:local:udp:192.168.0.x:54294->YTzyDb0z:1:2122260223:local:udp:192.168.0.x:58203|CRWS|S|0|0|9115038255631187454|1]: UpdateState(), ms since last received response=2496, ms since last received data=2, rtt=100, pings_since_last_response=
+(port.cc:1473): Conn[00000000062AF8E0:0:Net[Realtek:192.168.0.x/32:Wifi:id=1]:vASWFFBd:1:0:local:udp:192.168.0.x:54294->YTzyDb0z:1:2122260223:local:udp:192.168.0.x:58203|CRWS|S|0|0|9115038255631187454|1]: Sending STUN ping, id=7279734854384a3062583350, nomination=0
+(port.cc:1711): Conn[00000000062AF8E0:0:Net[Realtek:192.168.0.x/32:Wifi:id=1]:vASWFFBd:1:0:local:udp:192.168.0.x:54294->YTzyDb0z:1:2122260223:local:udp:192.168.0.x:58203|CRWS|S|0|0|9115038255631187454|1]: Sent STUN ping, id=7279734854384a3062583350, use_candidate=1, nomination=0
+(port.cc:1655): Conn[00000000062AF8E0:0:Net[Realtek:192.168.0.x/32:Wifi:id=1]:vASWFFBd:1:0:local:udp:192.168.0.x:54294->YTzyDb0z:1:2122260223:local:udp:192.168.0.x:58203|CRWI|S|0|0|9115038255631187454|1]: Received STUN ping response, id=7279734854384a3062583350, code=0, rtt=2, pings_since_last_response=7279734854384a3062583350 
+(port.cc:1167): Conn[00000000062AF8E0:0:Net[Realtek:192.168.0.x/32:Wifi:id=1]:vASWFFBd:1:0:local:udp:192.168.0.x:54294->YTzyDb0z:1:2122260223:local:udp:192.168.0.x:58203|CRWS|S|0|0|9115038255631187454|1]: set_state
+(rtcp_receiver.cc:981): Incoming NACK length: 1
+(rtcp_receiver.cc:981): Incoming NACK length: 1
+(rtcp_receiver.cc:981): Incoming NACK length: 1
+(port.cc:1409): Conn[00000000062AF8E0:0:Net[Realtek:192.168.0.x/32:Wifi:id=1]:vASWFFBd:1:0:local:udp:192.168.0.x:54294->YTzyDb0z:1:2122260223:local:udp:192.168.0.x:58203|CRWS|S|0|0|9115038255631187454|1]: UpdateState(), ms since last received response=248, ms since last received data=1, rtt=100, pings_since_last_response=
+(audio_device_buffer.cc:428): [REC : 10001msec, 16kHz] callbacks: 997, samples: 159520, rate: 15950, level: 94
+(audio_device_buffer.cc:437): [PLAY: 10001msec, 44kHz] callbacks: 999, samples: 440559, rate: 44051, level: 0
+(rtp_video_stream_receiver.cc:286): Packet received on SSRC: 2145093703 with payload type: 100, timestamp: 4005565643, sequence number: 2166, arrival time: 16526785
+(receive_statistics_proxy.cc:525): SAMPLE: sample_length: 1000 fps: 26 fps_bad: 0 qp: 10 qp_bad: 0 variance_bad: 0 fps_variance: 0.222222
+(port.cc:1409): Conn[00000000062AF8E0:0:Net[Realtek:192.168.0.x/32:Wifi:id=1]:vASWFFBd:1:0:local:udp:192.168.0.x:54294->YTzyDb0z:1:2122260223:local:udp:192.168.0.x:58203|CRWS|S|0|0|9115038255631187454|1]: UpdateState(), ms since last received response=498, ms since last received data=20, rtt=100, pings_since_last_response=
+(rtcp_receiver.cc:981): Incoming NACK length: 1
+(rtcp_receiver.cc:981): Incoming NACK length: 1
+(rtcp_receiver.cc:981): Incoming NACK length: 2
+(video_stream_encoder.cc:924): OnBitrateUpdated, bitrate 1700000 packet loss 17 rtt 3
+(rtcp_receiver.cc:981): Incoming NACK length: 1
+(rtcp_receiver.cc:981): Incoming NACK length: 1
+(port.cc:1409): Conn[00000000062AF8E0:0:Net[Realtek:192.168.0.x/32:Wifi:id=1]:vASWFFBd:1:0:local:udp:192.168.0.x:54294->YTzyDb0z:1:2122260223:local:udp:192.168.0.x:58203|CRWS|S|0|0|9115038255631187454|1]: UpdateState(), ms since last received response=748, ms since last received data=2, rtt=100, pings_since_last_response=
+(rtcp_receiver.cc:981): Incoming NACK length: 1
+(rtcp_receiver.cc:981): Incoming NACK length: 1
+(rtcp_receiver.cc:981): Incoming NACK length: 1
+(port.cc:1409): Conn[00000000062AF8E0:0:Net[Realtek:192.168.0.x/32:Wifi:id=1]:vASWFFBd:1:0:local:udp:192.168.0.x:54294->YTzyDb0z:1:2122260223:local:udp:192.168.0.x:58203|CRWS|S|0|0|9115038255631187454|1]: UpdateState(), ms since last received response=998, ms since last received data=6, rtt=100, pings_since_last_response=
+(port.cc:1409): Conn[00000000062AF8E0:0:Net[Realtek:192.168.0.x/32:Wifi:id=1]:vASWFFBd:1:0:local:udp:192.168.0.x:54294->YTzyDb0z:1:2122260223:local:udp:192.168.0.x:58203|CRWS|S|0|0|9115038255631187454|1]: UpdateState(), ms since last received response=1248, ms since last received data=47, rtt=100, pings_since_last_response=
+(rtcp_receiver.cc:981): Incoming NACK length: 1
+(rtcp_receiver.cc:981): Incoming NACK length: 1
+(rtcp_receiver.cc:981): Incoming NACK length: 1
+(receive_statistics_proxy.cc:525): SAMPLE: sample_length: 1000 fps: 25 fps_bad: 0 qp: 5 qp_bad: 0 variance_bad: 0 fps_variance: 0.1
+(port.cc:1409): Conn[00000000062AF8E0:0:Net[Realtek:192.168.0.x/32:Wifi:id=1]:vASWFFBd:1:0:local:udp:192.168.0.x:54294->YTzyDb0z:1:2122260223:local:udp:192.168.0.x:58203|CRWS|S|0|0|9115038255631187454|1]: UpdateState(), ms since last received response=1498, ms since last received data=2, rtt=100, pings_since_last_response=
+(bitrate_allocator.cc:104): Current BWE 2765830
+(video_stream_encoder.cc:924): OnBitrateUpdated, bitrate 1700000 packet loss 8 rtt 4
+(rtcp_receiver.cc:981): Incoming NACK length: 1
+(rtcp_receiver.cc:981): Incoming NACK length: 2
+(rtcp_receiver.cc:981): Incoming NACK length: 1
+(rtcp_receiver.cc:981): Incoming NACK length: 1
+(rtcp_receiver.cc:981): Incoming NACK length: 2
+(rtcp_receiver.cc:981): Incoming NACK length: 1
+(rtcp_receiver.cc:981): Incoming NACK length: 3
+(port.cc:1409): Conn[00000000062AF8E0:0:Net[Realtek:192.168.0.x/32:Wifi:id=1]:vASWFFBd:1:0:local:udp:192.168.0.x:54294->YTzyDb0z:1:2122260223:local:udp:192.168.0.x:58203|CRWS|S|0|0|9115038255631187454|1]: UpdateState(), ms since last received response=1748, ms since last received data=16, rtt=100, pings_since_last_response=
+(rtcp_receiver.cc:981): Incoming NACK length: 1
+(rtcp_receiver.cc:981): Incoming NACK length: 1
+(rtcp_receiver.cc:981): Incoming NACK length: 1
+(rtcp_receiver.cc:981): Incoming NACK length: 1
+(rtcp_receiver.cc:981): Incoming NACK length: 1
+(rtcp_receiver.cc:981): Incoming NACK length: 2
+(rtcp_receiver.cc:981): Incoming NACK length: 1
+(rtcp_receiver.cc:981): Incoming NACK length: 1
+(rtcp_receiver.cc:981): Incoming NACK length: 2
+(rtcp_receiver.cc:981): Incoming NACK length: 3
+(port.cc:1409): Conn[00000000062AF8E0:0:Net[Realtek:192.168.0.x/32:Wifi:id=1]:vASWFFBd:1:0:local:udp:192.168.0.x:54294->YTzyDb0z:1:2122260223:local:udp:192.168.0.x:58203|CRWS|S|0|0|9115038255631187454|1]: UpdateState(), ms since last received response=1998, ms since last received data=1, rtt=100, pings_since_last_response=
+(rtcp_receiver.cc:981): Incoming NACK length: 1
+(rtcp_receiver.cc:981): Incoming NACK length: 1
+(rtcp_receiver.cc:981): Incoming NACK length: 1
+(rtcp_receiver.cc:981): Incoming NACK length: 1
+(video_stream_encoder.cc:924): OnBitrateUpdated, bitrate 1700000 packet loss 36 rtt 5
+(port.cc:1409): Conn[00000000062AF8E0:0:Net[Realtek:192.168.0.x/32:Wifi:id=1]:vASWFFBd:1:0:local:udp:192.168.0.x:54294->YTzyDb0z:1:2122260223:local:udp:192.168.0.x:58203|CRWS|S|0|0|9115038255631187454|1]: UpdateState(), ms since last received response=2248, ms since last received data=11, rtt=100, pings_since_last_response=
+(receive_statistics_proxy.cc:525): SAMPLE: sample_length: 1002 fps: 25 fps_bad: 0 qp: 5 qp_bad: 0 variance_bad: 0 fps_variance: 0.1
+(port.cc:1243): Conn[00000000062AF8E0:0:Net[Realtek:192.168.0.x/32:Wifi:id=1]:vASWFFBd:1:0:local:udp:192.168.0.x:54294->YTzyDb0z:1:2122260223:local:udp:192.168.0.x:58203|CRWS|S|0|0|9115038255631187454|1]: Received STUN ping, id=6d33533176536a423748626a
+(port.cc:807): Port[00000000062BAAC0:0:1:0:local:Net[Realtek:192.168.0.x/32:Wifi:id=1]]: Sent STUN ping response, to=192.168.0.x:58203, id=6d33533176536a423748626a
+(quality_scaler.cc:201): Checking average QP 12 (12).
+(port.cc:1409): Conn[00000000062AF8E0:0:Net[Realtek:192.168.0.x/32:Wifi:id=1]:vASWFFBd:1:0:local:udp:192.168.0.x:54294->YTzyDb0z:1:2122260223:local:udp:192.168.0.x:58203|CRWS|S|0|0|9115038255631187454|1]: UpdateState(), ms since last received response=2498, ms since last received data=0, rtt=100, pings_since_last_response=
+(port.cc:1473): Conn[00000000062AF8E0:0:Net[Realtek:192.168.0.x/32:Wifi:id=1]:vASWFFBd:1:0:local:udp:192.168.0.x:54294->YTzyDb0z:1:2122260223:local:udp:192.168.0.x:58203|CRWS|S|0|0|9115038255631187454|1]: Sending STUN ping, id=697272374b6e6e68304e4a4a, nomination=0
+(port.cc:1711): Conn[00000000062AF8E0:0:Net[Realtek:192.168.0.x/32:Wifi:id=1]:vASWFFBd:1:0:local:udp:192.168.0.x:54294->YTzyDb0z:1:2122260223:local:udp:192.168.0.x:58203|CRWS|S|0|0|9115038255631187454|1]: Sent STUN ping, id=697272374b6e6e68304e4a4a, use_candidate=1, nomination=0
+(port.cc:1655): Conn[00000000062AF8E0:0:Net[Realtek:192.168.0.x/32:Wifi:id=1]:vASWFFBd:1:0:local:udp:192.168.0.x:54294->YTzyDb0z:1:2122260223:local:udp:192.168.0.x:58203|CRWI|S|0|0|9115038255631187454|1]: Received STUN ping response, id=697272374b6e6e68304e4a4a, code=0, rtt=2, pings_since_last_response=697272374b6e6e68304e4a4a 
+(port.cc:1167): Conn[00000000062AF8E0:0:Net[Realtek:192.168.0.x/32:Wifi:id=1]:vASWFFBd:1:0:local:udp:192.168.0.x:54294->YTzyDb0z:1:2122260223:local:udp:192.168.0.x:58203|CRWS|S|0|0|9115038255631187454|1]: set_state
+(rtcp_receiver.cc:981): Incoming NACK length: 1
+(rtcp_receiver.cc:981): Incoming NACK length: 1
+(rtcp_receiver.cc:981): Incoming NACK length: 1
+(rtcp_receiver.cc:981): Incoming NACK length: 2
+(rtcp_receiver.cc:981): Incoming NACK length: 1
+(port.cc:1409): Conn[00000000062AF8E0:0:Net[Realtek:192.168.0.x/32:Wifi:id=1]:vASWFFBd:1:0:local:udp:192.168.0.x:54294->YTzyDb0z:1:2122260223:local:udp:192.168.0.x:58203|CRWS|S|0|0|9115038255631187454|1]: UpdateState(), ms since last received response=248, ms since last received data=24, rtt=100, pings_since_last_response=
+(port.cc:1409): Conn[00000000062AF8E0:0:Net[Realtek:192.168.0.x/32:Wifi:id=1]:vASWFFBd:1:0:local:udp:192.168.0.x:54294->YTzyDb0z:1:2122260223:local:udp:192.168.0.x:58203|CRWS|S|0|0|9115038255631187454|1]: UpdateState(), ms since last received response=498, ms since last received data=10, rtt=100, pings_since_last_response=
+(video_stream_encoder.cc:924): OnBitrateUpdated, bitrate 1700000 packet loss 8 rtt 3
+(rtcp_receiver.cc:981): Incoming NACK length: 1
+(rtcp_receiver.cc:981): Incoming NACK length: 1
+(rtcp_receiver.cc:981): Incoming NACK length: 1
+(port.cc:1409): Conn[00000000062AF8E0:0:Net[Realtek:192.168.0.x/32:Wifi:id=1]:vASWFFBd:1:0:local:udp:192.168.0.x:54294->YTzyDb0z:1:2122260223:local:udp:192.168.0.x:58203|CRWS|S|0|0|9115038255631187454|1]: UpdateState(), ms since last received response=748, ms since last received data=2, rtt=100, pings_since_last_response=
+(rtcp_receiver.cc:981): Incoming NACK length: 1
+(rtcp_receiver.cc:981): Incoming NACK length: 1
+(rtcp_receiver.cc:981): Incoming NACK length: 1
+(receive_statistics_proxy.cc:525): SAMPLE: sample_length: 1000 fps: 25 fps_bad: 0 qp: 14 qp_bad: 0 variance_bad: 0 fps_variance: 0.1
+(port.cc:1409): Conn[00000000062AF8E0:0:Net[Realtek:192.168.0.x/32:Wifi:id=1]:vASWFFBd:1:0:local:udp:192.168.0.x:54294->YTzyDb0z:1:2122260223:local:udp:192.168.0.x:58203|CRWS|S|0|0|9115038255631187454|1]: UpdateState(), ms since last received response=1000, ms since last received data=20, rtt=100, pings_since_last_response=
+(rtcp_receiver.cc:981): Incoming NACK length: 1
+(rtcp_receiver.cc:981): Incoming NACK length: 2
+(video_stream_encoder.cc:924): OnBitrateUpdated, bitrate 1700000 packet loss 15 rtt 2
+(rtcp_receiver.cc:981): Incoming NACK length: 1
+(rtcp_receiver.cc:981): Incoming NACK length: 4
+(remote_ntp_time_estimator.cc:74): RTP timestamp: 4005857243 in NTP clock: 3778213873745 estimated time in receiver clock: 16530007 converted to NTP clock: 3778213871760
+(port.cc:1409): Conn[00000000062AF8E0:0:Net[Realtek:192.168.0.x/32:Wifi:id=1]:vASWFFBd:1:0:local:udp:192.168.0.x:54294->YTzyDb0z:1:2122260223:local:udp:192.168.0.x:58203|CRWS|S|0|0|9115038255631187454|1]: UpdateState(), ms since last received response=1251, ms since last received data=0, rtt=100, pings_since_last_response=
+(rtcp_receiver.cc:981): Incoming NACK length: 1
+(rtcp_receiver.cc:981): Incoming NACK length: 3
+(rtcp_receiver.cc:981): Incoming NACK length: 1
+(rtcp_receiver.cc:981): Incoming NACK length: 2
+(rtcp_receiver.cc:981): Incoming NACK length: 1
+(rtcp_receiver.cc:981): Incoming NACK length: 1
+(port.cc:1409): Conn[00000000062AF8E0:0:Net[Realtek:192.168.0.x/32:Wifi:id=1]:vASWFFBd:1:0:local:udp:192.168.0.x:54294->YTzyDb0z:1:2122260223:local:udp:192.168.0.x:58203|CRWS|S|0|0|9115038255631187454|1]: UpdateState(), ms since last received response=1501, ms since last received data=1, rtt=100, pings_since_last_response=
+(rtcp_receiver.cc:981): Incoming NACK length: 1
+(rtcp_receiver.cc:981): Incoming NACK length: 1
+(rtcp_receiver.cc:981): Incoming NACK length: 1
+(rtcp_receiver.cc:981): Incoming NACK length: 2
+(port.cc:1409): Conn[00000000062AF8E0:0:Net[Realtek:192.168.0.x/32:Wifi:id=1]:vASWFFBd:1:0:local:udp:192.168.0.x:54294->YTzyDb0z:1:2122260223:local:udp:192.168.0.x:58203|CRWS|S|0|0|9115038255631187454|1]: UpdateState(), ms since last received response=1752, ms since last received data=1, rtt=100, pings_since_last_response=
+(rtcp_receiver.cc:981): Incoming NACK length: 1
+(rtcp_receiver.cc:981): Incoming NACK length: 1
+(rtcp_receiver.cc:981): Incoming NACK length: 1
+(rtcp_receiver.cc:981): Incoming NACK length: 1
+(rtcp_receiver.cc:981): Incoming NACK length: 2
+(rtcp_receiver.cc:981): Incoming NACK length: 1
+(receive_statistics_proxy.cc:525): SAMPLE: sample_length: 1000 fps: 25 fps_bad: 0 qp: 33 qp_bad: 0 variance_bad: 0 fps_variance: 0.1
+(port.cc:1409): Conn[00000000062AF8E0:0:Net[Realtek:192.168.0.x/32:Wifi:id=1]:vASWFFBd:1:0:local:udp:192.168.0.x:54294->YTzyDb0z:1:2122260223:local:udp:192.168.0.x:58203|CRWS|S|0|0|9115038255631187454|1]: UpdateState(), ms since last received response=2011, ms since last received data=13, rtt=100, pings_since_last_response=
+(rtcp_receiver.cc:981): Incoming NACK length: 1
+(rtcp_receiver.cc:981): Incoming NACK length: 1
+(port.cc:1409): Conn[00000000062AF8E0:0:Net[Realtek:192.168.0.x/32:Wifi:id=1]:vASWFFBd:1:0:local:udp:192.168.0.x:54294->YTzyDb0z:1:2122260223:local:udp:192.168.0.x:58203|CRWS|S|0|0|9115038255631187454|1]: UpdateState(), ms since last received response=2261, ms since last received data=8, rtt=100, pings_since_last_response=
+(audio_device_impl.cc:815): StopRecording
+(audio_device_core_win.cc:2435): closing down the webrtc_core_audio_capture_thread...
+(audio_device_core_win.cc:3101): Capturing thread is now terminated properly
+(audio_device_core_win.cc:2446): webrtc_core_audio_capture_thread is now closed
+(audio_device_buffer.cc:157): StopRecording
+(audio_device_buffer.cc:177): HISTOGRAM(WebRTC.Audio.RecordedOnlyZeros): 0
+(audio_device_buffer.cc:180): total recording time: 14451
+(audio_device_impl.cc:819): output: 0
+(webrtcvoiceengine.cc:1952): SetOutputVolume() to 0 for recv stream with ssrc 733244108
+(webrtcvideoengine.cc:1068): SetVideoSend (ssrc= 2393749781, options: nullptr, source = nullptr)
+(quality_scaler.cc:78): Stopping QP Check task.
+(webrtcvideoengine.cc:1337): SetSink: ssrc:2145093703 nullptr
+(channel.cc:555): Channel disabled
+(webrtcvideoengine.cc:1047): SetSend: false
+(video_send_stream.cc:153): VideoSendStream::Stop
+(channel.cc:924): Changing video state, send=0
+(video_send_stream_impl.cc:555): VideoSendStream::Stop
+(rtp_rtcp_impl.cc:392): Failed to send RTCP BYE
+(bitrate_allocator.cc:221): UpdateAllocationLimits : total_requested_min_bitrate: 0bps, total_requested_padding_bitrate: 0bps, total_requested_max_bitrate: 0bps
+(video_send_stream.cc:153): VideoSendStream::Stop
+(video_stream_encoder.cc:924): OnBitrateUpdated, bitrate 0 packet loss 0 rtt 0
+(video_send_stream_impl.cc:555): VideoSendStream::Stop
+(video_stream_encoder.cc:939): Video suspend state changed to: suspended
+(video_send_stream_impl.cc:555): VideoSendStream::Stop
+(video_send_stream_impl.cc:487): ~VideoSendStreamInternal: {encoder_settings: {encoder_factory: (VideoEncoderFactory)}, rtp: {ssrcs: [2393749781], rtcp_mode: RtcpMode::kReducedSize, max_packet_size: 1200, extensions: [{uri: http://www.ietf.org/id/draft-holmer-rmcat-transport-wide-cc-extensions-01, id: 5}, {uri: http://www.webrtc.org/experiments/rtp-hdrext/playout-delay, id: 6}, {uri: http://www.webrtc.org/experiments/rtp-hdrext/video-content-type, id: 7}, {uri: http://www.webrtc.org/experiments/rtp-hdrext/video-timing, id: 8}, {uri: urn:3gpp:video-orientation, id: 4}, {uri: urn:ietf:params:rtp-hdrext:sdes:mid, id: 9}], nack: {rtp_history_ms: 1000}, ulpfec: {ulpfec_payload_type: 127, red_payload_type: 100, red_rtx_payload_type: 101}, payload_name: VP8, payload_type: 96, flexfec: {payload_type: -1, ssrc: 0, protected_media_ssrcs: []}, rtx: {ssrcs: [3633525226], payload_type: 97}, c_name: czVcV9SB55E5Z1Av}, rtcp: {video_report_interval_ms: 1000, audio_report_interval_ms: 5000}, pre_encode_callback: nullptr, post_encode_callback: nullptr, render_delay_ms: 0, target_delay_ms: 0, suspend_below_min_bitrate: off}
+(call.cc:1056): UpdateAggregateNetworkState: aggregate_state=up
+(send_side_congestion_controller.cc:276): SignalNetworkState Up
+(send_statistics_proxy.cc:624): WebRTC.Video.InputWidthInPixels 640
+WebRTC.Video.InputHeightInPixels 480
+WebRTC.Video.InputFramesPerSecond periodic_samples:7, {min:20, avg:20, max:21}
+WebRTC.Video.SentWidthInPixels 640
+WebRTC.Video.SentHeightInPixels 480
+WebRTC.Video.SentFramesPerSecond periodic_samples:7, {min:20, avg:20, max:20}
+WebRTC.Video.SentToInputFpsRatioPercent 100
+WebRTC.Video.EncodeTimeInMs 11
+WebRTC.Video.KeyFramesSentInPermille 3
+WebRTC.Video.QualityLimitedResolutionInPercent 0
+WebRTC.Video.SentPacketsLostInPercent 7WebRTC.Video.NumberOfPauseEvents 0
+WebRTC.Video.PausedTimeInPercent 0
+WebRTC.Video.BitrateSentInBps periodic_samples:7, {min:694512, avg:1725504, max:1926672}
+WebRTC.Video.MediaBitrateSentInBps periodic_samples:7, {min:605760, avg:1538296, max:1715344}
+WebRTC.Video.PaddingBitrateSentInBps periodic_samples:7, {min:0, avg:0, max:0}
+WebRTC.Video.RetransmittedBitrateSentInBps periodic_samples:7, {min:17520, avg:144056, max:222024}
+WebRTC.Video.RtxBitrateSentInBps periodic_samples:7, {min:73808, avg:152096, max:222024}
+WebRTC.Video.FecBitrateSentInBps periodic_samples:7, {min:0, avg:0, max:0}
+Frames encoded 286
+WebRTC.Video.DroppedFrames.Capturer 0
+WebRTC.Video.DroppedFrames.EncoderQueue 0
+WebRTC.Video.DroppedFrames.Encoder 2
+WebRTC.Video.DroppedFrames.Ratelimiter 0
+(call.cc:1056): UpdateAggregateNetworkState: aggregate_state=up
+(send_side_congestion_controller.cc:276): SignalNetworkState Up
+(video_receive_stream.cc:154): ~VideoReceiveStream: {decoders: [{decoder: (VideoDecoder), payload_type: 96, payload_name: VP8, codec_params: {}}, {decoder: (VideoDecoder), payload_type: 98, payload_name: VP9, codec_params: {}}], rtp: {remote_ssrc: 2145093703, local_ssrc: 2393749781, rtcp_mode: RtcpMode::kReducedSize, rtcp_xr: {receiver_reference_time_report: off}, remb: on, transport_cc: on, nack: {rtp_history_ms: 1000}, ulpfec_payload_type: 127, red_type: 100, rtx_ssrc: 299575151, rtx_payload_types: {97 (pt) -> 96 (apt), 99 (pt) -> 98 (apt), 101 (pt) -> 100 (apt), }, extensions: [{uri: http://www.ietf.org/id/draft-holmer-rmcat-transport-wide-cc-extensions-01, id: 5}, {uri: http://www.webrtc.org/experiments/rtp-hdrext/abs-send-time, id: 3}, {uri: http://www.webrtc.org/experiments/rtp-hdrext/playout-delay, id: 6}, {uri: http://www.webrtc.org/experiments/rtp-hdrext/video-content-type, id: 7}, {uri: http://www.webrtc.org/experiments/rtp-hdrext/video-timing, id: 8}, {uri: urn:3gpp:video-orientation, id: 4}, {uri: urn:ietf:params:rtp-hdrext:sdes:mid, id: 9}, {uri: urn:ietf:params:rtp-hdrext:toffset, id: 2}]}, renderer: (renderer), render_delay_ms: 10, sync_group: stream_id, pre_decode_callback: nullptr, target_delay_ms: 0}
+(receive_statistics_proxy.cc:468): WebRTC.Video.ReceiveStreamLifetimeInSeconds 14
+Frames decoded 360WebRTC.Video.DroppedFrames.Receiver 1WebRTC.Video.ReceivedPacketsLostInPercent 0
+WebRTC.Video.KeyFramesReceivedInPermille 6
+WebRTC.Video.Decoded.Vp8.Qp 23
+WebRTC.Video.DecodeTimeInMs 1
+WebRTC.Video.JitterBufferDelayInMs 23
+WebRTC.Video.TargetDelayInMs 36
+WebRTC.Video.CurrentDelayInMs 33
+WebRTC.Video.EndToEndDelayInMs 45
+WebRTC.Video.EndToEndDelayMaxInMs 75
+WebRTC.Video.InterframeDelayInMs 40
+WebRTC.Video.InterframeDelayMaxInMs 92
+WebRTC.Video.InterframeDelay95PercentileInMs 44
+WebRTC.Video.ReceivedWidthInPixels 640
+WebRTC.Video.ReceivedHeightInPixels 480
+WebRTC.Video.EndToEndDelayInMs.S0 45
+WebRTC.Video.EndToEndDelayMaxInMs.S0 75
+WebRTC.Video.InterframeDelayInMs.S0 40
+WebRTC.Video.InterframeDelayMaxInMs.S0 92
+WebRTC.Video.InterframeDelay95PercentileInMs.S0 44
+WebRTC.Video.ReceivedWidthInPixels.S0 640
+WebRTC.Video.ReceivedHeightInPixels.S0 480
+WebRTC.Video.MediaBitrateReceivedInKbps.S0 3
+WebRTC.Video.Decoded.Vp8.Qp.S0 23
+WebRTC.Video.MediaBitrateReceivedInKbps 1654
+
+(channel.cc:126): Destroyed channel: 1
+(channel.cc:555): Channel disabled
+(audio_device_impl.cc:784): StopPlayout
+(audio_device_core_win.cc:2573): closing down the webrtc_core_audio_render_thread...
+(audio_device_core_win.cc:2942): _Rendering thread is now terminated properly
+(audio_device_core_win.cc:2591): webrtc_core_audio_render_thread is now closed
+(audio_device_buffer.cc:143): StopPlayout
+(audio_device_buffer.cc:149): total playout time: 14510
+(audio_device_impl.cc:788): output: 0
+(channel.cc:794): Changing voice state, recv=0 send=0
+(webrtcvoiceengine.cc:1279): WebRtcVoiceMediaChannel::~WebRtcVoiceMediaChannel
+(webrtcvoiceengine.cc:1817): RemoveSendStream: 26574455
+(call.cc:1056): UpdateAggregateNetworkState: aggregate_state=up
+(send_side_congestion_controller.cc:276): SignalNetworkState Up
+(audio_send_stream.cc:157): ~AudioSendStream: 26574455
+(webrtcvoiceengine.cc:1890): RemoveRecvStream: 733244108
+(call.cc:1056): UpdateAggregateNetworkState: aggregate_state=down
+(send_side_congestion_controller.cc:276): SignalNetworkState Down
+(send_side_congestion_controller.cc:477): Bitrate estimate state changed, BWE: 0 bps.
+(audio_receive_stream.cc:132): ~AudioReceiveStream: 733244108
+(channel.cc:126): Destroyed channel: 0
+(peerconnection.cc:849): Session: 4478677094510127467 is destroyed.
+(opensslstreamadapter.cc:889): Cleanup
+(call.cc:516): WebRTC.Call.EstimatedSendBitrateInKbps, periodic_samples:7, {min:2571, avg:2897, max:3251}
+(call.cc:524): WebRTC.Call.PacerBitrateInKbps, periodic_samples:7, {min:2571, avg:2897, max:3251}
+(call.cc:546): WebRTC.Call.VideoBitrateReceivedInBps, periodic_samples:7, {min:1290112, avg:1653752, max:1882192}
+(call.cc:562): WebRTC.Call.RtcpBitrateReceivedInBps, periodic_samples:7, {min:12704, avg:18648, max:20928}
+(call.cc:570): WebRTC.Call.BitrateReceivedInBps, periodic_samples:7, {min:1302816, avg:1672400, max:1903120}
+(paced_sender.cc:356): ProcessThreadAttached 0x0000000000000000
+(paced_sender.cc:356): ProcessThreadAttached 0x0000000000000000
+(send_delay_stats.cc:49): WebRTC.Video.SendDelayInMs, periodic_samples:7, {min:0, avg:0, max:1}
+(rtc_event_log_impl.cc:194): Stopping WebRTC event log.
+(rtc_event_log_impl.cc:211): WebRTC event log successfully stopped.
+(dtmfsender.cc:234): The Dtmf provider is deleted. Clear the sending queue.
+(video_capture_ds.cc:164): CaptureStarted 2
+(webrtcvideocapturer.cc:304): Camera '0' stopped after capturing 291 frames and dropping 0%
+(webrtcvideoengine.cc:556): WebRtcVideoEngine::~WebRtcVideoEngine
+(webrtcvoiceengine.cc:220): WebRtcVoiceEngine::~WebRtcVoiceEngine
+(audio_device_impl.cc:784): StopPlayout
+(audio_device_impl.cc:788): output: 0
+(audio_device_impl.cc:815): StopRecording
+(audio_device_impl.cc:819): output: 0
+(audio_device_impl.cc:833): RegisterAudioCallback
+(audio_device_buffer.cc:83): RegisterAudioCallback
+(audio_device_impl.cc:334): Terminate
+(audio_device_impl.cc:303): ~AudioDeviceModuleImpl
+(audio_device_core_win.cc:532): ~AudioDeviceWindowsCore destroyed
+(audio_device_core_win.cc:579): AudioDeviceWindowsCore::~AudioDeviceWindowsCore() the Avrt DLL module is now unloaded
+(audio_device_buffer.cc:77): AudioDeviceBuffer::~dtor
+(peer_connection_client.cc:306): Headers received
+(peer_connection_client.cc:483): PeerConnectionClient::OnClose
+(conductor.cc:286): Conductor::OnDisconnected
