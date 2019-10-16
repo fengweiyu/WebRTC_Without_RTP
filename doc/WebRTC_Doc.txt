@@ -80,3 +80,26 @@ InternalEncoderFactory::InternalEncoderFactory() >>> codec.SetParam
 最终 在 InternalEncoderFactory::InternalEncoderFactory里面加入codec.SetParam即可
 
 
+5.推流
+https://www.cnblogs.com/fangkm/p/4401143.html
+
+WebRtcVideoEngine2主要作用在于创建视频channel对象WebRtcVideoChannel2
+当调用WebRtcVideoChannel2的AddSendStream方法时，会创建一个WebRtcVideoSendStream对象，同样，调用AddRecvStream成员方法，会创建一个WebRtcVideoReceiveStream对象
+
+
+VideoSendStreamImpl::Start()
+找到发送触发的地方，拦截，或加入自己的发送的机制。
+
+
+
+
+
+
+
+
+
+
+
+
+
+

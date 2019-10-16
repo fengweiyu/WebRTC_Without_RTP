@@ -1,0 +1,59 @@
+1.安装git
+国外：git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git
+国内：git clone https://source.codeaurora.org/quic/lc/chromium/tools/depot_tools
+
+
+2.把depot_tools目录加入
+export PATH=`pwd`/depot_tools:"$PATH"
+
+
+
+
+3.下源码
+export GYP_DEFINES="OS=linux"
+fetch --nohooks webrtc
+
+Still working on:
+[0:35:12]   src/third_party
+[0:35:12]   src/tools
+
+
+gclient sync
+
+
+4,编译
+
+cd src
+sudo ./build/install-build-deps.sh
+
+export PATH=$PATH:`pwd`/depot_tools
+方式一：使用gn生成：
+生成debug版ninja项目文件：gn gen out/Default
+生成release版ninja项目文件：gn gen out/Default --args='is_debug=false'
+清空ninja项目文件：gn clean out/Default
+
+ninja -C out/Default
+
+*************************************************************************************
+最后的编译选项：
+
+
+gn gen out/linux --args='target_os="linux" target_cpu="x64" is_debug=false is_clang=false treat_warnings_as_errors=false rtc_include_tests=false is_component_build=false use_custom_libcxx=false rtc_enable_protobuf=false'
+
+————————————————
+4,编译 -arm
+cd src
+./build/install-build-deps.sh --arm
+./build/linux/sysroot_scripts/install-sysroot.py --arch=arm
+
+ gn gen out/Default --args='target_os="linux" target_cpu="arm"'
+
+    ninja -C out/Default
+
+ninja -C out/Default
+
+
+
+
+
+
