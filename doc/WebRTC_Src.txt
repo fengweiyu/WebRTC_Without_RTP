@@ -20,7 +20,7 @@ Still working on:
 
 gclient sync
 
-
+下载源码后third_party，git显示有修改标记，属于正常，编译可以通过
 4,编译
 
 cd src
@@ -51,6 +51,25 @@ cd src
     ninja -C out/Default
 
 ninja -C out/Default
+
+
+
+*************************************************************************************
+
+webrtc编译使用gn+ninja
+
+其中，gn类似cmakelist.txt，用于说明编译的目标，编译的内容，编译的依赖。
+ninja 类似makefile，会去调用编译程序进行编译操作，其依赖的文件是build.ninja
+
+理论上修改为arm-linux-gxx是可行的，只需在toolchain,ninja中修改clang编译器为arm-linx-gxx即可。
+
+
+
+
+
+
+
+
 
 
 
