@@ -186,14 +186,14 @@ void Conductor::OnSignedIn()
 {
   LOG(INFO) << __FUNCTION__;
   int num=-1;
-  Peers peer = client_.peers();
+  /*Peers peer = client_.peers();
   Peers::const_iterator i = peer.begin;
   for(;i!=peer.end();++i)
   {
     num = i->first;
     break;
   }
-  ConnectToPeer(num);
+  ConnectToPeer(num);*/
 }
 
 void Conductor::OnDisconnected() 
