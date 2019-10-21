@@ -32,11 +32,13 @@ bool IsFlexfecAdvertisedFieldTrialEnabled() {
 
 }  // namespace
 
-InternalEncoderFactory::InternalEncoderFactory() {
-  supported_codecs_.push_back(cricket::VideoCodec(kVp8CodecName));
+InternalEncoderFactory::InternalEncoderFactory() 
+{
+  /*supported_codecs_.push_back(cricket::VideoCodec(kVp8CodecName));
   if (webrtc::VP9Encoder::IsSupported())
-    supported_codecs_.push_back(cricket::VideoCodec(kVp9CodecName));
-  if (webrtc::H264Encoder::IsSupported()) {
+    supported_codecs_.push_back(cricket::VideoCodec(kVp9CodecName));*/
+  //if (webrtc::H264Encoder::IsSupported()) 
+  //{
     cricket::VideoCodec codec(kH264CodecName);
     // TODO(magjed): Move setting these parameters into webrtc::H264Encoder
     // instead.
@@ -44,7 +46,7 @@ InternalEncoderFactory::InternalEncoderFactory() {
                    kH264ProfileLevelConstrainedBaseline);
     codec.SetParam(kH264FmtpLevelAsymmetryAllowed, "1");
     supported_codecs_.push_back(std::move(codec));
-  }
+  //}
 
   supported_codecs_.push_back(cricket::VideoCodec(kRedCodecName));
   supported_codecs_.push_back(cricket::VideoCodec(kUlpfecCodecName));
