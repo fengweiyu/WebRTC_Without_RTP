@@ -17,10 +17,10 @@
 #include "webrtc/modules/video_coding/codecs/h264/include/h264.h"
 
 extern "C" {
-#include "third_party/ffmpeg/libavcodec/avcodec.h"
+//#include "third_party/ffmpeg/libavcodec/avcodec.h"
 }  // extern "C"
 
-#include "webrtc/common_video/h264/h264_bitstream_parser.h"
+/*#include "webrtc/common_video/h264/h264_bitstream_parser.h"
 #include "webrtc/common_video/include/i420_buffer_pool.h"
 
 namespace webrtc {
@@ -30,7 +30,7 @@ struct AVCodecContextDeleter {
 };
 struct AVFrameDeleter {
   void operator()(AVFrame* ptr) const { av_frame_free(&ptr); }
-};
+};*/
 
 class H264DecoderImpl : public H264Decoder {
  public:
@@ -59,8 +59,8 @@ class H264DecoderImpl : public H264Decoder {
   // Called by FFmpeg when it needs a frame buffer to store decoded frames in.
   // The |VideoFrame| returned by FFmpeg at |Decode| originate from here. Their
   // buffers are reference counted and freed by FFmpeg using |AVFreeBuffer2|.
-  static int AVGetBuffer2(
-      AVCodecContext* context, AVFrame* av_frame, int flags);
+  /*static int AVGetBuffer2(
+      AVCodecContext* context, AVFrame* av_frame, int flags);*/
   // Called by FFmpeg when it is done with a video frame, see |AVGetBuffer2|.
   static void AVFreeBuffer2(void* opaque, uint8_t* data);
 
@@ -71,8 +71,8 @@ class H264DecoderImpl : public H264Decoder {
   void ReportError();
 
   I420BufferPool pool_;
-  std::unique_ptr<AVCodecContext, AVCodecContextDeleter> av_context_;
-  std::unique_ptr<AVFrame, AVFrameDeleter> av_frame_;
+  //std::unique_ptr<AVCodecContext, AVCodecContextDeleter> av_context_;
+  //std::unique_ptr<AVFrame, AVFrameDeleter> av_frame_;
 
   DecodedImageCallback* decoded_image_callback_;
 

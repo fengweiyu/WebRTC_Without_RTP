@@ -15,9 +15,9 @@
 #include <limits>
 
 extern "C" {
-#include "third_party/ffmpeg/libavcodec/avcodec.h"
-#include "third_party/ffmpeg/libavformat/avformat.h"
-#include "third_party/ffmpeg/libavutil/imgutils.h"
+//#include "third_party/ffmpeg/libavcodec/avcodec.h"
+//#include "third_party/ffmpeg/libavformat/avformat.h"
+//#include "third_party/ffmpeg/libavutil/imgutils.h"
 }  // extern "C"
 
 #include "webrtc/api/video/i420_buffer.h"
@@ -32,7 +32,7 @@ namespace webrtc {
 
 namespace {
 
-const AVPixelFormat kPixelFormat = AV_PIX_FMT_YUV420P;
+//const AVPixelFormat kPixelFormat = AV_PIX_FMT_YUV420P;
 const size_t kYPlaneIndex = 0;
 const size_t kUPlaneIndex = 1;
 const size_t kVPlaneIndex = 2;
@@ -52,8 +52,9 @@ bool ffmpeg_initialized = false;
 // Called by FFmpeg to do mutex operations if initialized using
 // |InitializeFFmpeg|.
 int LockManagerOperation(void** lock, AVLockOp op)
-    EXCLUSIVE_LOCK_FUNCTION() UNLOCK_FUNCTION() {
-  switch (op) {
+    EXCLUSIVE_LOCK_FUNCTION() UNLOCK_FUNCTION() 
+{
+  /*switch (op) {
     case AV_LOCK_CREATE:
       *lock = new rtc::CriticalSection();
       return 0;
@@ -67,13 +68,14 @@ int LockManagerOperation(void** lock, AVLockOp op)
       delete static_cast<rtc::CriticalSection*>(*lock);
       *lock = nullptr;
       return 0;
-  }
+  }*/
   RTC_NOTREACHED() << "Unrecognized AVLockOp.";
   return -1;
 }
 
-void InitializeFFmpeg() {
-  rtc::CritScope cs(&ffmpeg_init_lock);
+void InitializeFFmpeg() 
+{
+  /*rtc::CritScope cs(&ffmpeg_init_lock);
   if (!ffmpeg_initialized) {
     if (av_lockmgr_register(LockManagerOperation) < 0) {
       RTC_NOTREACHED() << "av_lockmgr_register failed.";
@@ -81,13 +83,13 @@ void InitializeFFmpeg() {
     }
     av_register_all();
     ffmpeg_initialized = true;
-  }
+  }*/
 }
 
 #endif  // defined(WEBRTC_INITIALIZE_FFMPEG)
 
 }  // namespace
-
+#if 0
 int H264DecoderImpl::AVGetBuffer2(
     AVCodecContext* context, AVFrame* av_frame, int flags) {
   // Set in |InitDecode|.
@@ -167,13 +169,13 @@ int H264DecoderImpl::AVGetBuffer2(
   RTC_CHECK(av_frame->buf[0]);
   return 0;
 }
-
+#endif
 void H264DecoderImpl::AVFreeBuffer2(void* opaque, uint8_t* data) {
   // The buffer pool recycles the buffer used by |video_frame| when there are no
   // more references to it. |video_frame| is a thin buffer holder and is not
   // recycled.
-  VideoFrame* video_frame = static_cast<VideoFrame*>(opaque);
-  delete video_frame;
+  //VideoFrame* video_frame = static_cast<VideoFrame*>(opaque);
+  //delete video_frame;
 }
 
 H264DecoderImpl::H264DecoderImpl() : pool_(true),
@@ -213,6 +215,7 @@ int32_t H264DecoderImpl::InitDecode(const VideoCodec* codec_settings,
     ReportError();
     return ret;
   }
+  /*
   RTC_DCHECK(!av_context_);
 
   // Initialize AVCodecContext.
@@ -258,13 +261,14 @@ int32_t H264DecoderImpl::InitDecode(const VideoCodec* codec_settings,
     return WEBRTC_VIDEO_CODEC_ERROR;
   }
 
-  av_frame_.reset(av_frame_alloc());
+  av_frame_.reset(av_frame_alloc());*/
   return WEBRTC_VIDEO_CODEC_OK;
 }
 
-int32_t H264DecoderImpl::Release() {
-  av_context_.reset();
-  av_frame_.reset();
+int32_t H264DecoderImpl::Release() 
+{
+  //av_context_.reset();
+  //av_frame_.reset();
   return WEBRTC_VIDEO_CODEC_OK;
 }
 
@@ -278,7 +282,8 @@ int32_t H264DecoderImpl::Decode(const EncodedImage& input_image,
                                 bool /*missing_frames*/,
                                 const RTPFragmentationHeader* /*fragmentation*/,
                                 const CodecSpecificInfo* codec_specific_info,
-                                int64_t /*render_time_ms*/) {
+                                int64_t /*render_time_ms*/) 
+{
   if (!IsInitialized()) {
     ReportError();
     return WEBRTC_VIDEO_CODEC_UNINITIALIZED;
@@ -298,7 +303,7 @@ int32_t H264DecoderImpl::Decode(const EncodedImage& input_image,
     ReportError();
     return WEBRTC_VIDEO_CODEC_ERR_PARAMETER;
   }
-
+/*
   // FFmpeg requires padding due to some optimized bitstream readers reading 32
   // or 64 bits at once and could read over the end. See avcodec_decode_video2.
   RTC_CHECK_GE(input_image._size, input_image._length +
@@ -393,7 +398,7 @@ int32_t H264DecoderImpl::Decode(const EncodedImage& input_image,
   // Stop referencing it, possibly freeing |video_frame|.
   av_frame_unref(av_frame_.get());
   video_frame = nullptr;
-
+*/
   return WEBRTC_VIDEO_CODEC_OK;
 }
 
@@ -401,8 +406,10 @@ const char* H264DecoderImpl::ImplementationName() const {
   return "FFmpeg";
 }
 
-bool H264DecoderImpl::IsInitialized() const {
-  return av_context_ != nullptr;
+bool H264DecoderImpl::IsInitialized() const 
+{
+  //return av_context_ != nullptr;
+  return false;
 }
 
 void H264DecoderImpl::ReportInit() {
