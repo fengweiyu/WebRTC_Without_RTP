@@ -86,23 +86,49 @@ https://www.cnblogs.com/fangkm/p/4401143.html
 WebRtcVideoEngine2主要作用在于创建视频channel对象WebRtcVideoChannel2
 当调用WebRtcVideoChannel2的AddSendStream方法时，会创建一个WebRtcVideoSendStream对象，同样，调用AddRecvStream成员方法，会创建一个WebRtcVideoReceiveStream对象
 
-
+1).
 VideoSendStreamImpl::Start()
 找到发送触发的地方，拦截，或加入自己的发送的机制。
 
+应当是WebRtcVideoChannel2::SendRtp这里发送媒体流
 
+VideoSendStreamImpl::OnEncodedImage
+	PayloadRouter::OnEncodedImage ModuleRtpRtcpImpl::SendOutgoingData RTPSender::SendOutgoingData RTPSenderVideo::SendVideo RTPSenderVideo::SendVideoPacket
+	RTPSender::SendToNetwork 
+		RTPSender::SendPacketToNetwork transport_->SendRtp
+		WebRtcVideoChannel2::SendRtp  MediaChannel::SendPacket DoSendPacket network_interface_->SendPacket	
+			PostMessage
+2).
+另外一种方法，自己实现H264EncoderImpl类，底层替换实现可能更好
+
+先尝试2)再试1),2).风险低，更简单速度快
+
+
+
+
+推流时机
+在双方sdp包括网络都准备好后，则开始推流，具体：
+VideoChannel::UpdateMediaSendRecvState_w
+
+OrtcRtpReceiverAdapter::Receive
+	RtpTransportControllerAdapter::ValidateAndApplyVideoReceiverParameters
+  		BaseChannel::SetRemoteContent
+			VideoChannel::SetRemoteContent_w
+				VideoChannel::UpdateMediaSendRecvState_w
 6.实际现象
 pc 有视频源，虚拟机 没有，
 pc发起，虚拟机有视频播放，
 虚拟机发起，两边都没有
 
 
+7.编译
+使用cmke，适配更简单
 
 
 
+先编译再适配编解码
 
+std::unique_ptr<AudioEncoder> CreateEncoder//创建音频编码函数
 
-
-
-
+在size_t WebRtcG711_EncodeA(const int16_t* speechIn,中拦截
 
