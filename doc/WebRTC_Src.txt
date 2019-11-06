@@ -67,11 +67,11 @@ ninja 类似makefile，会去调用编译程序进行编译操作，其依赖的文件是build.ninja
 
 
 
-
-
-
-
-
+*************************************************************************************
+export PATH=`pwd`/depot_tools:"$PATH"
+export GYP_DEFINES="OS=android"
+fetch --nohooks webrtc_android
+su
 
 
 
