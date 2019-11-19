@@ -10,19 +10,28 @@ project (WebRTC)
 #SET(CMAKE_C_FLAGS "-g")
 SET(CMAKE_CXX_FLAGS "-g")
 
-SET(SRC_LIST
-	src/webrtc/base/ssladapter.cc
-	
-	example/main.cc	
+SET(libjingle_peerconnection_api_list
+	mediaconstraintsinterface.cc,
+    mediastreaminterface.cc,
+    mediatypes.cc,
+    rtcerror.cc,
+    statstypes.cc,
 	)
 		
 INCLUDE_DIRECTORIES(${PROJECT_SOURCE_DIR}
-    ${PROJECT_SOURCE_DIR}/src
-	${PROJECT_SOURCE_DIR}/src/include
 	)
 
-ADD_LIBRARY(api_static STATIC ${SRC_LIST})
-SET_TARGET_PROPERTIES(api_static PROPERTIES OUTPUT_NAME api)
+ADD_LIBRARY(libjingle_peerconnection_api_static STATIC ${SRC_LIST})
+SET_TARGET_PROPERTIES(libjingle_peerconnection_api_static PROPERTIES OUTPUT_NAME libjingle_peerconnection_api)
+
+
+
+
+
+
+
+
+
 
 SET(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/build/lib)
 

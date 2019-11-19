@@ -71,7 +71,36 @@ ninja 类似makefile，会去调用编译程序进行编译操作，其依赖的文件是build.ninja
 export PATH=`pwd`/depot_tools:"$PATH"
 export GYP_DEFINES="OS=android"
 fetch --nohooks webrtc_android
+
+gclient sync
+
+cd src
+sudo ./build/install-build-deps.sh
+
+gn gen out/Default --args='target_os="android" target_cpu="arm"'
+gn gen out/Default --args='target_os="android" target_cpu="arm64"'
+ninja -C out/Default
+
+遇到权限问题可以直接切换root用户
 su
+
+注意需要事先安装java jdk且必须大于1.8版本
+ubuntu14:
+1. 添加openjdk8的第三方源
+sudo add-apt-repository ppa:openjdk-r/ppa
+2. 执行更新
+apt-get update
+3. 安装openjdk8
+sudo apt-get install openjdk-8-jdk
+4. 选择版本
+sudo update-alternatives --config java
+5. 确认安装成功
+java -version
+openjdk version "1.8.0_91"
+
+其他版本ubuntu建议直接安装openjdk8
+sudo apt-get install openjdk-8-jdk
+
 
 
 
