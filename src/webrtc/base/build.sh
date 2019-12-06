@@ -8,6 +8,7 @@ function PrintUsage()
 	echo -e "EGG:"
 	echo -e "./build.sh arm-linux"
 }
+
 function GenerateCmakeFile()
 {
 	CmakeFile="./build/ToolChain.cmake"
@@ -15,6 +16,7 @@ function GenerateCmakeFile()
 	echo "SET(CMAKE_C_COMPILER \"$1-gcc\")" >> $CmakeFile
 	echo "SET(CMAKE_CXX_COMPILER \"$1-g++\")" >> $CmakeFile
 }
+
 function BuildLib()
 {
 	echo -e "Start building ..."
@@ -64,12 +66,12 @@ function CopyLib()
 	fi
 	
 	cd webrtc
-	if [ -e "api" ]; then
-		echo "api exit"
+	if [ -e "base" ]; then
+		echo "base exit"
 	else
-		mkdir api
+		mkdir base
 	fi
-	cp $CurPwd/build/lib/libapi.a .
+	cp $CurPwd/build/base/libbase.a .
 	
 }
 

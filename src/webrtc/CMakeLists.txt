@@ -5,26 +5,35 @@ SET(CMAKE_TOOLCHAIN_FILE "build/ToolChain.cmake")
 #SET(CMAKE_C_COMPILER "gcc")
 #SET(CMAKE_CXX_COMPILER "g++")
 
+
 project (WebRTC)
  
 #SET(CMAKE_C_FLAGS "-g")
 SET(CMAKE_CXX_FLAGS "-g")
 
-SET(SRC_LIST
-	src/webrtc/base/ssladapter.cc
-	
-	example/main.cc	
+
+
+SET(webrtc_common_list
+    common_types.cc
+    config.cc
 	)
 		
 INCLUDE_DIRECTORIES(${PROJECT_SOURCE_DIR}
-    ${PROJECT_SOURCE_DIR}/src
-	${PROJECT_SOURCE_DIR}/src/include
 	)
 
-ADD_EXECUTABLE(webrtc ${SRC_LIST})
+ADD_LIBRARY(webrtc_common_static STATIC ${webrtc_common_list})
+SET_TARGET_PROPERTIES(webrtc_common_static PROPERTIES OUTPUT_NAME webrtc_common)
+
+
+
+
+
+
+
+SET(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/build/lib)
+
 #TARGET_LINK_LIBRARIES(webrtc pthread -lm)
 
-SET(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/build/lib)
 #TARGET_LINK_LIBRARIES(crnode log4cpp thrift)
 
 

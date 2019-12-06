@@ -77,7 +77,7 @@ if [ $# == 0 ]; then
 	PrintUsage
 	exit -1
 else
-	GenerateCmakeFile $1
+	GenerateCmakeFile $1	
 	BuildLib
 	CopyLib ../../../build
 fi
