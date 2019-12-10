@@ -64,18 +64,18 @@ function CopyLib()
 	fi
 	
 	cd webrtc
-	if [ -e "api" ]; then
-		echo "api exit"
+	if [ -e "call" ]; then
+		echo "call exit"
 	else
-		mkdir api
+		mkdir call
 	fi
 	
-	cd api
+	cd call
 	cp $CurPwd/build/lib/liblibjingle_peerconnection_api.a .
 	cp $CurPwd/build/lib/libvideo_frame_api.a .
 	cp $CurPwd/build/lib/libaudio_codecs_api.a .
-	cp $CurPwd/build/lib/libbuiltin_audio_decoder_factory.a .
-#	cp $CurPwd/build/lib/libvideo_frame_api.a .
+	cp $CurPwd/build/lib/libvideo_frame_api.a .
+	cp $CurPwd/build/lib/libvideo_frame_api.a .
 }
 
 if [ $# == 0 ]; then

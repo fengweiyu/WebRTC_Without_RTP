@@ -15,19 +15,15 @@ project (WebRTC)
 #SET(CMAKE_C_FLAGS "-g")
 SET(CMAKE_CXX_FLAGS "-g -DWEBRTC_POSIX")
 
-SET(libjingle_peerconnection_api_list
-	mediaconstraintsinterface.cc
-    mediastreaminterface.cc
-    mediatypes.cc
-    rtcerror.cc
-    statstypes.cc
+SET(call_interfaces_list
+    audio_send_stream.cc
+    syncable.cc
 	)		
 INCLUDE_DIRECTORIES(${PROJECT_SOURCE_DIR}
 	${PROJECT_SOURCE_DIR}/../../
-	../base
 	)
-ADD_LIBRARY(libjingle_peerconnection_api_static STATIC ${libjingle_peerconnection_api_list})
-SET_TARGET_PROPERTIES(libjingle_peerconnection_api_static PROPERTIES OUTPUT_NAME libjingle_peerconnection_api)
+ADD_LIBRARY(call_interfaces_static STATIC ${call_interfaces_list})
+SET_TARGET_PROPERTIES(call_interfaces_static PROPERTIES OUTPUT_NAME call_interfaces)
 
 
 SET(video_frame_api_list
@@ -44,25 +40,6 @@ SET_TARGET_PROPERTIES(video_frame_api_static PROPERTIES OUTPUT_NAME video_frame_
 
 
 SET(audio_codecs_api_list
-    audio_codecs/audio_decoder.cc
-    audio_codecs/audio_format.cc
-	)		
-INCLUDE_DIRECTORIES(${PROJECT_SOURCE_DIR}
-	${PROJECT_SOURCE_DIR}/../../
-	)
-ADD_LIBRARY(audio_codecs_api_static STATIC ${audio_codecs_api_list})
-SET_TARGET_PROPERTIES(audio_codecs_api_static PROPERTIES OUTPUT_NAME audio_codecs_api)
-
-SET(builtin_audio_decoder_factory_list
-    builtin_audio_decoder_factory.cc
-	)		
-INCLUDE_DIRECTORIES(${PROJECT_SOURCE_DIR}
-	${PROJECT_SOURCE_DIR}/../../
-	)
-ADD_LIBRARY(builtin_audio_decoder_factory_static STATIC ${builtin_audio_decoder_factory_list})
-SET_TARGET_PROPERTIES(builtin_audio_decoder_factory_static PROPERTIES OUTPUT_NAME builtin_audio_decoder_factory)
-#
-SET(audio_codecs_api_list
     audio_decoder.cc
     audio_format.cc
 	)		
@@ -71,14 +48,6 @@ INCLUDE_DIRECTORIES(${PROJECT_SOURCE_DIR}
 	)
 ADD_LIBRARY(audio_codecs_api_static STATIC ${audio_codecs_api_list})
 SET_TARGET_PROPERTIES(audio_codecs_api_static PROPERTIES OUTPUT_NAME audio_codecs_api)
-
-
-
-
-
-
-
-
 
 
 

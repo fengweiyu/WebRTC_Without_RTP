@@ -8,6 +8,7 @@ function PrintUsage()
 	echo -e "EGG:"
 	echo -e "./build.sh arm-linux"
 }
+
 function GenerateCmakeFile()
 {
 	CmakeFile="./build/ToolChain.cmake"
@@ -15,6 +16,7 @@ function GenerateCmakeFile()
 	echo "SET(CMAKE_C_COMPILER \"$1-gcc\")" >> $CmakeFile
 	echo "SET(CMAKE_CXX_COMPILER \"$1-g++\")" >> $CmakeFile
 }
+
 function BuildLib()
 {
 	echo -e "Start building ..."
@@ -64,18 +66,15 @@ function CopyLib()
 	fi
 	
 	cd webrtc
-	if [ -e "api" ]; then
-		echo "api exit"
+	if [ -e "media" ]; then
+		echo "media exit"
 	else
-		mkdir api
+		mkdir media
 	fi
 	
-	cd api
-	cp $CurPwd/build/lib/liblibjingle_peerconnection_api.a .
-	cp $CurPwd/build/lib/libvideo_frame_api.a .
-	cp $CurPwd/build/lib/libaudio_codecs_api.a .
-	cp $CurPwd/build/lib/libbuiltin_audio_decoder_factory.a .
-#	cp $CurPwd/build/lib/libvideo_frame_api.a .
+	cd media
+	cp $CurPwd/build/base/librtc_media.a .
+	cp $CurPwd/build/base/librtc_media_base.a .
 }
 
 if [ $# == 0 ]; then
