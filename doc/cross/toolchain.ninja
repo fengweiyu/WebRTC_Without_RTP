@@ -1,0 +1,1595 @@
+rule solink
+  command = python "../../build/toolchain/gcc_solink_wrapper.py" --readelf="readelf" --nm="nm" --sofile="${output_dir}/${target_output_name}${output_extension}" --tocfile="${output_dir}/${target_output_name}${output_extension}.TOC" --output="${output_dir}/${target_output_name}${output_extension}" -- ../../third_party/llvm-build/Release+Asserts/bin/clang++ -shared -Wl,-soname="${target_output_name}${output_extension}" ${ldflags} -o "${output_dir}/${target_output_name}${output_extension}" @"${output_dir}/${target_output_name}${output_extension}.rsp"
+  description = SOLINK ${output_dir}/${target_output_name}${output_extension}
+  rspfile = ${output_dir}/${target_output_name}${output_extension}.rsp
+  rspfile_content = -Wl,--whole-archive ${in} ${solibs} -Wl,--no-whole-archive ${libs}
+  pool = build_toolchain_link_pool
+  restat = 1
+rule alink
+  command = rm -f ${out} && "../../third_party/llvm-build/Release+Asserts/bin/llvm-ar" ${arflags} -r -c -s -D ${out} @"${out}.rsp"
+  description = AR ${out}
+  rspfile = ${out}.rsp
+  rspfile_content = ${in}
+rule stamp
+  command = touch ${out}
+  description = STAMP ${out}
+rule link
+  command = ../../third_party/llvm-build/Release+Asserts/bin/clang++ ${ldflags} -o "${output_dir}/${target_output_name}${output_extension}" -Wl,--start-group @"${output_dir}/${target_output_name}${output_extension}.rsp" ${solibs} -Wl,--end-group  ${libs}
+  description = LINK ${output_dir}/${target_output_name}${output_extension}
+  rspfile = ${output_dir}/${target_output_name}${output_extension}.rsp
+  rspfile_content = ${in}
+  pool = build_toolchain_link_pool
+rule cxx
+  command =  ../../third_party/llvm-build/Release+Asserts/bin/clang++ -MMD -MF ${out}.d ${defines} ${include_dirs} ${cflags} ${cflags_cc} -c ${in} -o ${out}
+  description = CXX ${out}
+  depfile = ${out}.d
+  deps = gcc
+rule solink_module
+  command = ../../third_party/llvm-build/Release+Asserts/bin/clang++ -shared ${ldflags} -o "${output_dir}/${target_output_name}${output_extension}" -Wl,-soname="${target_output_name}${output_extension}" @"${output_dir}/${target_output_name}${output_extension}.rsp"
+  description = SOLINK_MODULE ${output_dir}/${target_output_name}${output_extension}
+  rspfile = ${output_dir}/${target_output_name}${output_extension}.rsp
+  rspfile_content = -Wl,--whole-archive ${in} ${solibs} -Wl,--no-whole-archive ${libs}
+  pool = build_toolchain_link_pool
+rule cc
+  command =  ../../third_party/llvm-build/Release+Asserts/bin/clang -MMD -MF ${out}.d ${defines} ${include_dirs} ${cflags} ${cflags_c} -c ${in} -o ${out}
+  description = CC ${out}
+  depfile = ${out}.d
+  deps = gcc
+rule asm
+  command =  ../../third_party/llvm-build/Release+Asserts/bin/clang -MMD -MF ${out}.d ${defines} ${include_dirs} ${asmflags} -c ${in} -o ${out}
+  description = ASM ${out}
+  depfile = ${out}.d
+  deps = gcc
+rule copy
+  command = ln -f ${in} ${out} 2>/dev/null || (rm -rf ${out} && cp -af ${in} ${out})
+  description = COPY ${in} ${out}
+
+build obj/default.stamp: stamp obj/libwebrtc.a obj/examples/examples.stamp obj/rtc_tools/rtc_tools.stamp ./rtc_unittests ./slow_tests ./video_engine_tests ./webrtc_nonparallel_tests ./webrtc_perf_tests ./common_audio_unittests ./common_video_unittests ./examples_unittests ./rtc_media_unittests ./modules_tests ./modules_unittests obj/modules/audio_coding/audio_coding_tests.stamp obj/modules/audio_processing/audio_processing_tests.stamp ./rtp_to_text ./test_packet_masks_metrics obj/modules/video_capture/video_capture_internal_impl.stamp ./peerconnection_unittests ./rtc_pc_unittests ./rtp_generator ./rtc_stats_unittests ./system_wrappers_unittests obj/test/test.stamp ./screenshare_loopback ./sv_loopback ./video_loopback ./video_capture_tests ./low_bandwidth_audio_test ./rtc_event_log_rtp_dump
+build obj/poison_audio_codecs.stamp: stamp
+build obj/poison_default_task_queue.stamp: stamp
+build obj/poison_software_video_codecs.stamp: stamp
+subninja obj/rtc_unittests.ninja
+subninja obj/slow_tests.ninja
+subninja obj/video_engine_tests.ninja
+subninja obj/webrtc.ninja
+subninja obj/webrtc_common.ninja
+subninja obj/webrtc_nonparallel_tests.ninja
+subninja obj/webrtc_perf_tests.ninja
+build obj/api/api.stamp: stamp obj/api/libjingle_peerconnection_api.a
+subninja obj/api/array_view.ninja
+subninja obj/api/audio_options_api.ninja
+subninja obj/api/audio_quality_analyzer_api.ninja
+subninja obj/api/audioproc_f_api.ninja
+subninja obj/api/bitrate_allocation.ninja
+subninja obj/api/call_api.ninja
+subninja obj/api/callfactory_api.ninja
+subninja obj/api/compile_all_headers.ninja
+subninja obj/api/create_network_emulation_manager.ninja
+subninja obj/api/create_peerconnection_factory.ninja
+subninja obj/api/create_peerconnection_quality_test_fixture.ninja
+subninja obj/api/create_simulcast_test_fixture_api.ninja
+subninja obj/api/create_video_quality_test_fixture_api.ninja
+subninja obj/api/create_videocodec_test_fixture_api.ninja
+subninja obj/api/dummy_peer_connection.ninja
+subninja obj/api/fake_frame_decryptor.ninja
+subninja obj/api/fake_frame_encryptor.ninja
+subninja obj/api/fake_media_transport.ninja
+subninja obj/api/fec_controller_api.ninja
+subninja obj/api/function_view.ninja
+subninja obj/api/ice_transport_factory.ninja
+subninja obj/api/libjingle_logging_api.ninja
+subninja obj/api/libjingle_peerconnection_api.ninja
+subninja obj/api/loopback_media_transport.ninja
+subninja obj/api/media_stream_interface.ninja
+subninja obj/api/mock_audio_mixer.ninja
+subninja obj/api/mock_fec_controller_override.ninja
+subninja obj/api/mock_frame_decryptor.ninja
+subninja obj/api/mock_frame_encryptor.ninja
+subninja obj/api/mock_peerconnectioninterface.ninja
+subninja obj/api/mock_rtp.ninja
+subninja obj/api/mock_video_bitrate_allocator.ninja
+subninja obj/api/mock_video_bitrate_allocator_factory.ninja
+subninja obj/api/mock_video_codec_factory.ninja
+subninja obj/api/mock_video_decoder.ninja
+subninja obj/api/mock_video_encoder.ninja
+subninja obj/api/neteq_simulator_api.ninja
+subninja obj/api/neteq_simulator_factory.ninja
+subninja obj/api/network_emulation_manager_api.ninja
+subninja obj/api/network_state_predictor_api.ninja
+subninja obj/api/packet_socket_factory.ninja
+subninja obj/api/peer_connection_quality_test_fixture_api.ninja
+subninja obj/api/refcountedbase.ninja
+subninja obj/api/rtc_api_unittests.ninja
+subninja obj/api/rtc_error.ninja
+subninja obj/api/rtc_event_log_output_file.ninja
+subninja obj/api/rtc_stats_api.ninja
+subninja obj/api/rtp_headers.ninja
+subninja obj/api/rtp_packet_info.ninja
+subninja obj/api/rtp_parameters.ninja
+subninja obj/api/scoped_refptr.ninja
+subninja obj/api/simulated_network_api.ninja
+subninja obj/api/simulcast_test_fixture_api.ninja
+subninja obj/api/stats_observer_interface.ninja
+subninja obj/api/test_dependency_factory.ninja
+subninja obj/api/track_id_stream_label_map.ninja
+subninja obj/api/transport_api.ninja
+subninja obj/api/video_quality_analyzer_api.ninja
+subninja obj/api/video_quality_test_fixture_api.ninja
+subninja obj/api/videocodec_test_fixture_api.ninja
+subninja obj/api/audio/aec3_config.ninja
+subninja obj/api/audio/aec3_config_json.ninja
+subninja obj/api/audio/aec3_factory.ninja
+subninja obj/api/audio/audio_frame_api.ninja
+subninja obj/api/audio/audio_mixer_api.ninja
+subninja obj/api/audio/echo_control.ninja
+subninja obj/api/audio/test/audio_api_unittests.ninja
+subninja obj/api/audio_codecs/audio_codecs_api.ninja
+subninja obj/api/audio_codecs/builtin_audio_decoder_factory.ninja
+subninja obj/api/audio_codecs/builtin_audio_encoder_factory.ninja
+subninja obj/api/audio_codecs/L16/audio_decoder_L16.ninja
+subninja obj/api/audio_codecs/L16/audio_encoder_L16.ninja
+subninja obj/api/audio_codecs/g711/audio_decoder_g711.ninja
+subninja obj/api/audio_codecs/g711/audio_encoder_g711.ninja
+subninja obj/api/audio_codecs/g722/audio_decoder_g722.ninja
+subninja obj/api/audio_codecs/g722/audio_encoder_g722.ninja
+subninja obj/api/audio_codecs/g722/audio_encoder_g722_config.ninja
+subninja obj/api/audio_codecs/ilbc/audio_decoder_ilbc.ninja
+subninja obj/api/audio_codecs/ilbc/audio_encoder_ilbc.ninja
+subninja obj/api/audio_codecs/ilbc/audio_encoder_ilbc_config.ninja
+subninja obj/api/audio_codecs/isac/audio_decoder_isac.ninja
+subninja obj/api/audio_codecs/isac/audio_decoder_isac_fix.ninja
+subninja obj/api/audio_codecs/isac/audio_decoder_isac_float.ninja
+subninja obj/api/audio_codecs/isac/audio_encoder_isac.ninja
+subninja obj/api/audio_codecs/isac/audio_encoder_isac_fix.ninja
+subninja obj/api/audio_codecs/isac/audio_encoder_isac_float.ninja
+subninja obj/api/audio_codecs/opus/audio_decoder_multiopus.ninja
+subninja obj/api/audio_codecs/opus/audio_decoder_opus.ninja
+subninja obj/api/audio_codecs/opus/audio_decoder_opus_config.ninja
+subninja obj/api/audio_codecs/opus/audio_encoder_multiopus.ninja
+subninja obj/api/audio_codecs/opus/audio_encoder_opus.ninja
+subninja obj/api/audio_codecs/opus/audio_encoder_opus_config.ninja
+subninja obj/api/audio_codecs/test/audio_codecs_api_unittests.ninja
+build obj/api/crypto/crypto.stamp: stamp obj/api/crypto/frame_decryptor_interface.stamp obj/api/crypto/frame_encryptor_interface.stamp obj/api/crypto/options.stamp
+subninja obj/api/crypto/frame_decryptor_interface.ninja
+subninja obj/api/crypto/frame_encryptor_interface.ninja
+subninja obj/api/crypto/options.ninja
+subninja obj/api/rtc_event_log/rtc_event_log.ninja
+subninja obj/api/rtc_event_log/rtc_event_log_factory.ninja
+subninja obj/api/task_queue/default_task_queue_factory.ninja
+subninja obj/api/task_queue/task_queue.ninja
+subninja obj/api/task_queue/task_queue_default_factory_unittests.ninja
+subninja obj/api/task_queue/task_queue_test.ninja
+subninja obj/api/test/video/function_video_factory.ninja
+subninja obj/api/transport/bitrate_settings.ninja
+subninja obj/api/transport/datagram_transport_interface.ninja
+subninja obj/api/transport/enums.ninja
+subninja obj/api/transport/field_trial_based_config.ninja
+subninja obj/api/transport/goog_cc.ninja
+subninja obj/api/transport/mock_network_control.ninja
+subninja obj/api/transport/network_control.ninja
+subninja obj/api/transport/test_feedback_generator.ninja
+subninja obj/api/transport/test_feedback_generator_interface.ninja
+subninja obj/api/transport/webrtc_key_value_config.ninja
+subninja obj/api/transport/media/audio_interfaces.ninja
+subninja obj/api/transport/media/media_transport_interface.ninja
+subninja obj/api/transport/media/video_interfaces.ninja
+subninja obj/api/transport/rtp/rtp_source.ninja
+subninja obj/api/units/data_rate.ninja
+subninja obj/api/units/data_size.ninja
+subninja obj/api/units/frequency.ninja
+subninja obj/api/units/time_delta.ninja
+subninja obj/api/units/timestamp.ninja
+subninja obj/api/units/units_unittests.ninja
+subninja obj/api/video/builtin_video_bitrate_allocator_factory.ninja
+subninja obj/api/video/encoded_frame.ninja
+subninja obj/api/video/encoded_image.ninja
+subninja obj/api/video/video_bitrate_allocation.ninja
+subninja obj/api/video/video_bitrate_allocator.ninja
+subninja obj/api/video/video_bitrate_allocator_factory.ninja
+subninja obj/api/video/video_codec_constants.ninja
+subninja obj/api/video/video_frame.ninja
+subninja obj/api/video/video_frame_i010.ninja
+subninja obj/api/video/video_frame_i420.ninja
+subninja obj/api/video/video_frame_type.ninja
+subninja obj/api/video/video_rtp_headers.ninja
+subninja obj/api/video/video_stream_decoder.ninja
+subninja obj/api/video/video_stream_decoder_create.ninja
+subninja obj/api/video/video_stream_encoder.ninja
+subninja obj/api/video/video_stream_encoder_create.ninja
+subninja obj/api/video/video_unittests.ninja
+subninja obj/api/video/test/rtc_api_video_unittests.ninja
+subninja obj/api/video_codecs/bitstream_parser_api.ninja
+subninja obj/api/video_codecs/builtin_video_decoder_factory.ninja
+subninja obj/api/video_codecs/builtin_video_encoder_factory.ninja
+subninja obj/api/video_codecs/rtc_software_fallback_wrappers.ninja
+subninja obj/api/video_codecs/video_codecs_api.ninja
+subninja obj/api/video_codecs/vp8_temporal_layers_factory.ninja
+subninja obj/api/video_codecs/test/video_codecs_api_unittests.ninja
+subninja obj/audio/audio.ninja
+subninja obj/audio/audio_end_to_end_test.ninja
+subninja obj/audio/audio_perf_tests.ninja
+subninja obj/audio/audio_tests.ninja
+build obj/audio/low_bandwidth_audio_perf_test.stamp: stamp ./low_bandwidth_audio_test
+subninja obj/audio/low_bandwidth_audio_test.ninja
+subninja obj/audio/utility/audio_frame_operations.ninja
+build obj/audio/utility/utility.stamp: stamp obj/audio/utility/libaudio_frame_operations.a
+subninja obj/audio/utility/utility_tests.ninja
+subninja obj/base/third_party/libevent/libevent.ninja
+build obj/build/config/common_deps.stamp: stamp obj/buildtools/third_party/libc++/libc++.stamp
+build obj/build/config/executable_deps.stamp: stamp obj/build/config/common_deps.stamp
+build obj/build/config/loadable_module_deps.stamp: stamp obj/build/config/common_deps.stamp
+build obj/build/config/shared_library_deps.stamp: stamp obj/build/config/common_deps.stamp
+build obj/build/config/linux/linux.stamp: stamp
+build obj/build/config/linux/gtk/gtk.stamp: stamp
+build obj/build/config/linux/gtk/gtkprint.stamp: stamp
+build obj/build/config/posix/posix.stamp: stamp
+build obj/build/config/sanitizers/deps.stamp: stamp
+subninja obj/build/config/sanitizers/options_sources.ninja
+build obj/build/win/default_exe_manifest.stamp: stamp
+subninja obj/buildtools/third_party/libc++/libc++.ninja
+subninja obj/buildtools/third_party/libc++abi/libc++abi.ninja
+subninja obj/call/bitrate_allocator.ninja
+subninja obj/call/bitrate_configurator.ninja
+subninja obj/call/call.ninja
+subninja obj/call/call_interfaces.ninja
+subninja obj/call/call_perf_tests.ninja
+subninja obj/call/call_tests.ninja
+subninja obj/call/fake_network.ninja
+subninja obj/call/fake_network_pipe_unittests.ninja
+subninja obj/call/mock_bitrate_allocator.ninja
+subninja obj/call/mock_call_interfaces.ninja
+subninja obj/call/mock_rtp_interfaces.ninja
+subninja obj/call/rtp_interfaces.ninja
+subninja obj/call/rtp_receiver.ninja
+subninja obj/call/rtp_sender.ninja
+subninja obj/call/simulated_network.ninja
+subninja obj/call/simulated_packet_receiver.ninja
+subninja obj/call/video_stream_api.ninja
+subninja obj/common_audio/common_audio.ninja
+subninja obj/common_audio/common_audio_c.ninja
+subninja obj/common_audio/common_audio_c_arm_asm.ninja
+subninja obj/common_audio/common_audio_cc.ninja
+subninja obj/common_audio/common_audio_sse2.ninja
+subninja obj/common_audio/common_audio_unittests.ninja
+subninja obj/common_audio/fir_filter.ninja
+subninja obj/common_audio/fir_filter_factory.ninja
+subninja obj/common_audio/mock_common_audio.ninja
+subninja obj/common_audio/sinc_resampler.ninja
+subninja obj/common_audio/third_party/fft4g/fft4g.ninja
+subninja obj/common_audio/third_party/spl_sqrt_floor/spl_sqrt_floor.ninja
+subninja obj/common_video/common_video.ninja
+subninja obj/common_video/common_video_unittests.ninja
+subninja obj/common_video/generic_frame_descriptor/generic_frame_descriptor.ninja
+subninja obj/common_video/test/utilities.ninja
+build obj/examples/examples.stamp: stamp ./stun_prober ./peerconnection_server ./relayserver ./stunserver ./turnserver ./peerconnection_client
+subninja obj/examples/examples_unittests.ninja
+subninja obj/examples/peerconnection_client.ninja
+subninja obj/examples/peerconnection_server.ninja
+subninja obj/examples/read_auth_file.ninja
+subninja obj/examples/relayserver.ninja
+subninja obj/examples/stun_prober.ninja
+subninja obj/examples/stunserver.ninja
+subninja obj/examples/turnserver.ninja
+subninja obj/logging/fake_rtc_event_log.ninja
+subninja obj/logging/ice_log.ninja
+build obj/logging/logging.stamp: stamp obj/logging/rtc_event_audio.stamp obj/logging/rtc_event_bwe.stamp obj/logging/librtc_event_log_impl_encoder.a obj/logging/rtc_event_pacing.stamp obj/logging/rtc_event_rtp_rtcp.stamp obj/logging/rtc_event_video.stamp
+subninja obj/logging/mocks.ninja
+subninja obj/logging/rtc_event_audio.ninja
+subninja obj/logging/rtc_event_bwe.ninja
+subninja obj/logging/rtc_event_generic_packet_events.ninja
+subninja obj/logging/rtc_event_log2_proto.ninja
+rule __logging_rtc_event_log2_proto_gen___build_toolchain_linux_clang_x64__rule
+  command = python ../../tools/protoc_wrapper/protoc_wrapper.py rtc_event_log2.proto --protoc ./protoc --proto-in-dir ../../logging/rtc_event_log --cc-out-dir gen/logging/rtc_event_log --py-out-dir pyproto/logging/rtc_event_log
+  description = ACTION //logging:rtc_event_log2_proto_gen(//build/toolchain/linux:clang_x64)
+  restat = 1
+  pool = build_toolchain_action_pool
+
+build pyproto/logging/rtc_event_log/rtc_event_log2_pb2.py gen/logging/rtc_event_log/rtc_event_log2.pb.h gen/logging/rtc_event_log/rtc_event_log2.pb.cc: __logging_rtc_event_log2_proto_gen___build_toolchain_linux_clang_x64__rule | ../../tools/protoc_wrapper/protoc_wrapper.py protoc ../../logging/rtc_event_log/rtc_event_log2.proto ./protoc
+
+build obj/logging/rtc_event_log2_proto_gen.stamp: stamp pyproto/logging/rtc_event_log/rtc_event_log2_pb2.py gen/logging/rtc_event_log/rtc_event_log2.pb.h gen/logging/rtc_event_log/rtc_event_log2.pb.cc
+subninja obj/logging/rtc_event_log_api.ninja
+subninja obj/logging/rtc_event_log_impl.ninja
+subninja obj/logging/rtc_event_log_impl_encoder.ninja
+subninja obj/logging/rtc_event_log_impl_output.ninja
+subninja obj/logging/rtc_event_log_parser.ninja
+subninja obj/logging/rtc_event_log_proto.ninja
+rule __logging_rtc_event_log_proto_gen___build_toolchain_linux_clang_x64__rule
+  command = python ../../tools/protoc_wrapper/protoc_wrapper.py rtc_event_log.proto --protoc ./protoc --proto-in-dir ../../logging/rtc_event_log --cc-out-dir gen/logging/rtc_event_log --py-out-dir pyproto/logging/rtc_event_log
+  description = ACTION //logging:rtc_event_log_proto_gen(//build/toolchain/linux:clang_x64)
+  restat = 1
+  pool = build_toolchain_action_pool
+
+build pyproto/logging/rtc_event_log/rtc_event_log_pb2.py gen/logging/rtc_event_log/rtc_event_log.pb.h gen/logging/rtc_event_log/rtc_event_log.pb.cc: __logging_rtc_event_log_proto_gen___build_toolchain_linux_clang_x64__rule | ../../tools/protoc_wrapper/protoc_wrapper.py protoc ../../logging/rtc_event_log/rtc_event_log.proto ./protoc
+
+build obj/logging/rtc_event_log_proto_gen.stamp: stamp pyproto/logging/rtc_event_log/rtc_event_log_pb2.py gen/logging/rtc_event_log/rtc_event_log.pb.h gen/logging/rtc_event_log/rtc_event_log.pb.cc
+subninja obj/logging/rtc_event_log_rtp_dump.ninja
+subninja obj/logging/rtc_event_log_tests.ninja
+subninja obj/logging/rtc_event_pacing.ninja
+subninja obj/logging/rtc_event_rtp_rtcp.ninja
+subninja obj/logging/rtc_event_video.ninja
+subninja obj/logging/rtc_stream_config.ninja
+build obj/media/media.stamp: stamp obj/media/rtc_media.stamp obj/media/librtc_media_base.a
+subninja obj/media/rtc_audio_video.ninja
+subninja obj/media/rtc_constants.ninja
+subninja obj/media/rtc_data.ninja
+subninja obj/media/rtc_encoder_simulcast_proxy.ninja
+subninja obj/media/rtc_h264_profile_id.ninja
+subninja obj/media/rtc_internal_video_codecs.ninja
+subninja obj/media/rtc_media.ninja
+subninja obj/media/rtc_media_base.ninja
+subninja obj/media/rtc_media_config.ninja
+subninja obj/media/rtc_media_engine_defaults.ninja
+subninja obj/media/rtc_media_tests_utils.ninja
+subninja obj/media/rtc_media_unittests.ninja
+subninja obj/media/rtc_simulcast_encoder_adapter.ninja
+subninja obj/media/rtc_vp9_profile.ninja
+subninja obj/modules/module_api.ninja
+subninja obj/modules/module_api_public.ninja
+subninja obj/modules/module_fec_api.ninja
+build obj/modules/modules.stamp: stamp obj/modules/audio_coding/libaudio_coding.a obj/modules/audio_device/audio_device.stamp obj/modules/audio_mixer/audio_mixer.stamp obj/modules/audio_processing/libaudio_processing.a obj/modules/congestion_controller/libcongestion_controller.a obj/modules/pacing/libpacing.a obj/modules/remote_bitrate_estimator/libremote_bitrate_estimator.a obj/modules/rtp_rtcp/librtp_rtcp.a obj/modules/utility/libutility.a obj/modules/video_coding/libvideo_coding.a obj/modules/video_processing/libvideo_processing.a obj/modules/desktop_capture/desktop_capture.stamp
+subninja obj/modules/modules_tests.ninja
+subninja obj/modules/modules_unittests.ninja
+subninja obj/modules/audio_coding/acm_receive_test.ninja
+subninja obj/modules/audio_coding/acm_send_test.ninja
+subninja obj/modules/audio_coding/ana_config_proto.ninja
+rule __modules_audio_coding_ana_config_proto_gen___build_toolchain_linux_clang_x64__rule
+  command = python ../../tools/protoc_wrapper/protoc_wrapper.py config.proto --protoc ./protoc --proto-in-dir ../../modules/audio_coding/audio_network_adaptor --cc-out-dir gen/modules/audio_coding/audio_network_adaptor --py-out-dir pyproto/modules/audio_coding/audio_network_adaptor
+  description = ACTION //modules/audio_coding:ana_config_proto_gen(//build/toolchain/linux:clang_x64)
+  restat = 1
+  pool = build_toolchain_action_pool
+
+build pyproto/modules/audio_coding/audio_network_adaptor/config_pb2.py gen/modules/audio_coding/audio_network_adaptor/config.pb.h gen/modules/audio_coding/audio_network_adaptor/config.pb.cc: __modules_audio_coding_ana_config_proto_gen___build_toolchain_linux_clang_x64__rule | ../../tools/protoc_wrapper/protoc_wrapper.py protoc ../../modules/audio_coding/audio_network_adaptor/config.proto ./protoc
+
+build obj/modules/audio_coding/ana_config_proto_gen.stamp: stamp pyproto/modules/audio_coding/audio_network_adaptor/config_pb2.py gen/modules/audio_coding/audio_network_adaptor/config.pb.h gen/modules/audio_coding/audio_network_adaptor/config.pb.cc
+subninja obj/modules/audio_coding/ana_debug_dump_proto.ninja
+rule __modules_audio_coding_ana_debug_dump_proto_gen___build_toolchain_linux_clang_x64__rule
+  command = python ../../tools/protoc_wrapper/protoc_wrapper.py debug_dump.proto --protoc ./protoc --proto-in-dir ../../modules/audio_coding/audio_network_adaptor --cc-out-dir gen/modules/audio_coding/audio_network_adaptor --py-out-dir pyproto/modules/audio_coding/audio_network_adaptor
+  description = ACTION //modules/audio_coding:ana_debug_dump_proto_gen(//build/toolchain/linux:clang_x64)
+  restat = 1
+  pool = build_toolchain_action_pool
+
+build pyproto/modules/audio_coding/audio_network_adaptor/debug_dump_pb2.py gen/modules/audio_coding/audio_network_adaptor/debug_dump.pb.h gen/modules/audio_coding/audio_network_adaptor/debug_dump.pb.cc: __modules_audio_coding_ana_debug_dump_proto_gen___build_toolchain_linux_clang_x64__rule | ../../tools/protoc_wrapper/protoc_wrapper.py protoc ../../modules/audio_coding/audio_network_adaptor/debug_dump.proto ./protoc
+
+build obj/modules/audio_coding/ana_debug_dump_proto_gen.stamp: stamp pyproto/modules/audio_coding/audio_network_adaptor/debug_dump_pb2.py gen/modules/audio_coding/audio_network_adaptor/debug_dump.pb.h gen/modules/audio_coding/audio_network_adaptor/debug_dump.pb.cc
+subninja obj/modules/audio_coding/audio_codec_speed_tests.ninja
+subninja obj/modules/audio_coding/audio_coding.ninja
+subninja obj/modules/audio_coding/audio_coding_module_typedefs.ninja
+subninja obj/modules/audio_coding/audio_coding_modules_tests.ninja
+subninja obj/modules/audio_coding/audio_coding_opus_common.ninja
+subninja obj/modules/audio_coding/audio_coding_perf_tests.ninja
+build obj/modules/audio_coding/audio_coding_tests.stamp: stamp obj/modules/audio_coding/acm_receive_test.stamp obj/modules/audio_coding/acm_send_test.stamp ./audio_codec_speed_tests ./audio_decoder_unittests ./audio_decoder_unittests ./g711_test ./g722_test ./ilbc_test ./isac_api_test ./isac_fix_test ./isac_switch_samprate_test ./isac_test ./neteq_ilbc_quality_test ./neteq_isac_quality_test ./neteq_opus_quality_test ./neteq_pcm16b_quality_test ./neteq_pcmu_quality_test ./neteq_speed_test ./rtp_analyze ./rtp_encode ./rtp_jitter ./rtpcat ./webrtc_opus_fec_test ./neteq_rtpplay
+subninja obj/modules/audio_coding/audio_coding_unittests.ninja
+subninja obj/modules/audio_coding/audio_decoder_interface.ninja
+subninja obj/modules/audio_coding/audio_decoder_unittests.ninja
+subninja obj/modules/audio_coding/audio_encoder_cng.ninja
+subninja obj/modules/audio_coding/audio_encoder_interface.ninja
+subninja obj/modules/audio_coding/audio_network_adaptor.ninja
+subninja obj/modules/audio_coding/audio_network_adaptor_config.ninja
+subninja obj/modules/audio_coding/g711.ninja
+subninja obj/modules/audio_coding/g711_c.ninja
+subninja obj/modules/audio_coding/g711_test.ninja
+subninja obj/modules/audio_coding/g722.ninja
+subninja obj/modules/audio_coding/g722_c.ninja
+subninja obj/modules/audio_coding/g722_test.ninja
+subninja obj/modules/audio_coding/ilbc.ninja
+subninja obj/modules/audio_coding/ilbc_c.ninja
+subninja obj/modules/audio_coding/ilbc_test.ninja
+subninja obj/modules/audio_coding/isac.ninja
+subninja obj/modules/audio_coding/isac_api_test.ninja
+subninja obj/modules/audio_coding/isac_bwinfo.ninja
+subninja obj/modules/audio_coding/isac_c.ninja
+subninja obj/modules/audio_coding/isac_common.ninja
+subninja obj/modules/audio_coding/isac_fix.ninja
+subninja obj/modules/audio_coding/isac_fix_c.ninja
+subninja obj/modules/audio_coding/isac_fix_c_arm_asm.ninja
+subninja obj/modules/audio_coding/isac_fix_common.ninja
+subninja obj/modules/audio_coding/isac_fix_test.ninja
+subninja obj/modules/audio_coding/isac_switch_samprate_test.ninja
+subninja obj/modules/audio_coding/isac_test.ninja
+subninja obj/modules/audio_coding/isac_test_util.ninja
+subninja obj/modules/audio_coding/isac_vad.ninja
+subninja obj/modules/audio_coding/legacy_encoded_audio_frame.ninja
+subninja obj/modules/audio_coding/mocks.ninja
+subninja obj/modules/audio_coding/neteq.ninja
+subninja obj/modules/audio_coding/neteq_ilbc_quality_test.ninja
+subninja obj/modules/audio_coding/neteq_input_audio_tools.ninja
+subninja obj/modules/audio_coding/neteq_isac_quality_test.ninja
+subninja obj/modules/audio_coding/neteq_opus_quality_test.ninja
+subninja obj/modules/audio_coding/neteq_pcm16b_quality_test.ninja
+subninja obj/modules/audio_coding/neteq_pcmu_quality_test.ninja
+subninja obj/modules/audio_coding/neteq_quality_test_support.ninja
+subninja obj/modules/audio_coding/neteq_rtpplay.ninja
+subninja obj/modules/audio_coding/neteq_speed_test.ninja
+subninja obj/modules/audio_coding/neteq_test_factory.ninja
+subninja obj/modules/audio_coding/neteq_test_support.ninja
+subninja obj/modules/audio_coding/neteq_test_tools.ninja
+subninja obj/modules/audio_coding/neteq_tools.ninja
+subninja obj/modules/audio_coding/neteq_tools_minimal.ninja
+subninja obj/modules/audio_coding/neteq_unittest_proto.ninja
+rule __modules_audio_coding_neteq_unittest_proto_gen___build_toolchain_linux_clang_x64__rule
+  command = python ../../tools/protoc_wrapper/protoc_wrapper.py neteq_unittest.proto --protoc ./protoc --proto-in-dir ../../modules/audio_coding/neteq --cc-out-dir gen/modules/audio_coding/neteq --py-out-dir pyproto/modules/audio_coding/neteq
+  description = ACTION //modules/audio_coding:neteq_unittest_proto_gen(//build/toolchain/linux:clang_x64)
+  restat = 1
+  pool = build_toolchain_action_pool
+
+build pyproto/modules/audio_coding/neteq/neteq_unittest_pb2.py gen/modules/audio_coding/neteq/neteq_unittest.pb.h gen/modules/audio_coding/neteq/neteq_unittest.pb.cc: __modules_audio_coding_neteq_unittest_proto_gen___build_toolchain_linux_clang_x64__rule | ../../tools/protoc_wrapper/protoc_wrapper.py protoc ../../modules/audio_coding/neteq/neteq_unittest.proto ./protoc
+
+build obj/modules/audio_coding/neteq_unittest_proto_gen.stamp: stamp pyproto/modules/audio_coding/neteq/neteq_unittest_pb2.py gen/modules/audio_coding/neteq/neteq_unittest.pb.h gen/modules/audio_coding/neteq/neteq_unittest.pb.cc
+subninja obj/modules/audio_coding/pcm16b.ninja
+subninja obj/modules/audio_coding/pcm16b_c.ninja
+subninja obj/modules/audio_coding/red.ninja
+subninja obj/modules/audio_coding/rtc_event_log_source.ninja
+subninja obj/modules/audio_coding/rtp_analyze.ninja
+subninja obj/modules/audio_coding/rtp_encode.ninja
+subninja obj/modules/audio_coding/rtp_jitter.ninja
+subninja obj/modules/audio_coding/rtpcat.ninja
+subninja obj/modules/audio_coding/webrtc_cng.ninja
+subninja obj/modules/audio_coding/webrtc_multiopus.ninja
+subninja obj/modules/audio_coding/webrtc_opus.ninja
+subninja obj/modules/audio_coding/webrtc_opus_c.ninja
+subninja obj/modules/audio_coding/webrtc_opus_fec_test.ninja
+subninja obj/modules/audio_coding/codecs/opus/test/test.ninja
+subninja obj/modules/audio_coding/codecs/opus/test/test_unittest.ninja
+subninja obj/modules/audio_device/audio_device.ninja
+subninja obj/modules/audio_device/audio_device_api.ninja
+subninja obj/modules/audio_device/audio_device_buffer.ninja
+subninja obj/modules/audio_device/audio_device_default.ninja
+subninja obj/modules/audio_device/audio_device_generic.ninja
+subninja obj/modules/audio_device/audio_device_impl.ninja
+subninja obj/modules/audio_device/audio_device_module_from_input_and_output.ninja
+subninja obj/modules/audio_device/audio_device_name.ninja
+subninja obj/modules/audio_device/audio_device_unittests.ninja
+subninja obj/modules/audio_device/mock_audio_device.ninja
+subninja obj/modules/audio_device/windows_core_audio_utility.ninja
+subninja obj/modules/audio_mixer/audio_frame_manipulator.ninja
+build obj/modules/audio_mixer/audio_mixer.stamp: stamp obj/modules/audio_mixer/libaudio_frame_manipulator.a obj/modules/audio_mixer/libaudio_mixer_impl.a
+subninja obj/modules/audio_mixer/audio_mixer_impl.ninja
+subninja obj/modules/audio_mixer/audio_mixer_test.ninja
+subninja obj/modules/audio_mixer/audio_mixer_test_utils.ninja
+subninja obj/modules/audio_mixer/audio_mixer_unittests.ninja
+subninja obj/modules/audio_processing/analog_mic_simulation.ninja
+subninja obj/modules/audio_processing/api.ninja
+subninja obj/modules/audio_processing/apm_logging.ninja
+subninja obj/modules/audio_processing/audio_buffer.ninja
+subninja obj/modules/audio_processing/audio_frame_view.ninja
+subninja obj/modules/audio_processing/audio_generator_factory.ninja
+subninja obj/modules/audio_processing/audio_generator_interface.ninja
+subninja obj/modules/audio_processing/audio_processing.ninja
+subninja obj/modules/audio_processing/audio_processing_c.ninja
+subninja obj/modules/audio_processing/audio_processing_perf_tests.ninja
+subninja obj/modules/audio_processing/audio_processing_statistics.ninja
+build obj/modules/audio_processing/audio_processing_tests.stamp: stamp obj/modules/audio_processing/audioproc_test_utils.stamp ./click_annotate ./transient_suppression_test ./audioproc_f obj/modules/audio_processing/libaudioproc_unittest_proto.a obj/modules/audio_processing/aec_dump/aec_dump_unittests.stamp obj/modules/audio_processing/test/conversational_speech/conversational_speech.stamp obj/modules/audio_processing/test/py_quality_assessment/py_quality_assessment.stamp
+subninja obj/modules/audio_processing/audio_processing_unittests.ninja
+subninja obj/modules/audio_processing/audioproc_debug_proto.ninja
+rule __modules_audio_processing_audioproc_debug_proto_gen___build_toolchain_linux_clang_x64__rule
+  command = python ../../tools/protoc_wrapper/protoc_wrapper.py debug.proto --protoc ./protoc --proto-in-dir ../../modules/audio_processing --cc-out-dir gen/modules/audio_processing --py-out-dir pyproto/modules/audio_processing
+  description = ACTION //modules/audio_processing:audioproc_debug_proto_gen(//build/toolchain/linux:clang_x64)
+  restat = 1
+  pool = build_toolchain_action_pool
+
+build pyproto/modules/audio_processing/debug_pb2.py gen/modules/audio_processing/debug.pb.h gen/modules/audio_processing/debug.pb.cc: __modules_audio_processing_audioproc_debug_proto_gen___build_toolchain_linux_clang_x64__rule | ../../tools/protoc_wrapper/protoc_wrapper.py protoc ../../modules/audio_processing/debug.proto ./protoc
+
+build obj/modules/audio_processing/audioproc_debug_proto_gen.stamp: stamp pyproto/modules/audio_processing/debug_pb2.py gen/modules/audio_processing/debug.pb.h gen/modules/audio_processing/debug.pb.cc
+subninja obj/modules/audio_processing/audioproc_f.ninja
+subninja obj/modules/audio_processing/audioproc_f_impl.ninja
+subninja obj/modules/audio_processing/audioproc_protobuf_utils.ninja
+subninja obj/modules/audio_processing/audioproc_test_utils.ninja
+subninja obj/modules/audio_processing/audioproc_unittest_proto.ninja
+rule __modules_audio_processing_audioproc_unittest_proto_gen___build_toolchain_linux_clang_x64__rule
+  command = python ../../tools/protoc_wrapper/protoc_wrapper.py unittest.proto --protoc ./protoc --proto-in-dir ../../modules/audio_processing/test --cc-out-dir gen/modules/audio_processing/test --py-out-dir pyproto/modules/audio_processing/test
+  description = ACTION //modules/audio_processing:audioproc_unittest_proto_gen(//build/toolchain/linux:clang_x64)
+  restat = 1
+  pool = build_toolchain_action_pool
+
+build pyproto/modules/audio_processing/test/unittest_pb2.py gen/modules/audio_processing/test/unittest.pb.h gen/modules/audio_processing/test/unittest.pb.cc: __modules_audio_processing_audioproc_unittest_proto_gen___build_toolchain_linux_clang_x64__rule | ../../tools/protoc_wrapper/protoc_wrapper.py protoc ../../modules/audio_processing/test/unittest.proto ./protoc
+
+build obj/modules/audio_processing/audioproc_unittest_proto_gen.stamp: stamp pyproto/modules/audio_processing/test/unittest_pb2.py gen/modules/audio_processing/test/unittest.pb.h gen/modules/audio_processing/test/unittest.pb.cc
+subninja obj/modules/audio_processing/click_annotate.ninja
+subninja obj/modules/audio_processing/config.ninja
+subninja obj/modules/audio_processing/file_audio_generator.ninja
+subninja obj/modules/audio_processing/file_audio_generator_unittests.ninja
+subninja obj/modules/audio_processing/gain_control_config_proxy.ninja
+subninja obj/modules/audio_processing/gain_control_interface.ninja
+subninja obj/modules/audio_processing/high_pass_filter.ninja
+subninja obj/modules/audio_processing/mocks.ninja
+subninja obj/modules/audio_processing/noise_suppression_proxy.ninja
+subninja obj/modules/audio_processing/runtime_settings_protobuf_utils.ninja
+subninja obj/modules/audio_processing/transient_suppression_test.ninja
+subninja obj/modules/audio_processing/aec/aec.ninja
+subninja obj/modules/audio_processing/aec/aec_core.ninja
+subninja obj/modules/audio_processing/aec/aec_unittests.ninja
+subninja obj/modules/audio_processing/aec3/aec3.ninja
+subninja obj/modules/audio_processing/aec3/aec3_unittests.ninja
+subninja obj/modules/audio_processing/aec_dump/aec_dump.ninja
+subninja obj/modules/audio_processing/aec_dump/aec_dump_impl.ninja
+subninja obj/modules/audio_processing/aec_dump/aec_dump_unittests.ninja
+subninja obj/modules/audio_processing/aec_dump/mock_aec_dump.ninja
+subninja obj/modules/audio_processing/aec_dump/mock_aec_dump_unittests.ninja
+subninja obj/modules/audio_processing/aec_dump/null_aec_dump_factory.ninja
+subninja obj/modules/audio_processing/aecm/aecm_core.ninja
+subninja obj/modules/audio_processing/agc/agc.ninja
+subninja obj/modules/audio_processing/agc/agc_legacy_c.ninja
+subninja obj/modules/audio_processing/agc/agc_unittests.ninja
+subninja obj/modules/audio_processing/agc/gain_map.ninja
+subninja obj/modules/audio_processing/agc/level_estimation.ninja
+subninja obj/modules/audio_processing/agc2/adaptive_digital.ninja
+subninja obj/modules/audio_processing/agc2/adaptive_digital_unittests.ninja
+build obj/modules/audio_processing/agc2/agc2.stamp: stamp obj/modules/audio_processing/agc2/adaptive_digital.stamp obj/modules/audio_processing/agc2/fixed_digital.stamp
+subninja obj/modules/audio_processing/agc2/biquad_filter.ninja
+subninja obj/modules/audio_processing/agc2/biquad_filter_unittests.ninja
+subninja obj/modules/audio_processing/agc2/common.ninja
+subninja obj/modules/audio_processing/agc2/fixed_digital.ninja
+subninja obj/modules/audio_processing/agc2/fixed_digital_unittests.ninja
+subninja obj/modules/audio_processing/agc2/gain_applier.ninja
+subninja obj/modules/audio_processing/agc2/level_estimation_agc.ninja
+subninja obj/modules/audio_processing/agc2/noise_estimator_unittests.ninja
+subninja obj/modules/audio_processing/agc2/noise_level_estimator.ninja
+subninja obj/modules/audio_processing/agc2/rnn_vad_with_level.ninja
+subninja obj/modules/audio_processing/agc2/rnn_vad_with_level_unittests.ninja
+subninja obj/modules/audio_processing/agc2/test_utils.ninja
+subninja obj/modules/audio_processing/agc2/rnn_vad/rnn_vad.ninja
+subninja obj/modules/audio_processing/agc2/rnn_vad/rnn_vad_tool.ninja
+subninja obj/modules/audio_processing/agc2/rnn_vad/test_utils.ninja
+subninja obj/modules/audio_processing/agc2/rnn_vad/unittests.ninja
+build obj/modules/audio_processing/test/conversational_speech/conversational_speech.stamp: stamp ./conversational_speech_generator
+subninja obj/modules/audio_processing/test/conversational_speech/conversational_speech_generator.ninja
+subninja obj/modules/audio_processing/test/conversational_speech/lib.ninja
+subninja obj/modules/audio_processing/test/conversational_speech/unittest.ninja
+build py_quality_assessment/apm_configs/default.json: copy ../../modules/audio_processing/test/py_quality_assessment/apm_configs/default.json
+
+build obj/modules/audio_processing/test/py_quality_assessment/apm_configs.stamp: stamp py_quality_assessment/apm_configs/default.json
+subninja obj/modules/audio_processing/test/py_quality_assessment/apm_vad.ninja
+subninja obj/modules/audio_processing/test/py_quality_assessment/fake_polqa.ninja
+build py_quality_assessment/quality_assessment/__init__.py: copy ../../modules/audio_processing/test/py_quality_assessment/quality_assessment/__init__.py || obj/resources/audio_processing/test/py_quality_assessment/noise_tracks.stamp
+build py_quality_assessment/quality_assessment/annotations.py: copy ../../modules/audio_processing/test/py_quality_assessment/quality_assessment/annotations.py || obj/resources/audio_processing/test/py_quality_assessment/noise_tracks.stamp
+build py_quality_assessment/quality_assessment/audioproc_wrapper.py: copy ../../modules/audio_processing/test/py_quality_assessment/quality_assessment/audioproc_wrapper.py || obj/resources/audio_processing/test/py_quality_assessment/noise_tracks.stamp
+build py_quality_assessment/quality_assessment/collect_data.py: copy ../../modules/audio_processing/test/py_quality_assessment/quality_assessment/collect_data.py || obj/resources/audio_processing/test/py_quality_assessment/noise_tracks.stamp
+build py_quality_assessment/quality_assessment/data_access.py: copy ../../modules/audio_processing/test/py_quality_assessment/quality_assessment/data_access.py || obj/resources/audio_processing/test/py_quality_assessment/noise_tracks.stamp
+build py_quality_assessment/quality_assessment/echo_path_simulation.py: copy ../../modules/audio_processing/test/py_quality_assessment/quality_assessment/echo_path_simulation.py || obj/resources/audio_processing/test/py_quality_assessment/noise_tracks.stamp
+build py_quality_assessment/quality_assessment/echo_path_simulation_factory.py: copy ../../modules/audio_processing/test/py_quality_assessment/quality_assessment/echo_path_simulation_factory.py || obj/resources/audio_processing/test/py_quality_assessment/noise_tracks.stamp
+build py_quality_assessment/quality_assessment/eval_scores.py: copy ../../modules/audio_processing/test/py_quality_assessment/quality_assessment/eval_scores.py || obj/resources/audio_processing/test/py_quality_assessment/noise_tracks.stamp
+build py_quality_assessment/quality_assessment/eval_scores_factory.py: copy ../../modules/audio_processing/test/py_quality_assessment/quality_assessment/eval_scores_factory.py || obj/resources/audio_processing/test/py_quality_assessment/noise_tracks.stamp
+build py_quality_assessment/quality_assessment/evaluation.py: copy ../../modules/audio_processing/test/py_quality_assessment/quality_assessment/evaluation.py || obj/resources/audio_processing/test/py_quality_assessment/noise_tracks.stamp
+build py_quality_assessment/quality_assessment/exceptions.py: copy ../../modules/audio_processing/test/py_quality_assessment/quality_assessment/exceptions.py || obj/resources/audio_processing/test/py_quality_assessment/noise_tracks.stamp
+build py_quality_assessment/quality_assessment/export.py: copy ../../modules/audio_processing/test/py_quality_assessment/quality_assessment/export.py || obj/resources/audio_processing/test/py_quality_assessment/noise_tracks.stamp
+build py_quality_assessment/quality_assessment/export_unittest.py: copy ../../modules/audio_processing/test/py_quality_assessment/quality_assessment/export_unittest.py || obj/resources/audio_processing/test/py_quality_assessment/noise_tracks.stamp
+build py_quality_assessment/quality_assessment/external_vad.py: copy ../../modules/audio_processing/test/py_quality_assessment/quality_assessment/external_vad.py || obj/resources/audio_processing/test/py_quality_assessment/noise_tracks.stamp
+build py_quality_assessment/quality_assessment/input_mixer.py: copy ../../modules/audio_processing/test/py_quality_assessment/quality_assessment/input_mixer.py || obj/resources/audio_processing/test/py_quality_assessment/noise_tracks.stamp
+build py_quality_assessment/quality_assessment/input_signal_creator.py: copy ../../modules/audio_processing/test/py_quality_assessment/quality_assessment/input_signal_creator.py || obj/resources/audio_processing/test/py_quality_assessment/noise_tracks.stamp
+build py_quality_assessment/quality_assessment/results.css: copy ../../modules/audio_processing/test/py_quality_assessment/quality_assessment/results.css || obj/resources/audio_processing/test/py_quality_assessment/noise_tracks.stamp
+build py_quality_assessment/quality_assessment/results.js: copy ../../modules/audio_processing/test/py_quality_assessment/quality_assessment/results.js || obj/resources/audio_processing/test/py_quality_assessment/noise_tracks.stamp
+build py_quality_assessment/quality_assessment/signal_processing.py: copy ../../modules/audio_processing/test/py_quality_assessment/quality_assessment/signal_processing.py || obj/resources/audio_processing/test/py_quality_assessment/noise_tracks.stamp
+build py_quality_assessment/quality_assessment/simulation.py: copy ../../modules/audio_processing/test/py_quality_assessment/quality_assessment/simulation.py || obj/resources/audio_processing/test/py_quality_assessment/noise_tracks.stamp
+build py_quality_assessment/quality_assessment/test_data_generation.py: copy ../../modules/audio_processing/test/py_quality_assessment/quality_assessment/test_data_generation.py || obj/resources/audio_processing/test/py_quality_assessment/noise_tracks.stamp
+build py_quality_assessment/quality_assessment/test_data_generation_factory.py: copy ../../modules/audio_processing/test/py_quality_assessment/quality_assessment/test_data_generation_factory.py || obj/resources/audio_processing/test/py_quality_assessment/noise_tracks.stamp
+
+build obj/modules/audio_processing/test/py_quality_assessment/lib.stamp: stamp py_quality_assessment/quality_assessment/__init__.py py_quality_assessment/quality_assessment/annotations.py py_quality_assessment/quality_assessment/audioproc_wrapper.py py_quality_assessment/quality_assessment/collect_data.py py_quality_assessment/quality_assessment/data_access.py py_quality_assessment/quality_assessment/echo_path_simulation.py py_quality_assessment/quality_assessment/echo_path_simulation_factory.py py_quality_assessment/quality_assessment/eval_scores.py py_quality_assessment/quality_assessment/eval_scores_factory.py py_quality_assessment/quality_assessment/evaluation.py py_quality_assessment/quality_assessment/exceptions.py py_quality_assessment/quality_assessment/export.py py_quality_assessment/quality_assessment/export_unittest.py py_quality_assessment/quality_assessment/external_vad.py py_quality_assessment/quality_assessment/input_mixer.py py_quality_assessment/quality_assessment/input_signal_creator.py py_quality_assessment/quality_assessment/results.css py_quality_assessment/quality_assessment/results.js py_quality_assessment/quality_assessment/signal_processing.py py_quality_assessment/quality_assessment/simulation.py py_quality_assessment/quality_assessment/test_data_generation.py py_quality_assessment/quality_assessment/test_data_generation_factory.py
+build py_quality_assessment/quality_assessment/annotations_unittest.py: copy ../../modules/audio_processing/test/py_quality_assessment/quality_assessment/annotations_unittest.py
+build py_quality_assessment/quality_assessment/echo_path_simulation_unittest.py: copy ../../modules/audio_processing/test/py_quality_assessment/quality_assessment/echo_path_simulation_unittest.py
+build py_quality_assessment/quality_assessment/eval_scores_unittest.py: copy ../../modules/audio_processing/test/py_quality_assessment/quality_assessment/eval_scores_unittest.py
+build py_quality_assessment/quality_assessment/fake_external_vad.py: copy ../../modules/audio_processing/test/py_quality_assessment/quality_assessment/fake_external_vad.py
+build py_quality_assessment/quality_assessment/input_mixer_unittest.py: copy ../../modules/audio_processing/test/py_quality_assessment/quality_assessment/input_mixer_unittest.py
+build py_quality_assessment/quality_assessment/signal_processing_unittest.py: copy ../../modules/audio_processing/test/py_quality_assessment/quality_assessment/signal_processing_unittest.py
+build py_quality_assessment/quality_assessment/simulation_unittest.py: copy ../../modules/audio_processing/test/py_quality_assessment/quality_assessment/simulation_unittest.py
+build py_quality_assessment/quality_assessment/test_data_generation_unittest.py: copy ../../modules/audio_processing/test/py_quality_assessment/quality_assessment/test_data_generation_unittest.py
+
+build obj/modules/audio_processing/test/py_quality_assessment/lib_unit_tests.stamp: stamp py_quality_assessment/quality_assessment/annotations_unittest.py py_quality_assessment/quality_assessment/echo_path_simulation_unittest.py py_quality_assessment/quality_assessment/eval_scores_unittest.py py_quality_assessment/quality_assessment/fake_external_vad.py py_quality_assessment/quality_assessment/input_mixer_unittest.py py_quality_assessment/quality_assessment/signal_processing_unittest.py py_quality_assessment/quality_assessment/simulation_unittest.py py_quality_assessment/quality_assessment/test_data_generation_unittest.py
+build py_quality_assessment/output/README.md: copy ../../modules/audio_processing/test/py_quality_assessment/output/README.md
+
+build obj/modules/audio_processing/test/py_quality_assessment/output.stamp: stamp py_quality_assessment/output/README.md
+build obj/modules/audio_processing/test/py_quality_assessment/py_quality_assessment.stamp: stamp obj/modules/audio_processing/test/py_quality_assessment/scripts.stamp obj/modules/audio_processing/test/py_quality_assessment/unit_tests.stamp
+build obj/modules/audio_processing/test/py_quality_assessment/scripts.inputdeps.stamp: stamp ./audioproc_f obj/modules/audio_processing/test/py_quality_assessment/apm_configs.stamp obj/modules/audio_processing/test/py_quality_assessment/lib.stamp obj/modules/audio_processing/test/py_quality_assessment/output.stamp obj/resources/audio_processing/test/py_quality_assessment/probing_signals.stamp
+build py_quality_assessment/README.md: copy ../../modules/audio_processing/test/py_quality_assessment/README.md || obj/modules/audio_processing/test/py_quality_assessment/scripts.inputdeps.stamp
+build py_quality_assessment/apm_quality_assessment.py: copy ../../modules/audio_processing/test/py_quality_assessment/apm_quality_assessment.py || obj/modules/audio_processing/test/py_quality_assessment/scripts.inputdeps.stamp
+build py_quality_assessment/apm_quality_assessment.sh: copy ../../modules/audio_processing/test/py_quality_assessment/apm_quality_assessment.sh || obj/modules/audio_processing/test/py_quality_assessment/scripts.inputdeps.stamp
+build py_quality_assessment/apm_quality_assessment_boxplot.py: copy ../../modules/audio_processing/test/py_quality_assessment/apm_quality_assessment_boxplot.py || obj/modules/audio_processing/test/py_quality_assessment/scripts.inputdeps.stamp
+build py_quality_assessment/apm_quality_assessment_export.py: copy ../../modules/audio_processing/test/py_quality_assessment/apm_quality_assessment_export.py || obj/modules/audio_processing/test/py_quality_assessment/scripts.inputdeps.stamp
+build py_quality_assessment/apm_quality_assessment_gencfgs.py: copy ../../modules/audio_processing/test/py_quality_assessment/apm_quality_assessment_gencfgs.py || obj/modules/audio_processing/test/py_quality_assessment/scripts.inputdeps.stamp
+build py_quality_assessment/apm_quality_assessment_optimize.py: copy ../../modules/audio_processing/test/py_quality_assessment/apm_quality_assessment_optimize.py || obj/modules/audio_processing/test/py_quality_assessment/scripts.inputdeps.stamp
+
+build obj/modules/audio_processing/test/py_quality_assessment/scripts.stamp: stamp py_quality_assessment/README.md py_quality_assessment/apm_quality_assessment.py py_quality_assessment/apm_quality_assessment.sh py_quality_assessment/apm_quality_assessment_boxplot.py py_quality_assessment/apm_quality_assessment_export.py py_quality_assessment/apm_quality_assessment_gencfgs.py py_quality_assessment/apm_quality_assessment_optimize.py
+build py_quality_assessment/apm_quality_assessment_unittest.py: copy ../../modules/audio_processing/test/py_quality_assessment/apm_quality_assessment_unittest.py
+
+build obj/modules/audio_processing/test/py_quality_assessment/scripts_unit_tests.stamp: stamp py_quality_assessment/apm_quality_assessment_unittest.py
+subninja obj/modules/audio_processing/test/py_quality_assessment/sound_level.ninja
+build obj/modules/audio_processing/test/py_quality_assessment/unit_tests.stamp: stamp ./apm_vad py_quality_assessment/quality_assessment/fake_polqa obj/modules/audio_processing/test/py_quality_assessment/lib_unit_tests.stamp obj/modules/audio_processing/test/py_quality_assessment/scripts_unit_tests.stamp ./vad
+subninja obj/modules/audio_processing/test/py_quality_assessment/vad.ninja
+subninja obj/modules/audio_processing/utility/block_mean_calculator.ninja
+subninja obj/modules/audio_processing/utility/block_mean_calculator_unittest.ninja
+subninja obj/modules/audio_processing/utility/cascaded_biquad_filter.ninja
+subninja obj/modules/audio_processing/utility/cascaded_biquad_filter_unittest.ninja
+subninja obj/modules/audio_processing/utility/legacy_delay_estimator.ninja
+subninja obj/modules/audio_processing/utility/legacy_delay_estimator_unittest.ninja
+subninja obj/modules/audio_processing/utility/ooura_fft.ninja
+subninja obj/modules/audio_processing/utility/pffft_wrapper.ninja
+subninja obj/modules/audio_processing/utility/pffft_wrapper_unittest.ninja
+subninja obj/modules/audio_processing/vad/vad.ninja
+subninja obj/modules/audio_processing/vad/vad_unittests.ninja
+subninja obj/modules/congestion_controller/congestion_controller.ninja
+subninja obj/modules/congestion_controller/congestion_controller_unittests.ninja
+subninja obj/modules/congestion_controller/bbr/bandwidth_sampler.ninja
+subninja obj/modules/congestion_controller/bbr/bbr.ninja
+subninja obj/modules/congestion_controller/bbr/bbr_controller.ninja
+subninja obj/modules/congestion_controller/bbr/bbr_unittests.ninja
+subninja obj/modules/congestion_controller/bbr/data_transfer_tracker.ninja
+subninja obj/modules/congestion_controller/bbr/loss_rate_filter.ninja
+subninja obj/modules/congestion_controller/bbr/packet_number_indexed_queue.ninja
+subninja obj/modules/congestion_controller/bbr/rtt_stats.ninja
+subninja obj/modules/congestion_controller/bbr/windowed_filter.ninja
+subninja obj/modules/congestion_controller/goog_cc/alr_detector.ninja
+subninja obj/modules/congestion_controller/goog_cc/delay_based_bwe.ninja
+subninja obj/modules/congestion_controller/goog_cc/estimators.ninja
+subninja obj/modules/congestion_controller/goog_cc/goog_cc.ninja
+subninja obj/modules/congestion_controller/goog_cc/goog_cc_unittests.ninja
+subninja obj/modules/congestion_controller/goog_cc/link_capacity_estimator.ninja
+subninja obj/modules/congestion_controller/goog_cc/loss_based_controller.ninja
+subninja obj/modules/congestion_controller/goog_cc/probe_controller.ninja
+subninja obj/modules/congestion_controller/goog_cc/pushback_controller.ninja
+subninja obj/modules/congestion_controller/goog_cc/test_goog_cc_printer.ninja
+subninja obj/modules/congestion_controller/pcc/bitrate_controller.ninja
+subninja obj/modules/congestion_controller/pcc/monitor_interval.ninja
+subninja obj/modules/congestion_controller/pcc/pcc.ninja
+subninja obj/modules/congestion_controller/pcc/pcc_controller.ninja
+subninja obj/modules/congestion_controller/pcc/pcc_unittests.ninja
+subninja obj/modules/congestion_controller/pcc/rtt_tracker.ninja
+subninja obj/modules/congestion_controller/pcc/utility_function.ninja
+subninja obj/modules/congestion_controller/rtp/congestion_controller_unittests.ninja
+subninja obj/modules/congestion_controller/rtp/control_handler.ninja
+subninja obj/modules/congestion_controller/rtp/transport_feedback.ninja
+subninja obj/modules/desktop_capture/desktop_capture.ninja
+subninja obj/modules/desktop_capture/desktop_capture_differ_sse2.ninja
+subninja obj/modules/desktop_capture/desktop_capture_generic.ninja
+subninja obj/modules/desktop_capture/desktop_capture_mock.ninja
+subninja obj/modules/desktop_capture/desktop_capture_modules_tests.ninja
+subninja obj/modules/desktop_capture/desktop_capture_unittests.ninja
+subninja obj/modules/desktop_capture/pipewire_stubs.ninja
+rule __modules_desktop_capture_pipewire_stubs__stubs_gen___build_toolchain_linux_clang_x64__rule
+  command = python ../../tools/generate_stubs/generate_stubs.py --intermediate_dir gen/modules/desktop_capture/linux --output gen/modules/desktop_capture/linux --type posix_stubs --extra_stub_header ../../modules/desktop_capture/linux/pipewire_stub_header.fragment --stubfile_name pipewire_stubs --path_from_source modules/desktop_capture/linux --path_from_source modules/desktop_capture/linux --logging-function RTC_LOG\(LS_VERBOSE\) --logging-include rtc_base/logging.h ../../modules/desktop_capture/linux/pipewire.sigs
+  description = ACTION //modules/desktop_capture:pipewire_stubs__stubs_gen(//build/toolchain/linux:clang_x64)
+  restat = 1
+  pool = build_toolchain_action_pool
+
+build gen/modules/desktop_capture/linux/pipewire_stubs.cc gen/modules/desktop_capture/linux/pipewire_stubs.h: __modules_desktop_capture_pipewire_stubs__stubs_gen___build_toolchain_linux_clang_x64__rule | ../../tools/generate_stubs/generate_stubs.py ../../modules/desktop_capture/linux/pipewire_stub_header.fragment ../../modules/desktop_capture/linux/pipewire.sigs
+
+build obj/modules/desktop_capture/pipewire_stubs__stubs_gen.stamp: stamp gen/modules/desktop_capture/linux/pipewire_stubs.cc gen/modules/desktop_capture/linux/pipewire_stubs.h
+subninja obj/modules/desktop_capture/primitives.ninja
+subninja obj/modules/desktop_capture/screen_drawer.ninja
+subninja obj/modules/pacing/interval_budget.ninja
+subninja obj/modules/pacing/mock_paced_sender.ninja
+subninja obj/modules/pacing/pacing.ninja
+subninja obj/modules/pacing/pacing_unittests.ninja
+subninja obj/modules/remote_bitrate_estimator/bwe_rtp.ninja
+subninja obj/modules/remote_bitrate_estimator/remote_bitrate_estimator.ninja
+subninja obj/modules/remote_bitrate_estimator/remote_bitrate_estimator_unittests.ninja
+subninja obj/modules/remote_bitrate_estimator/rtp_to_text.ninja
+subninja obj/modules/rtp_rtcp/fec_test_helper.ninja
+subninja obj/modules/rtp_rtcp/mock_rtp_rtcp.ninja
+subninja obj/modules/rtp_rtcp/rtcp_transceiver.ninja
+subninja obj/modules/rtp_rtcp/rtp_rtcp.ninja
+subninja obj/modules/rtp_rtcp/rtp_rtcp_format.ninja
+subninja obj/modules/rtp_rtcp/rtp_rtcp_modules_tests.ninja
+subninja obj/modules/rtp_rtcp/rtp_rtcp_unittests.ninja
+subninja obj/modules/rtp_rtcp/rtp_video_header.ninja
+subninja obj/modules/rtp_rtcp/test_packet_masks_metrics.ninja
+subninja obj/modules/third_party/fft/fft.ninja
+subninja obj/modules/third_party/g711/g711_3p.ninja
+subninja obj/modules/third_party/g722/g722_3p.ninja
+subninja obj/modules/utility/mock_process_thread.ninja
+subninja obj/modules/utility/utility.ninja
+subninja obj/modules/utility/utility_unittests.ninja
+subninja obj/modules/video_capture/video_capture_internal_impl.ninja
+subninja obj/modules/video_capture/video_capture_module.ninja
+subninja obj/modules/video_capture/video_capture_tests.ninja
+subninja obj/modules/video_coding/codec_globals_headers.ninja
+subninja obj/modules/video_coding/encoded_frame.ninja
+subninja obj/modules/video_coding/nack_module.ninja
+subninja obj/modules/video_coding/packet.ninja
+subninja obj/modules/video_coding/simulcast_test_fixture_impl.ninja
+subninja obj/modules/video_coding/video_codec_interface.ninja
+subninja obj/modules/video_coding/video_codecs_test_framework.ninja
+subninja obj/modules/video_coding/video_coding.ninja
+subninja obj/modules/video_coding/video_coding_legacy.ninja
+subninja obj/modules/video_coding/video_coding_modules_tests.ninja
+subninja obj/modules/video_coding/video_coding_unittests.ninja
+subninja obj/modules/video_coding/video_coding_utility.ninja
+subninja obj/modules/video_coding/videocodec_test_impl.ninja
+subninja obj/modules/video_coding/videocodec_test_stats_impl.ninja
+subninja obj/modules/video_coding/webrtc_h264.ninja
+subninja obj/modules/video_coding/webrtc_multiplex.ninja
+subninja obj/modules/video_coding/webrtc_vp8.ninja
+subninja obj/modules/video_coding/webrtc_vp8_temporal_layers.ninja
+subninja obj/modules/video_coding/webrtc_vp9.ninja
+subninja obj/modules/video_coding/webrtc_vp9_helpers.ninja
+subninja obj/modules/video_processing/denoiser_filter.ninja
+subninja obj/modules/video_processing/video_processing.ninja
+subninja obj/modules/video_processing/video_processing_sse2.ninja
+subninja obj/modules/video_processing/video_processing_unittests.ninja
+subninja obj/p2p/fake_ice_transport.ninja
+subninja obj/p2p/fake_port_allocator.ninja
+subninja obj/p2p/libstunprober.ninja
+subninja obj/p2p/libstunprober_unittests.ninja
+build obj/p2p/p2p.stamp: stamp obj/p2p/libstunprober.a obj/p2p/librtc_p2p.a
+subninja obj/p2p/p2p_server_utils.ninja
+subninja obj/p2p/p2p_test_utils.ninja
+subninja obj/p2p/rtc_p2p.ninja
+subninja obj/p2p/rtc_p2p_unittests.ninja
+subninja obj/p2p/stun_types.ninja
+subninja obj/pc/libjingle_peerconnection.ninja
+subninja obj/pc/media_protocol_names.ninja
+build obj/pc/pc.stamp: stamp obj/pc/rtc_pc.stamp
+subninja obj/pc/pc_test_utils.ninja
+subninja obj/pc/peerconnection.ninja
+subninja obj/pc/peerconnection_perf_tests.ninja
+subninja obj/pc/peerconnection_unittests.ninja
+subninja obj/pc/peerconnection_wrapper.ninja
+subninja obj/pc/rtc_pc.ninja
+subninja obj/pc/rtc_pc_base.ninja
+subninja obj/pc/rtc_pc_unittests.ninja
+build py_quality_assessment/noise_tracks/city.wav: copy ../../resources/audio_processing/test/py_quality_assessment/noise_tracks/city.wav
+
+build obj/resources/audio_processing/test/py_quality_assessment/noise_tracks.stamp: stamp py_quality_assessment/noise_tracks/city.wav
+build py_quality_assessment/probing_signals/tone-880.wav: copy ../../resources/audio_processing/test/py_quality_assessment/probing_signals/tone-880.wav
+
+build obj/resources/audio_processing/test/py_quality_assessment/probing_signals.stamp: stamp py_quality_assessment/probing_signals/tone-880.wav
+subninja obj/rtc_base/async_resolver_interface.ninja
+subninja obj/rtc_base/async_socket.ninja
+subninja obj/rtc_base/atomicops.ninja
+subninja obj/rtc_base/audio_format_to_string.ninja
+subninja obj/rtc_base/checks.ninja
+subninja obj/rtc_base/compile_assert_c.ninja
+subninja obj/rtc_base/criticalsection.ninja
+subninja obj/rtc_base/deprecation.ninja
+subninja obj/rtc_base/divide_round.ninja
+subninja obj/rtc_base/gtest_prod.ninja
+subninja obj/rtc_base/gunit_helpers.ninja
+subninja obj/rtc_base/ip_address.ninja
+subninja obj/rtc_base/logging.ninja
+subninja obj/rtc_base/macromagic.ninja
+subninja obj/rtc_base/net_helpers.ninja
+subninja obj/rtc_base/network_constants.ninja
+subninja obj/rtc_base/null_socket_server.ninja
+subninja obj/rtc_base/platform_thread.ninja
+subninja obj/rtc_base/platform_thread_types.ninja
+subninja obj/rtc_base/protobuf_utils.ninja
+subninja obj/rtc_base/rate_limiter.ninja
+subninja obj/rtc_base/refcount.ninja
+subninja obj/rtc_base/rtc_base.ninja
+subninja obj/rtc_base/rtc_base_approved.ninja
+subninja obj/rtc_base/rtc_base_approved_unittests.ninja
+subninja obj/rtc_base/rtc_base_nonparallel_tests.ninja
+subninja obj/rtc_base/rtc_base_tests_utils.ninja
+subninja obj/rtc_base/rtc_base_unittests.ninja
+subninja obj/rtc_base/rtc_event.ninja
+subninja obj/rtc_base/rtc_json.ninja
+subninja obj/rtc_base/rtc_json_unittests.ninja
+subninja obj/rtc_base/rtc_numerics.ninja
+subninja obj/rtc_base/rtc_numerics_unittests.ninja
+subninja obj/rtc_base/rtc_task_queue.ninja
+subninja obj/rtc_base/rtc_task_queue_libevent.ninja
+subninja obj/rtc_base/rtc_task_queue_stdlib.ninja
+subninja obj/rtc_base/rtc_task_queue_unittests.ninja
+subninja obj/rtc_base/safe_compare.ninja
+subninja obj/rtc_base/safe_conversions.ninja
+subninja obj/rtc_base/safe_minmax.ninja
+subninja obj/rtc_base/sanitizer.ninja
+subninja obj/rtc_base/sigslot_unittest.ninja
+subninja obj/rtc_base/socket.ninja
+subninja obj/rtc_base/socket_address.ninja
+subninja obj/rtc_base/socket_factory.ninja
+subninja obj/rtc_base/socket_server.ninja
+subninja obj/rtc_base/stringutils.ninja
+subninja obj/rtc_base/task_queue_for_test.ninja
+subninja obj/rtc_base/testclient.ninja
+subninja obj/rtc_base/thread_checker.ninja
+subninja obj/rtc_base/threading.ninja
+subninja obj/rtc_base/timeutils.ninja
+subninja obj/rtc_base/type_traits.ninja
+subninja obj/rtc_base/weak_ptr.ninja
+subninja obj/rtc_base/weak_ptr_unittests.ninja
+subninja obj/rtc_base/experiments/alr_experiment.ninja
+subninja obj/rtc_base/experiments/balanced_degradation_settings.ninja
+subninja obj/rtc_base/experiments/cpu_speed_experiment.ninja
+subninja obj/rtc_base/experiments/experimental_screenshare_settings.ninja
+subninja obj/rtc_base/experiments/experiments_unittests.ninja
+subninja obj/rtc_base/experiments/field_trial_parser.ninja
+subninja obj/rtc_base/experiments/jitter_upper_bound_experiment.ninja
+subninja obj/rtc_base/experiments/keyframe_interval_settings_experiment.ninja
+subninja obj/rtc_base/experiments/normalize_simulcast_size_experiment.ninja
+subninja obj/rtc_base/experiments/quality_scaler_settings.ninja
+subninja obj/rtc_base/experiments/quality_scaling_experiment.ninja
+subninja obj/rtc_base/experiments/rate_control_settings.ninja
+subninja obj/rtc_base/experiments/rtt_mult_experiment.ninja
+subninja obj/rtc_base/experiments/stable_target_rate_experiment.ninja
+subninja obj/rtc_base/memory/aligned_array.ninja
+subninja obj/rtc_base/memory/aligned_malloc.ninja
+subninja obj/rtc_base/memory/fifo_buffer.ninja
+subninja obj/rtc_base/memory/unittests.ninja
+subninja obj/rtc_base/network/sent_packet.ninja
+subninja obj/rtc_base/synchronization/rw_lock_wrapper.ninja
+subninja obj/rtc_base/synchronization/sequence_checker.ninja
+subninja obj/rtc_base/synchronization/sequence_checker_unittests.ninja
+subninja obj/rtc_base/synchronization/synchronization_unittests.ninja
+subninja obj/rtc_base/synchronization/yield_policy.ninja
+subninja obj/rtc_base/system/arch.ninja
+subninja obj/rtc_base/system/asm_defines.ninja
+subninja obj/rtc_base/system/fallthrough.ninja
+subninja obj/rtc_base/system/file_wrapper.ninja
+subninja obj/rtc_base/system/ignore_warnings.ninja
+subninja obj/rtc_base/system/inline.ninja
+subninja obj/rtc_base/system/rtc_export.ninja
+subninja obj/rtc_base/system/thread_registry.ninja
+subninja obj/rtc_base/system/unused.ninja
+subninja obj/rtc_base/system/warn_current_thread_is_deadlocked.ninja
+subninja obj/rtc_base/task_utils/repeating_task.ninja
+subninja obj/rtc_base/task_utils/repeating_task_unittests.ninja
+subninja obj/rtc_base/task_utils/to_queued_task.ninja
+subninja obj/rtc_base/task_utils/to_queued_task_unittests.ninja
+subninja obj/rtc_base/third_party/base64/base64.ninja
+subninja obj/rtc_base/third_party/sigslot/sigslot.ninja
+subninja obj/rtc_base/time/timestamp_extrapolator.ninja
+subninja obj/rtc_base/units/unit_base.ninja
+subninja obj/rtc_base/units/units_unittests.ninja
+subninja obj/rtc_tools/chart_proto.ninja
+rule __rtc_tools_chart_proto_gen___build_toolchain_linux_clang_x64__rule
+  command = python ../../tools/protoc_wrapper/protoc_wrapper.py chart.proto chart_enums.proto --protoc ./protoc --proto-in-dir ../../rtc_tools/rtc_event_log_visualizer/proto --cc-out-dir gen/rtc_tools/rtc_event_log_visualizer/proto --py-out-dir pyproto/rtc_tools/rtc_event_log_visualizer/proto
+  description = ACTION //rtc_tools:chart_proto_gen(//build/toolchain/linux:clang_x64)
+  restat = 1
+  pool = build_toolchain_action_pool
+
+build pyproto/rtc_tools/rtc_event_log_visualizer/proto/chart_pb2.py pyproto/rtc_tools/rtc_event_log_visualizer/proto/chart_enums_pb2.py gen/rtc_tools/rtc_event_log_visualizer/proto/chart.pb.h gen/rtc_tools/rtc_event_log_visualizer/proto/chart.pb.cc gen/rtc_tools/rtc_event_log_visualizer/proto/chart_enums.pb.h gen/rtc_tools/rtc_event_log_visualizer/proto/chart_enums.pb.cc: __rtc_tools_chart_proto_gen___build_toolchain_linux_clang_x64__rule | ../../tools/protoc_wrapper/protoc_wrapper.py protoc ../../rtc_tools/rtc_event_log_visualizer/proto/chart.proto ../../rtc_tools/rtc_event_log_visualizer/proto/chart_enums.proto ./protoc
+
+build obj/rtc_tools/chart_proto_gen.stamp: stamp pyproto/rtc_tools/rtc_event_log_visualizer/proto/chart_pb2.py pyproto/rtc_tools/rtc_event_log_visualizer/proto/chart_enums_pb2.py gen/rtc_tools/rtc_event_log_visualizer/proto/chart.pb.h gen/rtc_tools/rtc_event_log_visualizer/proto/chart.pb.cc gen/rtc_tools/rtc_event_log_visualizer/proto/chart_enums.pb.h gen/rtc_tools/rtc_event_log_visualizer/proto/chart_enums.pb.cc
+subninja obj/rtc_tools/event_log_visualizer.ninja
+subninja obj/rtc_tools/event_log_visualizer_utils.ninja
+subninja obj/rtc_tools/frame_analyzer.ninja
+rule __rtc_tools_frame_analyzer_host___build_toolchain_linux_clang_x64__rule
+  command = python ../../tools_webrtc/executable_host_build.py --executable_name frame_analyzer
+  description = ACTION //rtc_tools:frame_analyzer_host(//build/toolchain/linux:clang_x64)
+  restat = 1
+  pool = build_toolchain_action_pool
+
+build frame_analyzer_host: __rtc_tools_frame_analyzer_host___build_toolchain_linux_clang_x64__rule | ../../tools_webrtc/executable_host_build.py
+
+build obj/rtc_tools/frame_analyzer_host.stamp: stamp frame_analyzer_host
+subninja obj/rtc_tools/psnr_ssim_analyzer.ninja
+subninja obj/rtc_tools/reference_less_video_analysis.ninja
+subninja obj/rtc_tools/reference_less_video_analysis_lib.ninja
+subninja obj/rtc_tools/rgba_to_i420_converter.ninja
+build obj/rtc_tools/rtc_tools.stamp: stamp ./frame_analyzer obj/rtc_tools/libvideo_file_reader.a obj/rtc_tools/libvideo_quality_analysis.a ./psnr_ssim_analyzer ./rgba_to_i420_converter obj/rtc_tools/libchart_proto.a ./tools_unittests ./event_log_visualizer obj/rtc_tools/rtp_analyzer.stamp ./unpack_aecdump obj/rtc_tools/network_tester/libnetwork_tester.a
+build misc.py: copy ../../rtc_tools/py_event_log_analyzer/misc.py || obj/logging/librtc_event_log_proto.a
+build pb_parse.py: copy ../../rtc_tools/py_event_log_analyzer/pb_parse.py || obj/logging/librtc_event_log_proto.a
+build rtp_analyzer.py: copy ../../rtc_tools/py_event_log_analyzer/rtp_analyzer.py || obj/logging/librtc_event_log_proto.a
+build rtp_analyzer.sh: copy ../../rtc_tools/py_event_log_analyzer/rtp_analyzer.sh || obj/logging/librtc_event_log_proto.a
+
+build obj/rtc_tools/rtp_analyzer.stamp: stamp misc.py pb_parse.py rtp_analyzer.py rtp_analyzer.sh
+subninja obj/rtc_tools/rtp_generator.ninja
+subninja obj/rtc_tools/tools_unittests.ninja
+subninja obj/rtc_tools/unpack_aecdump.ninja
+subninja obj/rtc_tools/video_file_reader.ninja
+subninja obj/rtc_tools/video_file_writer.ninja
+subninja obj/rtc_tools/video_quality_analysis.ninja
+subninja obj/rtc_tools/network_tester/network_tester.ninja
+subninja obj/rtc_tools/network_tester/network_tester_config_proto.ninja
+rule __rtc_tools_network_tester_network_tester_config_proto_gen___build_toolchain_linux_clang_x64__rule
+  command = python ../../tools/protoc_wrapper/protoc_wrapper.py network_tester_config.proto --protoc ./protoc --proto-in-dir ../../rtc_tools/network_tester --cc-out-dir gen/rtc_tools/network_tester --py-out-dir pyproto/rtc_tools/network_tester
+  description = ACTION //rtc_tools/network_tester:network_tester_config_proto_gen(//build/toolchain/linux:clang_x64)
+  restat = 1
+  pool = build_toolchain_action_pool
+
+build pyproto/rtc_tools/network_tester/network_tester_config_pb2.py gen/rtc_tools/network_tester/network_tester_config.pb.h gen/rtc_tools/network_tester/network_tester_config.pb.cc: __rtc_tools_network_tester_network_tester_config_proto_gen___build_toolchain_linux_clang_x64__rule | ../../tools/protoc_wrapper/protoc_wrapper.py protoc ../../rtc_tools/network_tester/network_tester_config.proto ./protoc
+
+build obj/rtc_tools/network_tester/network_tester_config_proto_gen.stamp: stamp pyproto/rtc_tools/network_tester/network_tester_config_pb2.py gen/rtc_tools/network_tester/network_tester_config.pb.h gen/rtc_tools/network_tester/network_tester_config.pb.cc
+subninja obj/rtc_tools/network_tester/network_tester_packet_proto.ninja
+rule __rtc_tools_network_tester_network_tester_packet_proto_gen___build_toolchain_linux_clang_x64__rule
+  command = python ../../tools/protoc_wrapper/protoc_wrapper.py network_tester_packet.proto --protoc ./protoc --proto-in-dir ../../rtc_tools/network_tester --cc-out-dir gen/rtc_tools/network_tester --py-out-dir pyproto/rtc_tools/network_tester
+  description = ACTION //rtc_tools/network_tester:network_tester_packet_proto_gen(//build/toolchain/linux:clang_x64)
+  restat = 1
+  pool = build_toolchain_action_pool
+
+build pyproto/rtc_tools/network_tester/network_tester_packet_pb2.py gen/rtc_tools/network_tester/network_tester_packet.pb.h gen/rtc_tools/network_tester/network_tester_packet.pb.cc: __rtc_tools_network_tester_network_tester_packet_proto_gen___build_toolchain_linux_clang_x64__rule | ../../tools/protoc_wrapper/protoc_wrapper.py protoc ../../rtc_tools/network_tester/network_tester_packet.proto ./protoc
+
+build obj/rtc_tools/network_tester/network_tester_packet_proto_gen.stamp: stamp pyproto/rtc_tools/network_tester/network_tester_packet_pb2.py gen/rtc_tools/network_tester/network_tester_packet.pb.h gen/rtc_tools/network_tester/network_tester_packet.pb.cc
+subninja obj/rtc_tools/network_tester/network_tester_server.ninja
+subninja obj/rtc_tools/network_tester/network_tester_unittests.ninja
+subninja obj/sdk/media_constraints.ninja
+build obj/sdk/sdk.stamp: stamp
+subninja obj/sdk/sdk_tests.ninja
+subninja obj/stats/rtc_stats.ninja
+subninja obj/stats/rtc_stats_test_utils.ninja
+subninja obj/stats/rtc_stats_unittests.ninja
+build obj/stats/stats.stamp: stamp obj/stats/librtc_stats.a
+subninja obj/system_wrappers/cpu_features_api.ninja
+subninja obj/system_wrappers/cpu_features_linux.ninja
+subninja obj/system_wrappers/event_wrapper.ninja
+subninja obj/system_wrappers/field_trial.ninja
+subninja obj/system_wrappers/metrics.ninja
+subninja obj/system_wrappers/system_wrappers.ninja
+subninja obj/system_wrappers/system_wrappers_unittests.ninja
+subninja obj/test/audio_codec_mocks.ninja
+subninja obj/test/call_config_utils.ninja
+subninja obj/test/copy_to_file_audio_capturer.ninja
+subninja obj/test/copy_to_file_audio_capturer_unittest.ninja
+subninja obj/test/direct_transport.ninja
+subninja obj/test/encoder_settings.ninja
+subninja obj/test/fake_video_codecs.ninja
+subninja obj/test/field_trial.ninja
+subninja obj/test/fileutils.ninja
+subninja obj/test/fileutils_override_api.ninja
+subninja obj/test/fileutils_override_impl.ninja
+subninja obj/test/fileutils_unittests.ninja
+subninja obj/test/null_transport.ninja
+subninja obj/test/perf_test.ninja
+subninja obj/test/platform_video_capturer.ninja
+subninja obj/test/rtp_test_utils.ninja
+subninja obj/test/run_test.ninja
+subninja obj/test/run_test_generic.ninja
+subninja obj/test/run_test_interface.ninja
+subninja obj/test/single_threaded_task_queue.ninja
+build obj/test/test.stamp: stamp obj/test/copy_to_file_audio_capturer.stamp obj/test/rtp_test_utils.stamp obj/test/test_common.stamp obj/test/test_renderer.stamp obj/test/test_support.stamp obj/test/video_test_common.stamp obj/test/pc/e2e/e2e.stamp obj/test/test_main.stamp ./test_support_unittests ./scenario_tests
+subninja obj/test/test_common.ninja
+subninja obj/test/test_main.ninja
+subninja obj/test/test_main_lib.ninja
+subninja obj/test/test_renderer.ninja
+subninja obj/test/test_renderer_generic.ninja
+subninja obj/test/test_support.ninja
+subninja obj/test/test_support_test_artifacts.ninja
+subninja obj/test/test_support_unittests.ninja
+subninja obj/test/video_test_common.ninja
+subninja obj/test/video_test_support.ninja
+subninja obj/test/logging/log_writer.ninja
+subninja obj/test/network/cross_traffic_unittest.ninja
+subninja obj/test/network/emulated_network.ninja
+subninja obj/test/network/feedback_generator.ninja
+subninja obj/test/network/feedback_generator_unittest.ninja
+subninja obj/test/network/network_emulation_pc_unittest.ninja
+subninja obj/test/network/network_emulation_unittest.ninja
+subninja obj/test/network/network_emulation_unittests.ninja
+subninja obj/test/pc/e2e/analyzer_helper.ninja
+subninja obj/test/pc/e2e/default_audio_quality_analyzer.ninja
+subninja obj/test/pc/e2e/default_encoded_image_data_injector.ninja
+subninja obj/test/pc/e2e/default_encoded_image_data_injector_unittest.ninja
+subninja obj/test/pc/e2e/default_video_quality_analyzer.ninja
+build obj/test/pc/e2e/e2e.stamp: stamp obj/test/pc/e2e/default_encoded_image_data_injector.stamp obj/test/pc/e2e/encoded_image_data_injector_api.stamp obj/test/pc/e2e/example_video_quality_analyzer.stamp obj/test/pc/e2e/id_generator.stamp obj/test/pc/e2e/quality_analyzing_video_decoder.stamp obj/test/pc/e2e/quality_analyzing_video_encoder.stamp obj/test/pc/e2e/single_process_encoded_image_data_injector.stamp obj/test/pc/e2e/peerconnection_quality_test.stamp obj/test/pc/e2e/test_peer.stamp obj/test/pc/e2e/video_quality_analyzer_injection_helper.stamp
+build obj/test/pc/e2e/e2e_unittests.stamp: stamp obj/test/pc/e2e/default_encoded_image_data_injector_unittest.stamp obj/test/pc/e2e/peer_connection_e2e_smoke_test.stamp obj/test/pc/e2e/single_process_encoded_image_data_injector_unittest.stamp
+subninja obj/test/pc/e2e/echo_emulation.ninja
+subninja obj/test/pc/e2e/encoded_image_data_injector_api.ninja
+subninja obj/test/pc/e2e/example_video_quality_analyzer.ninja
+subninja obj/test/pc/e2e/id_generator.ninja
+subninja obj/test/pc/e2e/network_quality_metrics_reporter.ninja
+subninja obj/test/pc/e2e/peer_connection_e2e_smoke_test.ninja
+subninja obj/test/pc/e2e/peer_connection_quality_test_params.ninja
+subninja obj/test/pc/e2e/peerconnection_quality_test.ninja
+subninja obj/test/pc/e2e/quality_analyzing_video_decoder.ninja
+subninja obj/test/pc/e2e/quality_analyzing_video_encoder.ninja
+subninja obj/test/pc/e2e/sdp_changer.ninja
+subninja obj/test/pc/e2e/simulcast_dummy_buffer_helper.ninja
+subninja obj/test/pc/e2e/single_process_encoded_image_data_injector.ninja
+subninja obj/test/pc/e2e/single_process_encoded_image_data_injector_unittest.ninja
+subninja obj/test/pc/e2e/stats_poller.ninja
+subninja obj/test/pc/e2e/test_peer.ninja
+subninja obj/test/pc/e2e/video_quality_analyzer_injection_helper.ninja
+subninja obj/test/peer_scenario/peer_scenario.ninja
+subninja obj/test/peer_scenario/tests/tests.ninja
+subninja obj/test/scenario/column_printer.ninja
+subninja obj/test/scenario/scenario.ninja
+subninja obj/test/scenario/scenario_unittests.ninja
+subninja obj/test/scenario/scenario_tests/scenario_tests.ninja
+subninja obj/test/time_controller/time_controller.ninja
+subninja obj/test/time_controller/time_controller_unittests.ninja
+subninja obj/testing/gmock/gmock.ninja
+subninja obj/testing/gmock/gmock_main.ninja
+subninja obj/testing/gtest/gtest.ninja
+subninja obj/testing/gtest/gtest_main.ninja
+subninja obj/third_party/freetype_harfbuzz.ninja
+build obj/third_party/jpeg.stamp: stamp obj/third_party/libjpeg_turbo/libjpeg.a
+build obj/third_party/jpeg_includes.stamp: stamp
+build obj/third_party/abseil-cpp/default.stamp: stamp obj/third_party/abseil-cpp/absl/types/any.stamp obj/third_party/abseil-cpp/absl/types/bad_any_cast.stamp obj/third_party/abseil-cpp/absl/types/span.stamp obj/third_party/abseil-cpp/absl/types/optional.stamp obj/third_party/abseil-cpp/absl/types/bad_optional_access.stamp
+subninja obj/third_party/abseil-cpp/absl/algorithm/algorithm.ninja
+subninja obj/third_party/abseil-cpp/absl/algorithm/container.ninja
+subninja obj/third_party/abseil-cpp/absl/base/atomic_hook.ninja
+subninja obj/third_party/abseil-cpp/absl/base/base.ninja
+subninja obj/third_party/abseil-cpp/absl/base/base_internal.ninja
+subninja obj/third_party/abseil-cpp/absl/base/bits.ninja
+subninja obj/third_party/abseil-cpp/absl/base/config.ninja
+subninja obj/third_party/abseil-cpp/absl/base/core_headers.ninja
+subninja obj/third_party/abseil-cpp/absl/base/dynamic_annotations.ninja
+subninja obj/third_party/abseil-cpp/absl/base/endian.ninja
+subninja obj/third_party/abseil-cpp/absl/base/exception_testing.ninja
+subninja obj/third_party/abseil-cpp/absl/base/log_severity.ninja
+subninja obj/third_party/abseil-cpp/absl/base/malloc_internal.ninja
+subninja obj/third_party/abseil-cpp/absl/base/pretty_function.ninja
+subninja obj/third_party/abseil-cpp/absl/base/raw_logging_internal.ninja
+subninja obj/third_party/abseil-cpp/absl/base/scoped_set_env.ninja
+subninja obj/third_party/abseil-cpp/absl/base/spinlock_test_common.ninja
+subninja obj/third_party/abseil-cpp/absl/base/spinlock_wait.ninja
+subninja obj/third_party/abseil-cpp/absl/base/throw_delegate.ninja
+subninja obj/third_party/abseil-cpp/absl/container/btree.ninja
+subninja obj/third_party/abseil-cpp/absl/container/common.ninja
+subninja obj/third_party/abseil-cpp/absl/container/compressed_tuple.ninja
+subninja obj/third_party/abseil-cpp/absl/container/container_memory.ninja
+subninja obj/third_party/abseil-cpp/absl/container/counting_allocator.ninja
+subninja obj/third_party/abseil-cpp/absl/container/fixed_array.ninja
+subninja obj/third_party/abseil-cpp/absl/container/flat_hash_map.ninja
+subninja obj/third_party/abseil-cpp/absl/container/flat_hash_set.ninja
+subninja obj/third_party/abseil-cpp/absl/container/hash_function_defaults.ninja
+subninja obj/third_party/abseil-cpp/absl/container/hash_generator_testing.ninja
+subninja obj/third_party/abseil-cpp/absl/container/hash_policy_testing.ninja
+subninja obj/third_party/abseil-cpp/absl/container/hash_policy_traits.ninja
+subninja obj/third_party/abseil-cpp/absl/container/hashtable_debug.ninja
+subninja obj/third_party/abseil-cpp/absl/container/hashtable_debug_hooks.ninja
+subninja obj/third_party/abseil-cpp/absl/container/hashtablez_sampler.ninja
+subninja obj/third_party/abseil-cpp/absl/container/have_sse.ninja
+subninja obj/third_party/abseil-cpp/absl/container/inlined_vector.ninja
+subninja obj/third_party/abseil-cpp/absl/container/inlined_vector_internal.ninja
+subninja obj/third_party/abseil-cpp/absl/container/layout.ninja
+subninja obj/third_party/abseil-cpp/absl/container/node_hash_map.ninja
+subninja obj/third_party/abseil-cpp/absl/container/node_hash_policy.ninja
+subninja obj/third_party/abseil-cpp/absl/container/node_hash_set.ninja
+subninja obj/third_party/abseil-cpp/absl/container/raw_hash_map.ninja
+subninja obj/third_party/abseil-cpp/absl/container/raw_hash_set.ninja
+subninja obj/third_party/abseil-cpp/absl/container/test_instance_tracker.ninja
+subninja obj/third_party/abseil-cpp/absl/container/tracked.ninja
+subninja obj/third_party/abseil-cpp/absl/container/unordered_map_constructor_test.ninja
+subninja obj/third_party/abseil-cpp/absl/container/unordered_map_lookup_test.ninja
+subninja obj/third_party/abseil-cpp/absl/container/unordered_map_members_test.ninja
+subninja obj/third_party/abseil-cpp/absl/container/unordered_map_modifiers_test.ninja
+subninja obj/third_party/abseil-cpp/absl/container/unordered_set_constructor_test.ninja
+subninja obj/third_party/abseil-cpp/absl/container/unordered_set_lookup_test.ninja
+subninja obj/third_party/abseil-cpp/absl/container/unordered_set_members_test.ninja
+subninja obj/third_party/abseil-cpp/absl/container/unordered_set_modifiers_test.ninja
+subninja obj/third_party/abseil-cpp/absl/debugging/debugging_internal.ninja
+subninja obj/third_party/abseil-cpp/absl/debugging/demangle_internal.ninja
+subninja obj/third_party/abseil-cpp/absl/debugging/examine_stack.ninja
+subninja obj/third_party/abseil-cpp/absl/debugging/failure_signal_handler.ninja
+subninja obj/third_party/abseil-cpp/absl/debugging/leak_check.ninja
+subninja obj/third_party/abseil-cpp/absl/debugging/leak_check_api_disabled_for_testing.ninja
+subninja obj/third_party/abseil-cpp/absl/debugging/leak_check_disable.ninja
+subninja obj/third_party/abseil-cpp/absl/debugging/stack_consumption.ninja
+subninja obj/third_party/abseil-cpp/absl/debugging/stacktrace.ninja
+subninja obj/third_party/abseil-cpp/absl/debugging/symbolize.ninja
+subninja obj/third_party/abseil-cpp/absl/flags/config.ninja
+subninja obj/third_party/abseil-cpp/absl/flags/flag.ninja
+subninja obj/third_party/abseil-cpp/absl/flags/handle.ninja
+subninja obj/third_party/abseil-cpp/absl/flags/internal.ninja
+subninja obj/third_party/abseil-cpp/absl/flags/marshalling.ninja
+subninja obj/third_party/abseil-cpp/absl/flags/parse.ninja
+subninja obj/third_party/abseil-cpp/absl/flags/registry.ninja
+subninja obj/third_party/abseil-cpp/absl/flags/usage.ninja
+subninja obj/third_party/abseil-cpp/absl/flags/usage_internal.ninja
+subninja obj/third_party/abseil-cpp/absl/hash/city.ninja
+subninja obj/third_party/abseil-cpp/absl/hash/hash.ninja
+subninja obj/third_party/abseil-cpp/absl/hash/hash_testing.ninja
+subninja obj/third_party/abseil-cpp/absl/hash/spy_hash_state.ninja
+subninja obj/third_party/abseil-cpp/absl/memory/memory.ninja
+subninja obj/third_party/abseil-cpp/absl/meta/type_traits.ninja
+subninja obj/third_party/abseil-cpp/absl/numeric/int128.ninja
+subninja obj/third_party/abseil-cpp/absl/strings/internal.ninja
+subninja obj/third_party/abseil-cpp/absl/strings/pow10_helper.ninja
+subninja obj/third_party/abseil-cpp/absl/strings/str_format.ninja
+subninja obj/third_party/abseil-cpp/absl/strings/str_format_internal.ninja
+subninja obj/third_party/abseil-cpp/absl/strings/strings.ninja
+subninja obj/third_party/abseil-cpp/absl/synchronization/graphcycles_internal.ninja
+subninja obj/third_party/abseil-cpp/absl/synchronization/per_thread_sem_test_common.ninja
+subninja obj/third_party/abseil-cpp/absl/synchronization/synchronization.ninja
+subninja obj/third_party/abseil-cpp/absl/synchronization/thread_pool.ninja
+subninja obj/third_party/abseil-cpp/absl/time/test_util.ninja
+subninja obj/third_party/abseil-cpp/absl/time/time.ninja
+subninja obj/third_party/abseil-cpp/absl/time/internal/cctz/civil_time.ninja
+subninja obj/third_party/abseil-cpp/absl/time/internal/cctz/includes.ninja
+subninja obj/third_party/abseil-cpp/absl/time/internal/cctz/time_zone.ninja
+subninja obj/third_party/abseil-cpp/absl/types/any.ninja
+subninja obj/third_party/abseil-cpp/absl/types/bad_any_cast.ninja
+subninja obj/third_party/abseil-cpp/absl/types/bad_any_cast_impl.ninja
+subninja obj/third_party/abseil-cpp/absl/types/bad_optional_access.ninja
+subninja obj/third_party/abseil-cpp/absl/types/bad_variant_access.ninja
+subninja obj/third_party/abseil-cpp/absl/types/compare.ninja
+subninja obj/third_party/abseil-cpp/absl/types/optional.ninja
+subninja obj/third_party/abseil-cpp/absl/types/span.ninja
+subninja obj/third_party/abseil-cpp/absl/types/variant.ninja
+subninja obj/third_party/abseil-cpp/absl/utility/utility.ninja
+subninja obj/third_party/boringssl/boringssl.ninja
+subninja obj/third_party/boringssl/boringssl_asm.ninja
+subninja obj/third_party/boringssl/src/third_party/fiat/fiat_license.ninja
+subninja obj/third_party/freetype/freetype_source.ninja
+subninja obj/third_party/googletest/gmock.ninja
+subninja obj/third_party/googletest/gmock_main.ninja
+subninja obj/third_party/googletest/gtest.ninja
+subninja obj/third_party/googletest/gtest_main.ninja
+build obj/third_party/harfbuzz-ng/harfbuzz_fuzzer.stamp: stamp
+subninja obj/third_party/harfbuzz-ng/harfbuzz_source.ninja
+build icudtl_extra.dat: copy ../../third_party/icu/android_small/icudtl_extra.dat
+
+build obj/third_party/icu/extra_icudata.stamp: stamp icudtl_extra.dat
+build obj/third_party/icu/icu.stamp: stamp obj/third_party/icu/libicui18n.a obj/third_party/icu/libicuuc.a
+build icudtl.dat: copy ../../third_party/icu/common/icudtl.dat
+
+build obj/third_party/icu/icudata.stamp: stamp icudtl.dat
+subninja obj/third_party/icu/icui18n.ninja
+subninja obj/third_party/icu/icuuc.ninja
+subninja obj/third_party/jsoncpp/jsoncpp.ninja
+build obj/third_party/jsoncpp/jsoncpp_fuzzer.stamp: stamp
+subninja obj/third_party/libjpeg_turbo/libjpeg.ninja
+subninja obj/third_party/libjpeg_turbo/libjpeg_headers.ninja
+subninja obj/third_party/libjpeg_turbo/simd.ninja
+subninja obj/third_party/libjpeg_turbo/simd_asm.ninja
+rule __third_party_libjpeg_turbo_simd_asm_action___build_toolchain_linux_clang_x64__rule
+  command = python ../../third_party/yasm/run_yasm.py ./yasm -DPIC -felf64 -m amd64 -I../../third_party/libjpeg_turbo/simd/nasm/ -I. -I../.. -Igen -D__x86_64__ -DPIC -DELF -o obj/third_party/libjpeg_turbo/simd_asm/${source_name_part}.o ${in}
+  description = ACTION //third_party/libjpeg_turbo:simd_asm_action(//build/toolchain/linux:clang_x64)
+  restat = 1
+  pool = build_toolchain_action_pool
+build obj/third_party/libjpeg_turbo/simd_asm_action.inputdeps.stamp: stamp ../../third_party/yasm/run_yasm.py ./yasm
+
+build obj/third_party/libjpeg_turbo/simd_asm/jccolor-avx2.o: __third_party_libjpeg_turbo_simd_asm_action___build_toolchain_linux_clang_x64__rule ../../third_party/libjpeg_turbo/simd/x86_64/jccolor-avx2.asm | obj/third_party/libjpeg_turbo/simd_asm_action.inputdeps.stamp
+  source_name_part = jccolor-avx2
+  depfile = obj/third_party/libjpeg_turbo/simd_asm/jccolor-avx2.o.d
+build obj/third_party/libjpeg_turbo/simd_asm/jccolor-sse2.o: __third_party_libjpeg_turbo_simd_asm_action___build_toolchain_linux_clang_x64__rule ../../third_party/libjpeg_turbo/simd/x86_64/jccolor-sse2.asm | obj/third_party/libjpeg_turbo/simd_asm_action.inputdeps.stamp
+  source_name_part = jccolor-sse2
+  depfile = obj/third_party/libjpeg_turbo/simd_asm/jccolor-sse2.o.d
+build obj/third_party/libjpeg_turbo/simd_asm/jcgray-avx2.o: __third_party_libjpeg_turbo_simd_asm_action___build_toolchain_linux_clang_x64__rule ../../third_party/libjpeg_turbo/simd/x86_64/jcgray-avx2.asm | obj/third_party/libjpeg_turbo/simd_asm_action.inputdeps.stamp
+  source_name_part = jcgray-avx2
+  depfile = obj/third_party/libjpeg_turbo/simd_asm/jcgray-avx2.o.d
+build obj/third_party/libjpeg_turbo/simd_asm/jcgray-sse2.o: __third_party_libjpeg_turbo_simd_asm_action___build_toolchain_linux_clang_x64__rule ../../third_party/libjpeg_turbo/simd/x86_64/jcgray-sse2.asm | obj/third_party/libjpeg_turbo/simd_asm_action.inputdeps.stamp
+  source_name_part = jcgray-sse2
+  depfile = obj/third_party/libjpeg_turbo/simd_asm/jcgray-sse2.o.d
+build obj/third_party/libjpeg_turbo/simd_asm/jchuff-sse2.o: __third_party_libjpeg_turbo_simd_asm_action___build_toolchain_linux_clang_x64__rule ../../third_party/libjpeg_turbo/simd/x86_64/jchuff-sse2.asm | obj/third_party/libjpeg_turbo/simd_asm_action.inputdeps.stamp
+  source_name_part = jchuff-sse2
+  depfile = obj/third_party/libjpeg_turbo/simd_asm/jchuff-sse2.o.d
+build obj/third_party/libjpeg_turbo/simd_asm/jcphuff-sse2.o: __third_party_libjpeg_turbo_simd_asm_action___build_toolchain_linux_clang_x64__rule ../../third_party/libjpeg_turbo/simd/x86_64/jcphuff-sse2.asm | obj/third_party/libjpeg_turbo/simd_asm_action.inputdeps.stamp
+  source_name_part = jcphuff-sse2
+  depfile = obj/third_party/libjpeg_turbo/simd_asm/jcphuff-sse2.o.d
+build obj/third_party/libjpeg_turbo/simd_asm/jcsample-avx2.o: __third_party_libjpeg_turbo_simd_asm_action___build_toolchain_linux_clang_x64__rule ../../third_party/libjpeg_turbo/simd/x86_64/jcsample-avx2.asm | obj/third_party/libjpeg_turbo/simd_asm_action.inputdeps.stamp
+  source_name_part = jcsample-avx2
+  depfile = obj/third_party/libjpeg_turbo/simd_asm/jcsample-avx2.o.d
+build obj/third_party/libjpeg_turbo/simd_asm/jcsample-sse2.o: __third_party_libjpeg_turbo_simd_asm_action___build_toolchain_linux_clang_x64__rule ../../third_party/libjpeg_turbo/simd/x86_64/jcsample-sse2.asm | obj/third_party/libjpeg_turbo/simd_asm_action.inputdeps.stamp
+  source_name_part = jcsample-sse2
+  depfile = obj/third_party/libjpeg_turbo/simd_asm/jcsample-sse2.o.d
+build obj/third_party/libjpeg_turbo/simd_asm/jdcolor-avx2.o: __third_party_libjpeg_turbo_simd_asm_action___build_toolchain_linux_clang_x64__rule ../../third_party/libjpeg_turbo/simd/x86_64/jdcolor-avx2.asm | obj/third_party/libjpeg_turbo/simd_asm_action.inputdeps.stamp
+  source_name_part = jdcolor-avx2
+  depfile = obj/third_party/libjpeg_turbo/simd_asm/jdcolor-avx2.o.d
+build obj/third_party/libjpeg_turbo/simd_asm/jdcolor-sse2.o: __third_party_libjpeg_turbo_simd_asm_action___build_toolchain_linux_clang_x64__rule ../../third_party/libjpeg_turbo/simd/x86_64/jdcolor-sse2.asm | obj/third_party/libjpeg_turbo/simd_asm_action.inputdeps.stamp
+  source_name_part = jdcolor-sse2
+  depfile = obj/third_party/libjpeg_turbo/simd_asm/jdcolor-sse2.o.d
+build obj/third_party/libjpeg_turbo/simd_asm/jdmerge-avx2.o: __third_party_libjpeg_turbo_simd_asm_action___build_toolchain_linux_clang_x64__rule ../../third_party/libjpeg_turbo/simd/x86_64/jdmerge-avx2.asm | obj/third_party/libjpeg_turbo/simd_asm_action.inputdeps.stamp
+  source_name_part = jdmerge-avx2
+  depfile = obj/third_party/libjpeg_turbo/simd_asm/jdmerge-avx2.o.d
+build obj/third_party/libjpeg_turbo/simd_asm/jdmerge-sse2.o: __third_party_libjpeg_turbo_simd_asm_action___build_toolchain_linux_clang_x64__rule ../../third_party/libjpeg_turbo/simd/x86_64/jdmerge-sse2.asm | obj/third_party/libjpeg_turbo/simd_asm_action.inputdeps.stamp
+  source_name_part = jdmerge-sse2
+  depfile = obj/third_party/libjpeg_turbo/simd_asm/jdmerge-sse2.o.d
+build obj/third_party/libjpeg_turbo/simd_asm/jdsample-avx2.o: __third_party_libjpeg_turbo_simd_asm_action___build_toolchain_linux_clang_x64__rule ../../third_party/libjpeg_turbo/simd/x86_64/jdsample-avx2.asm | obj/third_party/libjpeg_turbo/simd_asm_action.inputdeps.stamp
+  source_name_part = jdsample-avx2
+  depfile = obj/third_party/libjpeg_turbo/simd_asm/jdsample-avx2.o.d
+build obj/third_party/libjpeg_turbo/simd_asm/jdsample-sse2.o: __third_party_libjpeg_turbo_simd_asm_action___build_toolchain_linux_clang_x64__rule ../../third_party/libjpeg_turbo/simd/x86_64/jdsample-sse2.asm | obj/third_party/libjpeg_turbo/simd_asm_action.inputdeps.stamp
+  source_name_part = jdsample-sse2
+  depfile = obj/third_party/libjpeg_turbo/simd_asm/jdsample-sse2.o.d
+build obj/third_party/libjpeg_turbo/simd_asm/jfdctflt-sse.o: __third_party_libjpeg_turbo_simd_asm_action___build_toolchain_linux_clang_x64__rule ../../third_party/libjpeg_turbo/simd/x86_64/jfdctflt-sse.asm | obj/third_party/libjpeg_turbo/simd_asm_action.inputdeps.stamp
+  source_name_part = jfdctflt-sse
+  depfile = obj/third_party/libjpeg_turbo/simd_asm/jfdctflt-sse.o.d
+build obj/third_party/libjpeg_turbo/simd_asm/jfdctfst-sse2.o: __third_party_libjpeg_turbo_simd_asm_action___build_toolchain_linux_clang_x64__rule ../../third_party/libjpeg_turbo/simd/x86_64/jfdctfst-sse2.asm | obj/third_party/libjpeg_turbo/simd_asm_action.inputdeps.stamp
+  source_name_part = jfdctfst-sse2
+  depfile = obj/third_party/libjpeg_turbo/simd_asm/jfdctfst-sse2.o.d
+build obj/third_party/libjpeg_turbo/simd_asm/jfdctint-avx2.o: __third_party_libjpeg_turbo_simd_asm_action___build_toolchain_linux_clang_x64__rule ../../third_party/libjpeg_turbo/simd/x86_64/jfdctint-avx2.asm | obj/third_party/libjpeg_turbo/simd_asm_action.inputdeps.stamp
+  source_name_part = jfdctint-avx2
+  depfile = obj/third_party/libjpeg_turbo/simd_asm/jfdctint-avx2.o.d
+build obj/third_party/libjpeg_turbo/simd_asm/jfdctint-sse2.o: __third_party_libjpeg_turbo_simd_asm_action___build_toolchain_linux_clang_x64__rule ../../third_party/libjpeg_turbo/simd/x86_64/jfdctint-sse2.asm | obj/third_party/libjpeg_turbo/simd_asm_action.inputdeps.stamp
+  source_name_part = jfdctint-sse2
+  depfile = obj/third_party/libjpeg_turbo/simd_asm/jfdctint-sse2.o.d
+build obj/third_party/libjpeg_turbo/simd_asm/jidctflt-sse2.o: __third_party_libjpeg_turbo_simd_asm_action___build_toolchain_linux_clang_x64__rule ../../third_party/libjpeg_turbo/simd/x86_64/jidctflt-sse2.asm | obj/third_party/libjpeg_turbo/simd_asm_action.inputdeps.stamp
+  source_name_part = jidctflt-sse2
+  depfile = obj/third_party/libjpeg_turbo/simd_asm/jidctflt-sse2.o.d
+build obj/third_party/libjpeg_turbo/simd_asm/jidctfst-sse2.o: __third_party_libjpeg_turbo_simd_asm_action___build_toolchain_linux_clang_x64__rule ../../third_party/libjpeg_turbo/simd/x86_64/jidctfst-sse2.asm | obj/third_party/libjpeg_turbo/simd_asm_action.inputdeps.stamp
+  source_name_part = jidctfst-sse2
+  depfile = obj/third_party/libjpeg_turbo/simd_asm/jidctfst-sse2.o.d
+build obj/third_party/libjpeg_turbo/simd_asm/jidctint-avx2.o: __third_party_libjpeg_turbo_simd_asm_action___build_toolchain_linux_clang_x64__rule ../../third_party/libjpeg_turbo/simd/x86_64/jidctint-avx2.asm | obj/third_party/libjpeg_turbo/simd_asm_action.inputdeps.stamp
+  source_name_part = jidctint-avx2
+  depfile = obj/third_party/libjpeg_turbo/simd_asm/jidctint-avx2.o.d
+build obj/third_party/libjpeg_turbo/simd_asm/jidctint-sse2.o: __third_party_libjpeg_turbo_simd_asm_action___build_toolchain_linux_clang_x64__rule ../../third_party/libjpeg_turbo/simd/x86_64/jidctint-sse2.asm | obj/third_party/libjpeg_turbo/simd_asm_action.inputdeps.stamp
+  source_name_part = jidctint-sse2
+  depfile = obj/third_party/libjpeg_turbo/simd_asm/jidctint-sse2.o.d
+build obj/third_party/libjpeg_turbo/simd_asm/jidctred-sse2.o: __third_party_libjpeg_turbo_simd_asm_action___build_toolchain_linux_clang_x64__rule ../../third_party/libjpeg_turbo/simd/x86_64/jidctred-sse2.asm | obj/third_party/libjpeg_turbo/simd_asm_action.inputdeps.stamp
+  source_name_part = jidctred-sse2
+  depfile = obj/third_party/libjpeg_turbo/simd_asm/jidctred-sse2.o.d
+build obj/third_party/libjpeg_turbo/simd_asm/jquantf-sse2.o: __third_party_libjpeg_turbo_simd_asm_action___build_toolchain_linux_clang_x64__rule ../../third_party/libjpeg_turbo/simd/x86_64/jquantf-sse2.asm | obj/third_party/libjpeg_turbo/simd_asm_action.inputdeps.stamp
+  source_name_part = jquantf-sse2
+  depfile = obj/third_party/libjpeg_turbo/simd_asm/jquantf-sse2.o.d
+build obj/third_party/libjpeg_turbo/simd_asm/jquanti-avx2.o: __third_party_libjpeg_turbo_simd_asm_action___build_toolchain_linux_clang_x64__rule ../../third_party/libjpeg_turbo/simd/x86_64/jquanti-avx2.asm | obj/third_party/libjpeg_turbo/simd_asm_action.inputdeps.stamp
+  source_name_part = jquanti-avx2
+  depfile = obj/third_party/libjpeg_turbo/simd_asm/jquanti-avx2.o.d
+build obj/third_party/libjpeg_turbo/simd_asm/jquanti-sse2.o: __third_party_libjpeg_turbo_simd_asm_action___build_toolchain_linux_clang_x64__rule ../../third_party/libjpeg_turbo/simd/x86_64/jquanti-sse2.asm | obj/third_party/libjpeg_turbo/simd_asm_action.inputdeps.stamp
+  source_name_part = jquanti-sse2
+  depfile = obj/third_party/libjpeg_turbo/simd_asm/jquanti-sse2.o.d
+build obj/third_party/libjpeg_turbo/simd_asm/jsimdcpu.o: __third_party_libjpeg_turbo_simd_asm_action___build_toolchain_linux_clang_x64__rule ../../third_party/libjpeg_turbo/simd/x86_64/jsimdcpu.asm | obj/third_party/libjpeg_turbo/simd_asm_action.inputdeps.stamp
+  source_name_part = jsimdcpu
+  depfile = obj/third_party/libjpeg_turbo/simd_asm/jsimdcpu.o.d
+
+build obj/third_party/libjpeg_turbo/simd_asm_action.stamp: stamp obj/third_party/libjpeg_turbo/simd_asm/jccolor-avx2.o obj/third_party/libjpeg_turbo/simd_asm/jccolor-sse2.o obj/third_party/libjpeg_turbo/simd_asm/jcgray-avx2.o obj/third_party/libjpeg_turbo/simd_asm/jcgray-sse2.o obj/third_party/libjpeg_turbo/simd_asm/jchuff-sse2.o obj/third_party/libjpeg_turbo/simd_asm/jcphuff-sse2.o obj/third_party/libjpeg_turbo/simd_asm/jcsample-avx2.o obj/third_party/libjpeg_turbo/simd_asm/jcsample-sse2.o obj/third_party/libjpeg_turbo/simd_asm/jdcolor-avx2.o obj/third_party/libjpeg_turbo/simd_asm/jdcolor-sse2.o obj/third_party/libjpeg_turbo/simd_asm/jdmerge-avx2.o obj/third_party/libjpeg_turbo/simd_asm/jdmerge-sse2.o obj/third_party/libjpeg_turbo/simd_asm/jdsample-avx2.o obj/third_party/libjpeg_turbo/simd_asm/jdsample-sse2.o obj/third_party/libjpeg_turbo/simd_asm/jfdctflt-sse.o obj/third_party/libjpeg_turbo/simd_asm/jfdctfst-sse2.o obj/third_party/libjpeg_turbo/simd_asm/jfdctint-avx2.o obj/third_party/libjpeg_turbo/simd_asm/jfdctint-sse2.o obj/third_party/libjpeg_turbo/simd_asm/jidctflt-sse2.o obj/third_party/libjpeg_turbo/simd_asm/jidctfst-sse2.o obj/third_party/libjpeg_turbo/simd_asm/jidctint-avx2.o obj/third_party/libjpeg_turbo/simd_asm/jidctint-sse2.o obj/third_party/libjpeg_turbo/simd_asm/jidctred-sse2.o obj/third_party/libjpeg_turbo/simd_asm/jquantf-sse2.o obj/third_party/libjpeg_turbo/simd_asm/jquanti-avx2.o obj/third_party/libjpeg_turbo/simd_asm/jquanti-sse2.o obj/third_party/libjpeg_turbo/simd_asm/jsimdcpu.o
+build obj/third_party/libpng/libpng.stamp: stamp obj/third_party/libpng/libpng_sources.stamp
+build obj/third_party/libpng/libpng_read_fuzzer.stamp: stamp
+subninja obj/third_party/libpng/libpng_sources.ninja
+subninja obj/third_party/libsrtp/libsrtp.ninja
+subninja obj/third_party/libvpx/libvpx.ninja
+subninja obj/third_party/libvpx/libvpx_intrinsics_avx.ninja
+subninja obj/third_party/libvpx/libvpx_intrinsics_avx2.ninja
+subninja obj/third_party/libvpx/libvpx_intrinsics_avx512.ninja
+subninja obj/third_party/libvpx/libvpx_intrinsics_mmx.ninja
+subninja obj/third_party/libvpx/libvpx_intrinsics_sse2.ninja
+subninja obj/third_party/libvpx/libvpx_intrinsics_sse4_1.ninja
+subninja obj/third_party/libvpx/libvpx_intrinsics_ssse3.ninja
+subninja obj/third_party/libvpx/libvpx_yasm.ninja
+rule __third_party_libvpx_libvpx_yasm_action___build_toolchain_linux_clang_x64__rule
+  command = python ../../third_party/yasm/run_yasm.py ./yasm -DPIC -felf64 -m amd64 -I../../third_party/libvpx/source/config -I../../third_party/libvpx/source/config/linux/x64 -I../../third_party/libvpx/source/libvpx -I. -I../.. -Igen -DCHROMIUM -o obj/third_party/libvpx/libvpx_yasm/${source_name_part}.o ${in}
+  description = ACTION //third_party/libvpx:libvpx_yasm_action(//build/toolchain/linux:clang_x64)
+  restat = 1
+  pool = build_toolchain_action_pool
+build obj/third_party/libvpx/libvpx_yasm_action.inputdeps.stamp: stamp ../../third_party/yasm/run_yasm.py ./yasm
+
+build obj/third_party/libvpx/libvpx_yasm/dequantize_mmx.o: __third_party_libvpx_libvpx_yasm_action___build_toolchain_linux_clang_x64__rule ../../third_party/libvpx/source/libvpx/vp8/common/x86/dequantize_mmx.asm | obj/third_party/libvpx/libvpx_yasm_action.inputdeps.stamp
+  source_name_part = dequantize_mmx
+  depfile = obj/third_party/libvpx/libvpx_yasm/dequantize_mmx.o.d
+build obj/third_party/libvpx/libvpx_yasm/idctllm_mmx.o: __third_party_libvpx_libvpx_yasm_action___build_toolchain_linux_clang_x64__rule ../../third_party/libvpx/source/libvpx/vp8/common/x86/idctllm_mmx.asm | obj/third_party/libvpx/libvpx_yasm_action.inputdeps.stamp
+  source_name_part = idctllm_mmx
+  depfile = obj/third_party/libvpx/libvpx_yasm/idctllm_mmx.o.d
+build obj/third_party/libvpx/libvpx_yasm/idctllm_sse2.o: __third_party_libvpx_libvpx_yasm_action___build_toolchain_linux_clang_x64__rule ../../third_party/libvpx/source/libvpx/vp8/common/x86/idctllm_sse2.asm | obj/third_party/libvpx/libvpx_yasm_action.inputdeps.stamp
+  source_name_part = idctllm_sse2
+  depfile = obj/third_party/libvpx/libvpx_yasm/idctllm_sse2.o.d
+build obj/third_party/libvpx/libvpx_yasm/iwalsh_sse2.o: __third_party_libvpx_libvpx_yasm_action___build_toolchain_linux_clang_x64__rule ../../third_party/libvpx/source/libvpx/vp8/common/x86/iwalsh_sse2.asm | obj/third_party/libvpx/libvpx_yasm_action.inputdeps.stamp
+  source_name_part = iwalsh_sse2
+  depfile = obj/third_party/libvpx/libvpx_yasm/iwalsh_sse2.o.d
+build obj/third_party/libvpx/libvpx_yasm/loopfilter_block_sse2_x86_64.o: __third_party_libvpx_libvpx_yasm_action___build_toolchain_linux_clang_x64__rule ../../third_party/libvpx/source/libvpx/vp8/common/x86/loopfilter_block_sse2_x86_64.asm | obj/third_party/libvpx/libvpx_yasm_action.inputdeps.stamp
+  source_name_part = loopfilter_block_sse2_x86_64
+  depfile = obj/third_party/libvpx/libvpx_yasm/loopfilter_block_sse2_x86_64.o.d
+build obj/third_party/libvpx/libvpx_yasm/loopfilter_sse2.o: __third_party_libvpx_libvpx_yasm_action___build_toolchain_linux_clang_x64__rule ../../third_party/libvpx/source/libvpx/vp8/common/x86/loopfilter_sse2.asm | obj/third_party/libvpx/libvpx_yasm_action.inputdeps.stamp
+  source_name_part = loopfilter_sse2
+  depfile = obj/third_party/libvpx/libvpx_yasm/loopfilter_sse2.o.d
+build obj/third_party/libvpx/libvpx_yasm/mfqe_sse2.o: __third_party_libvpx_libvpx_yasm_action___build_toolchain_linux_clang_x64__rule ../../third_party/libvpx/source/libvpx/vp8/common/x86/mfqe_sse2.asm | obj/third_party/libvpx/libvpx_yasm_action.inputdeps.stamp
+  source_name_part = mfqe_sse2
+  depfile = obj/third_party/libvpx/libvpx_yasm/mfqe_sse2.o.d
+build obj/third_party/libvpx/libvpx_yasm/recon_mmx.o: __third_party_libvpx_libvpx_yasm_action___build_toolchain_linux_clang_x64__rule ../../third_party/libvpx/source/libvpx/vp8/common/x86/recon_mmx.asm | obj/third_party/libvpx/libvpx_yasm_action.inputdeps.stamp
+  source_name_part = recon_mmx
+  depfile = obj/third_party/libvpx/libvpx_yasm/recon_mmx.o.d
+build obj/third_party/libvpx/libvpx_yasm/recon_sse2.o: __third_party_libvpx_libvpx_yasm_action___build_toolchain_linux_clang_x64__rule ../../third_party/libvpx/source/libvpx/vp8/common/x86/recon_sse2.asm | obj/third_party/libvpx/libvpx_yasm_action.inputdeps.stamp
+  source_name_part = recon_sse2
+  depfile = obj/third_party/libvpx/libvpx_yasm/recon_sse2.o.d
+build obj/third_party/libvpx/libvpx_yasm/subpixel_mmx.o: __third_party_libvpx_libvpx_yasm_action___build_toolchain_linux_clang_x64__rule ../../third_party/libvpx/source/libvpx/vp8/common/x86/subpixel_mmx.asm | obj/third_party/libvpx/libvpx_yasm_action.inputdeps.stamp
+  source_name_part = subpixel_mmx
+  depfile = obj/third_party/libvpx/libvpx_yasm/subpixel_mmx.o.d
+build obj/third_party/libvpx/libvpx_yasm/subpixel_sse2.o: __third_party_libvpx_libvpx_yasm_action___build_toolchain_linux_clang_x64__rule ../../third_party/libvpx/source/libvpx/vp8/common/x86/subpixel_sse2.asm | obj/third_party/libvpx/libvpx_yasm_action.inputdeps.stamp
+  source_name_part = subpixel_sse2
+  depfile = obj/third_party/libvpx/libvpx_yasm/subpixel_sse2.o.d
+build obj/third_party/libvpx/libvpx_yasm/subpixel_ssse3.o: __third_party_libvpx_libvpx_yasm_action___build_toolchain_linux_clang_x64__rule ../../third_party/libvpx/source/libvpx/vp8/common/x86/subpixel_ssse3.asm | obj/third_party/libvpx/libvpx_yasm_action.inputdeps.stamp
+  source_name_part = subpixel_ssse3
+  depfile = obj/third_party/libvpx/libvpx_yasm/subpixel_ssse3.o.d
+build obj/third_party/libvpx/libvpx_yasm/block_error_sse2.o: __third_party_libvpx_libvpx_yasm_action___build_toolchain_linux_clang_x64__rule ../../third_party/libvpx/source/libvpx/vp8/encoder/x86/block_error_sse2.asm | obj/third_party/libvpx/libvpx_yasm_action.inputdeps.stamp
+  source_name_part = block_error_sse2
+  depfile = obj/third_party/libvpx/libvpx_yasm/block_error_sse2.o.d
+build obj/third_party/libvpx/libvpx_yasm/copy_sse2.o: __third_party_libvpx_libvpx_yasm_action___build_toolchain_linux_clang_x64__rule ../../third_party/libvpx/source/libvpx/vp8/encoder/x86/copy_sse2.asm | obj/third_party/libvpx/libvpx_yasm_action.inputdeps.stamp
+  source_name_part = copy_sse2
+  depfile = obj/third_party/libvpx/libvpx_yasm/copy_sse2.o.d
+build obj/third_party/libvpx/libvpx_yasm/copy_sse3.o: __third_party_libvpx_libvpx_yasm_action___build_toolchain_linux_clang_x64__rule ../../third_party/libvpx/source/libvpx/vp8/encoder/x86/copy_sse3.asm | obj/third_party/libvpx/libvpx_yasm_action.inputdeps.stamp
+  source_name_part = copy_sse3
+  depfile = obj/third_party/libvpx/libvpx_yasm/copy_sse3.o.d
+build obj/third_party/libvpx/libvpx_yasm/dct_sse2.o: __third_party_libvpx_libvpx_yasm_action___build_toolchain_linux_clang_x64__rule ../../third_party/libvpx/source/libvpx/vp8/encoder/x86/dct_sse2.asm | obj/third_party/libvpx/libvpx_yasm_action.inputdeps.stamp
+  source_name_part = dct_sse2
+  depfile = obj/third_party/libvpx/libvpx_yasm/dct_sse2.o.d
+build obj/third_party/libvpx/libvpx_yasm/fwalsh_sse2.o: __third_party_libvpx_libvpx_yasm_action___build_toolchain_linux_clang_x64__rule ../../third_party/libvpx/source/libvpx/vp8/encoder/x86/fwalsh_sse2.asm | obj/third_party/libvpx/libvpx_yasm_action.inputdeps.stamp
+  source_name_part = fwalsh_sse2
+  depfile = obj/third_party/libvpx/libvpx_yasm/fwalsh_sse2.o.d
+build obj/third_party/libvpx/libvpx_yasm/vp9_mfqe_sse2.o: __third_party_libvpx_libvpx_yasm_action___build_toolchain_linux_clang_x64__rule ../../third_party/libvpx/source/libvpx/vp9/common/x86/vp9_mfqe_sse2.asm | obj/third_party/libvpx/libvpx_yasm_action.inputdeps.stamp
+  source_name_part = vp9_mfqe_sse2
+  depfile = obj/third_party/libvpx/libvpx_yasm/vp9_mfqe_sse2.o.d
+build obj/third_party/libvpx/libvpx_yasm/vp9_dct_sse2.o: __third_party_libvpx_libvpx_yasm_action___build_toolchain_linux_clang_x64__rule ../../third_party/libvpx/source/libvpx/vp9/encoder/x86/vp9_dct_sse2.asm | obj/third_party/libvpx/libvpx_yasm_action.inputdeps.stamp
+  source_name_part = vp9_dct_sse2
+  depfile = obj/third_party/libvpx/libvpx_yasm/vp9_dct_sse2.o.d
+build obj/third_party/libvpx/libvpx_yasm/vp9_error_sse2.o: __third_party_libvpx_libvpx_yasm_action___build_toolchain_linux_clang_x64__rule ../../third_party/libvpx/source/libvpx/vp9/encoder/x86/vp9_error_sse2.asm | obj/third_party/libvpx/libvpx_yasm_action.inputdeps.stamp
+  source_name_part = vp9_error_sse2
+  depfile = obj/third_party/libvpx/libvpx_yasm/vp9_error_sse2.o.d
+build obj/third_party/libvpx/libvpx_yasm/vp9_quantize_ssse3_x86_64.o: __third_party_libvpx_libvpx_yasm_action___build_toolchain_linux_clang_x64__rule ../../third_party/libvpx/source/libvpx/vp9/encoder/x86/vp9_quantize_ssse3_x86_64.asm | obj/third_party/libvpx/libvpx_yasm_action.inputdeps.stamp
+  source_name_part = vp9_quantize_ssse3_x86_64
+  depfile = obj/third_party/libvpx/libvpx_yasm/vp9_quantize_ssse3_x86_64.o.d
+build obj/third_party/libvpx/libvpx_yasm/add_noise_sse2.o: __third_party_libvpx_libvpx_yasm_action___build_toolchain_linux_clang_x64__rule ../../third_party/libvpx/source/libvpx/vpx_dsp/x86/add_noise_sse2.asm | obj/third_party/libvpx/libvpx_yasm_action.inputdeps.stamp
+  source_name_part = add_noise_sse2
+  depfile = obj/third_party/libvpx/libvpx_yasm/add_noise_sse2.o.d
+build obj/third_party/libvpx/libvpx_yasm/avg_ssse3_x86_64.o: __third_party_libvpx_libvpx_yasm_action___build_toolchain_linux_clang_x64__rule ../../third_party/libvpx/source/libvpx/vpx_dsp/x86/avg_ssse3_x86_64.asm | obj/third_party/libvpx/libvpx_yasm_action.inputdeps.stamp
+  source_name_part = avg_ssse3_x86_64
+  depfile = obj/third_party/libvpx/libvpx_yasm/avg_ssse3_x86_64.o.d
+build obj/third_party/libvpx/libvpx_yasm/deblock_sse2.o: __third_party_libvpx_libvpx_yasm_action___build_toolchain_linux_clang_x64__rule ../../third_party/libvpx/source/libvpx/vpx_dsp/x86/deblock_sse2.asm | obj/third_party/libvpx/libvpx_yasm_action.inputdeps.stamp
+  source_name_part = deblock_sse2
+  depfile = obj/third_party/libvpx/libvpx_yasm/deblock_sse2.o.d
+build obj/third_party/libvpx/libvpx_yasm/fwd_txfm_ssse3_x86_64.o: __third_party_libvpx_libvpx_yasm_action___build_toolchain_linux_clang_x64__rule ../../third_party/libvpx/source/libvpx/vpx_dsp/x86/fwd_txfm_ssse3_x86_64.asm | obj/third_party/libvpx/libvpx_yasm_action.inputdeps.stamp
+  source_name_part = fwd_txfm_ssse3_x86_64
+  depfile = obj/third_party/libvpx/libvpx_yasm/fwd_txfm_ssse3_x86_64.o.d
+build obj/third_party/libvpx/libvpx_yasm/highbd_intrapred_sse2.o: __third_party_libvpx_libvpx_yasm_action___build_toolchain_linux_clang_x64__rule ../../third_party/libvpx/source/libvpx/vpx_dsp/x86/highbd_intrapred_sse2.asm | obj/third_party/libvpx/libvpx_yasm_action.inputdeps.stamp
+  source_name_part = highbd_intrapred_sse2
+  depfile = obj/third_party/libvpx/libvpx_yasm/highbd_intrapred_sse2.o.d
+build obj/third_party/libvpx/libvpx_yasm/highbd_sad4d_sse2.o: __third_party_libvpx_libvpx_yasm_action___build_toolchain_linux_clang_x64__rule ../../third_party/libvpx/source/libvpx/vpx_dsp/x86/highbd_sad4d_sse2.asm | obj/third_party/libvpx/libvpx_yasm_action.inputdeps.stamp
+  source_name_part = highbd_sad4d_sse2
+  depfile = obj/third_party/libvpx/libvpx_yasm/highbd_sad4d_sse2.o.d
+build obj/third_party/libvpx/libvpx_yasm/highbd_sad_sse2.o: __third_party_libvpx_libvpx_yasm_action___build_toolchain_linux_clang_x64__rule ../../third_party/libvpx/source/libvpx/vpx_dsp/x86/highbd_sad_sse2.asm | obj/third_party/libvpx/libvpx_yasm_action.inputdeps.stamp
+  source_name_part = highbd_sad_sse2
+  depfile = obj/third_party/libvpx/libvpx_yasm/highbd_sad_sse2.o.d
+build obj/third_party/libvpx/libvpx_yasm/highbd_subpel_variance_impl_sse2.o: __third_party_libvpx_libvpx_yasm_action___build_toolchain_linux_clang_x64__rule ../../third_party/libvpx/source/libvpx/vpx_dsp/x86/highbd_subpel_variance_impl_sse2.asm | obj/third_party/libvpx/libvpx_yasm_action.inputdeps.stamp
+  source_name_part = highbd_subpel_variance_impl_sse2
+  depfile = obj/third_party/libvpx/libvpx_yasm/highbd_subpel_variance_impl_sse2.o.d
+build obj/third_party/libvpx/libvpx_yasm/highbd_variance_impl_sse2.o: __third_party_libvpx_libvpx_yasm_action___build_toolchain_linux_clang_x64__rule ../../third_party/libvpx/source/libvpx/vpx_dsp/x86/highbd_variance_impl_sse2.asm | obj/third_party/libvpx/libvpx_yasm_action.inputdeps.stamp
+  source_name_part = highbd_variance_impl_sse2
+  depfile = obj/third_party/libvpx/libvpx_yasm/highbd_variance_impl_sse2.o.d
+build obj/third_party/libvpx/libvpx_yasm/intrapred_sse2.o: __third_party_libvpx_libvpx_yasm_action___build_toolchain_linux_clang_x64__rule ../../third_party/libvpx/source/libvpx/vpx_dsp/x86/intrapred_sse2.asm | obj/third_party/libvpx/libvpx_yasm_action.inputdeps.stamp
+  source_name_part = intrapred_sse2
+  depfile = obj/third_party/libvpx/libvpx_yasm/intrapred_sse2.o.d
+build obj/third_party/libvpx/libvpx_yasm/intrapred_ssse3.o: __third_party_libvpx_libvpx_yasm_action___build_toolchain_linux_clang_x64__rule ../../third_party/libvpx/source/libvpx/vpx_dsp/x86/intrapred_ssse3.asm | obj/third_party/libvpx/libvpx_yasm_action.inputdeps.stamp
+  source_name_part = intrapred_ssse3
+  depfile = obj/third_party/libvpx/libvpx_yasm/intrapred_ssse3.o.d
+build obj/third_party/libvpx/libvpx_yasm/inv_wht_sse2.o: __third_party_libvpx_libvpx_yasm_action___build_toolchain_linux_clang_x64__rule ../../third_party/libvpx/source/libvpx/vpx_dsp/x86/inv_wht_sse2.asm | obj/third_party/libvpx/libvpx_yasm_action.inputdeps.stamp
+  source_name_part = inv_wht_sse2
+  depfile = obj/third_party/libvpx/libvpx_yasm/inv_wht_sse2.o.d
+build obj/third_party/libvpx/libvpx_yasm/sad4d_sse2.o: __third_party_libvpx_libvpx_yasm_action___build_toolchain_linux_clang_x64__rule ../../third_party/libvpx/source/libvpx/vpx_dsp/x86/sad4d_sse2.asm | obj/third_party/libvpx/libvpx_yasm_action.inputdeps.stamp
+  source_name_part = sad4d_sse2
+  depfile = obj/third_party/libvpx/libvpx_yasm/sad4d_sse2.o.d
+build obj/third_party/libvpx/libvpx_yasm/sad_sse2.o: __third_party_libvpx_libvpx_yasm_action___build_toolchain_linux_clang_x64__rule ../../third_party/libvpx/source/libvpx/vpx_dsp/x86/sad_sse2.asm | obj/third_party/libvpx/libvpx_yasm_action.inputdeps.stamp
+  source_name_part = sad_sse2
+  depfile = obj/third_party/libvpx/libvpx_yasm/sad_sse2.o.d
+build obj/third_party/libvpx/libvpx_yasm/sad_sse3.o: __third_party_libvpx_libvpx_yasm_action___build_toolchain_linux_clang_x64__rule ../../third_party/libvpx/source/libvpx/vpx_dsp/x86/sad_sse3.asm | obj/third_party/libvpx/libvpx_yasm_action.inputdeps.stamp
+  source_name_part = sad_sse3
+  depfile = obj/third_party/libvpx/libvpx_yasm/sad_sse3.o.d
+build obj/third_party/libvpx/libvpx_yasm/sad_sse4.o: __third_party_libvpx_libvpx_yasm_action___build_toolchain_linux_clang_x64__rule ../../third_party/libvpx/source/libvpx/vpx_dsp/x86/sad_sse4.asm | obj/third_party/libvpx/libvpx_yasm_action.inputdeps.stamp
+  source_name_part = sad_sse4
+  depfile = obj/third_party/libvpx/libvpx_yasm/sad_sse4.o.d
+build obj/third_party/libvpx/libvpx_yasm/sad_ssse3.o: __third_party_libvpx_libvpx_yasm_action___build_toolchain_linux_clang_x64__rule ../../third_party/libvpx/source/libvpx/vpx_dsp/x86/sad_ssse3.asm | obj/third_party/libvpx/libvpx_yasm_action.inputdeps.stamp
+  source_name_part = sad_ssse3
+  depfile = obj/third_party/libvpx/libvpx_yasm/sad_ssse3.o.d
+build obj/third_party/libvpx/libvpx_yasm/ssim_opt_x86_64.o: __third_party_libvpx_libvpx_yasm_action___build_toolchain_linux_clang_x64__rule ../../third_party/libvpx/source/libvpx/vpx_dsp/x86/ssim_opt_x86_64.asm | obj/third_party/libvpx/libvpx_yasm_action.inputdeps.stamp
+  source_name_part = ssim_opt_x86_64
+  depfile = obj/third_party/libvpx/libvpx_yasm/ssim_opt_x86_64.o.d
+build obj/third_party/libvpx/libvpx_yasm/subpel_variance_sse2.o: __third_party_libvpx_libvpx_yasm_action___build_toolchain_linux_clang_x64__rule ../../third_party/libvpx/source/libvpx/vpx_dsp/x86/subpel_variance_sse2.asm | obj/third_party/libvpx/libvpx_yasm_action.inputdeps.stamp
+  source_name_part = subpel_variance_sse2
+  depfile = obj/third_party/libvpx/libvpx_yasm/subpel_variance_sse2.o.d
+build obj/third_party/libvpx/libvpx_yasm/subtract_sse2.o: __third_party_libvpx_libvpx_yasm_action___build_toolchain_linux_clang_x64__rule ../../third_party/libvpx/source/libvpx/vpx_dsp/x86/subtract_sse2.asm | obj/third_party/libvpx/libvpx_yasm_action.inputdeps.stamp
+  source_name_part = subtract_sse2
+  depfile = obj/third_party/libvpx/libvpx_yasm/subtract_sse2.o.d
+build obj/third_party/libvpx/libvpx_yasm/vpx_convolve_copy_sse2.o: __third_party_libvpx_libvpx_yasm_action___build_toolchain_linux_clang_x64__rule ../../third_party/libvpx/source/libvpx/vpx_dsp/x86/vpx_convolve_copy_sse2.asm | obj/third_party/libvpx/libvpx_yasm_action.inputdeps.stamp
+  source_name_part = vpx_convolve_copy_sse2
+  depfile = obj/third_party/libvpx/libvpx_yasm/vpx_convolve_copy_sse2.o.d
+build obj/third_party/libvpx/libvpx_yasm/vpx_high_subpixel_8t_sse2.o: __third_party_libvpx_libvpx_yasm_action___build_toolchain_linux_clang_x64__rule ../../third_party/libvpx/source/libvpx/vpx_dsp/x86/vpx_high_subpixel_8t_sse2.asm | obj/third_party/libvpx/libvpx_yasm_action.inputdeps.stamp
+  source_name_part = vpx_high_subpixel_8t_sse2
+  depfile = obj/third_party/libvpx/libvpx_yasm/vpx_high_subpixel_8t_sse2.o.d
+build obj/third_party/libvpx/libvpx_yasm/vpx_high_subpixel_bilinear_sse2.o: __third_party_libvpx_libvpx_yasm_action___build_toolchain_linux_clang_x64__rule ../../third_party/libvpx/source/libvpx/vpx_dsp/x86/vpx_high_subpixel_bilinear_sse2.asm | obj/third_party/libvpx/libvpx_yasm_action.inputdeps.stamp
+  source_name_part = vpx_high_subpixel_bilinear_sse2
+  depfile = obj/third_party/libvpx/libvpx_yasm/vpx_high_subpixel_bilinear_sse2.o.d
+build obj/third_party/libvpx/libvpx_yasm/vpx_subpixel_8t_sse2.o: __third_party_libvpx_libvpx_yasm_action___build_toolchain_linux_clang_x64__rule ../../third_party/libvpx/source/libvpx/vpx_dsp/x86/vpx_subpixel_8t_sse2.asm | obj/third_party/libvpx/libvpx_yasm_action.inputdeps.stamp
+  source_name_part = vpx_subpixel_8t_sse2
+  depfile = obj/third_party/libvpx/libvpx_yasm/vpx_subpixel_8t_sse2.o.d
+build obj/third_party/libvpx/libvpx_yasm/vpx_subpixel_8t_ssse3.o: __third_party_libvpx_libvpx_yasm_action___build_toolchain_linux_clang_x64__rule ../../third_party/libvpx/source/libvpx/vpx_dsp/x86/vpx_subpixel_8t_ssse3.asm | obj/third_party/libvpx/libvpx_yasm_action.inputdeps.stamp
+  source_name_part = vpx_subpixel_8t_ssse3
+  depfile = obj/third_party/libvpx/libvpx_yasm/vpx_subpixel_8t_ssse3.o.d
+build obj/third_party/libvpx/libvpx_yasm/vpx_subpixel_bilinear_sse2.o: __third_party_libvpx_libvpx_yasm_action___build_toolchain_linux_clang_x64__rule ../../third_party/libvpx/source/libvpx/vpx_dsp/x86/vpx_subpixel_bilinear_sse2.asm | obj/third_party/libvpx/libvpx_yasm_action.inputdeps.stamp
+  source_name_part = vpx_subpixel_bilinear_sse2
+  depfile = obj/third_party/libvpx/libvpx_yasm/vpx_subpixel_bilinear_sse2.o.d
+build obj/third_party/libvpx/libvpx_yasm/vpx_subpixel_bilinear_ssse3.o: __third_party_libvpx_libvpx_yasm_action___build_toolchain_linux_clang_x64__rule ../../third_party/libvpx/source/libvpx/vpx_dsp/x86/vpx_subpixel_bilinear_ssse3.asm | obj/third_party/libvpx/libvpx_yasm_action.inputdeps.stamp
+  source_name_part = vpx_subpixel_bilinear_ssse3
+  depfile = obj/third_party/libvpx/libvpx_yasm/vpx_subpixel_bilinear_ssse3.o.d
+build obj/third_party/libvpx/libvpx_yasm/emms_mmx.o: __third_party_libvpx_libvpx_yasm_action___build_toolchain_linux_clang_x64__rule ../../third_party/libvpx/source/libvpx/vpx_ports/emms_mmx.asm | obj/third_party/libvpx/libvpx_yasm_action.inputdeps.stamp
+  source_name_part = emms_mmx
+  depfile = obj/third_party/libvpx/libvpx_yasm/emms_mmx.o.d
+build obj/third_party/libvpx/libvpx_yasm/float_control_word.o: __third_party_libvpx_libvpx_yasm_action___build_toolchain_linux_clang_x64__rule ../../third_party/libvpx/source/libvpx/vpx_ports/float_control_word.asm | obj/third_party/libvpx/libvpx_yasm_action.inputdeps.stamp
+  source_name_part = float_control_word
+  depfile = obj/third_party/libvpx/libvpx_yasm/float_control_word.o.d
+
+build obj/third_party/libvpx/libvpx_yasm_action.stamp: stamp obj/third_party/libvpx/libvpx_yasm/dequantize_mmx.o obj/third_party/libvpx/libvpx_yasm/idctllm_mmx.o obj/third_party/libvpx/libvpx_yasm/idctllm_sse2.o obj/third_party/libvpx/libvpx_yasm/iwalsh_sse2.o obj/third_party/libvpx/libvpx_yasm/loopfilter_block_sse2_x86_64.o obj/third_party/libvpx/libvpx_yasm/loopfilter_sse2.o obj/third_party/libvpx/libvpx_yasm/mfqe_sse2.o obj/third_party/libvpx/libvpx_yasm/recon_mmx.o obj/third_party/libvpx/libvpx_yasm/recon_sse2.o obj/third_party/libvpx/libvpx_yasm/subpixel_mmx.o obj/third_party/libvpx/libvpx_yasm/subpixel_sse2.o obj/third_party/libvpx/libvpx_yasm/subpixel_ssse3.o obj/third_party/libvpx/libvpx_yasm/block_error_sse2.o obj/third_party/libvpx/libvpx_yasm/copy_sse2.o obj/third_party/libvpx/libvpx_yasm/copy_sse3.o obj/third_party/libvpx/libvpx_yasm/dct_sse2.o obj/third_party/libvpx/libvpx_yasm/fwalsh_sse2.o obj/third_party/libvpx/libvpx_yasm/vp9_mfqe_sse2.o obj/third_party/libvpx/libvpx_yasm/vp9_dct_sse2.o obj/third_party/libvpx/libvpx_yasm/vp9_error_sse2.o obj/third_party/libvpx/libvpx_yasm/vp9_quantize_ssse3_x86_64.o obj/third_party/libvpx/libvpx_yasm/add_noise_sse2.o obj/third_party/libvpx/libvpx_yasm/avg_ssse3_x86_64.o obj/third_party/libvpx/libvpx_yasm/deblock_sse2.o obj/third_party/libvpx/libvpx_yasm/fwd_txfm_ssse3_x86_64.o obj/third_party/libvpx/libvpx_yasm/highbd_intrapred_sse2.o obj/third_party/libvpx/libvpx_yasm/highbd_sad4d_sse2.o obj/third_party/libvpx/libvpx_yasm/highbd_sad_sse2.o obj/third_party/libvpx/libvpx_yasm/highbd_subpel_variance_impl_sse2.o obj/third_party/libvpx/libvpx_yasm/highbd_variance_impl_sse2.o obj/third_party/libvpx/libvpx_yasm/intrapred_sse2.o obj/third_party/libvpx/libvpx_yasm/intrapred_ssse3.o obj/third_party/libvpx/libvpx_yasm/inv_wht_sse2.o obj/third_party/libvpx/libvpx_yasm/sad4d_sse2.o obj/third_party/libvpx/libvpx_yasm/sad_sse2.o obj/third_party/libvpx/libvpx_yasm/sad_sse3.o obj/third_party/libvpx/libvpx_yasm/sad_sse4.o obj/third_party/libvpx/libvpx_yasm/sad_ssse3.o obj/third_party/libvpx/libvpx_yasm/ssim_opt_x86_64.o obj/third_party/libvpx/libvpx_yasm/subpel_variance_sse2.o obj/third_party/libvpx/libvpx_yasm/subtract_sse2.o obj/third_party/libvpx/libvpx_yasm/vpx_convolve_copy_sse2.o obj/third_party/libvpx/libvpx_yasm/vpx_high_subpixel_8t_sse2.o obj/third_party/libvpx/libvpx_yasm/vpx_high_subpixel_bilinear_sse2.o obj/third_party/libvpx/libvpx_yasm/vpx_subpixel_8t_sse2.o obj/third_party/libvpx/libvpx_yasm/vpx_subpixel_8t_ssse3.o obj/third_party/libvpx/libvpx_yasm/vpx_subpixel_bilinear_sse2.o obj/third_party/libvpx/libvpx_yasm/vpx_subpixel_bilinear_ssse3.o obj/third_party/libvpx/libvpx_yasm/emms_mmx.o obj/third_party/libvpx/libvpx_yasm/float_control_word.o
+subninja obj/third_party/libyuv/compare.ninja
+subninja obj/third_party/libyuv/cpuid.ninja
+build obj/third_party/libyuv/default.stamp: stamp obj/third_party/libyuv/libyuv.stamp ./compare ./cpuid ./libyuv_unittest ./psnr ./yuvconvert
+build obj/third_party/libyuv/libyuv.stamp: stamp obj/third_party/libyuv/libyuv_internal.a obj/third_party/jpeg.stamp
+subninja obj/third_party/libyuv/libyuv_internal.ninja
+subninja obj/third_party/libyuv/libyuv_unittest.ninja
+subninja obj/third_party/libyuv/psnr.ninja
+subninja obj/third_party/libyuv/yuvconvert.ninja
+subninja obj/third_party/opus/opus.ninja
+subninja obj/third_party/opus/opus_compare.ninja
+subninja obj/third_party/opus/opus_demo.ninja
+subninja obj/third_party/opus/opus_sse41.ninja
+subninja obj/third_party/opus/test_opus_api.ninja
+subninja obj/third_party/opus/test_opus_decode.ninja
+subninja obj/third_party/opus/test_opus_encode.ninja
+subninja obj/third_party/opus/test_opus_padding.ninja
+subninja obj/third_party/pffft/fftpack.ninja
+build obj/third_party/pffft/fuzzers.stamp: stamp obj/third_party/pffft/pffft_complex_fuzzer.stamp obj/third_party/pffft/pffft_real_fuzzer.stamp
+rule __third_party_pffft_generate_pffft_fuzzer_corpus___build_toolchain_linux_clang_x64__rule
+  command = python ../../third_party/pffft/generate_seed_corpus.py gen/third_party/pffft/testdata
+  description = ACTION //third_party/pffft:generate_pffft_fuzzer_corpus(//build/toolchain/linux:clang_x64)
+  restat = 1
+  pool = build_toolchain_action_pool
+
+build gen/third_party/pffft/testdata: __third_party_pffft_generate_pffft_fuzzer_corpus___build_toolchain_linux_clang_x64__rule | ../../third_party/pffft/generate_seed_corpus.py ../../third_party/pffft/generate_seed_corpus.py
+
+build obj/third_party/pffft/generate_pffft_fuzzer_corpus.stamp: stamp gen/third_party/pffft/testdata
+subninja obj/third_party/pffft/pffft.ninja
+subninja obj/third_party/pffft/pffft_benchmark.ninja
+build obj/third_party/pffft/pffft_complex_fuzzer.stamp: stamp
+build obj/third_party/pffft/pffft_real_fuzzer.stamp: stamp
+subninja obj/third_party/pffft/pffft_unittest.ninja
+build pyproto/google/__init__.py: copy ../../third_party/protobuf/__init__.py
+
+build obj/third_party/protobuf/copy_google.stamp: stamp pyproto/google/__init__.py
+build pyproto/google/protobuf/__init__.py: copy ../../third_party/protobuf/python/google/protobuf/__init__.py
+build pyproto/google/protobuf/descriptor.py: copy ../../third_party/protobuf/python/google/protobuf/descriptor.py
+build pyproto/google/protobuf/descriptor_database.py: copy ../../third_party/protobuf/python/google/protobuf/descriptor_database.py
+build pyproto/google/protobuf/descriptor_pool.py: copy ../../third_party/protobuf/python/google/protobuf/descriptor_pool.py
+build pyproto/google/protobuf/json_format.py: copy ../../third_party/protobuf/python/google/protobuf/json_format.py
+build pyproto/google/protobuf/message.py: copy ../../third_party/protobuf/python/google/protobuf/message.py
+build pyproto/google/protobuf/message_factory.py: copy ../../third_party/protobuf/python/google/protobuf/message_factory.py
+build pyproto/google/protobuf/proto_builder.py: copy ../../third_party/protobuf/python/google/protobuf/proto_builder.py
+build pyproto/google/protobuf/reflection.py: copy ../../third_party/protobuf/python/google/protobuf/reflection.py
+build pyproto/google/protobuf/service.py: copy ../../third_party/protobuf/python/google/protobuf/service.py
+build pyproto/google/protobuf/service_reflection.py: copy ../../third_party/protobuf/python/google/protobuf/service_reflection.py
+build pyproto/google/protobuf/symbol_database.py: copy ../../third_party/protobuf/python/google/protobuf/symbol_database.py
+build pyproto/google/protobuf/text_encoding.py: copy ../../third_party/protobuf/python/google/protobuf/text_encoding.py
+build pyproto/google/protobuf/text_format.py: copy ../../third_party/protobuf/python/google/protobuf/text_format.py
+build pyproto/google/protobuf/descriptor_pb2.py: copy ../../third_party/protobuf/python/google/protobuf/descriptor_pb2.py
+
+build obj/third_party/protobuf/copy_google_protobuf.stamp: stamp pyproto/google/protobuf/__init__.py pyproto/google/protobuf/descriptor.py pyproto/google/protobuf/descriptor_database.py pyproto/google/protobuf/descriptor_pool.py pyproto/google/protobuf/json_format.py pyproto/google/protobuf/message.py pyproto/google/protobuf/message_factory.py pyproto/google/protobuf/proto_builder.py pyproto/google/protobuf/reflection.py pyproto/google/protobuf/service.py pyproto/google/protobuf/service_reflection.py pyproto/google/protobuf/symbol_database.py pyproto/google/protobuf/text_encoding.py pyproto/google/protobuf/text_format.py pyproto/google/protobuf/descriptor_pb2.py
+build pyproto/google/protobuf/internal/__init__.py: copy ../../third_party/protobuf/python/google/protobuf/internal/__init__.py
+build pyproto/google/protobuf/internal/_parameterized.py: copy ../../third_party/protobuf/python/google/protobuf/internal/_parameterized.py
+build pyproto/google/protobuf/internal/api_implementation.py: copy ../../third_party/protobuf/python/google/protobuf/internal/api_implementation.py
+build pyproto/google/protobuf/internal/containers.py: copy ../../third_party/protobuf/python/google/protobuf/internal/containers.py
+build pyproto/google/protobuf/internal/decoder.py: copy ../../third_party/protobuf/python/google/protobuf/internal/decoder.py
+build pyproto/google/protobuf/internal/encoder.py: copy ../../third_party/protobuf/python/google/protobuf/internal/encoder.py
+build pyproto/google/protobuf/internal/enum_type_wrapper.py: copy ../../third_party/protobuf/python/google/protobuf/internal/enum_type_wrapper.py
+build pyproto/google/protobuf/internal/extension_dict.py: copy ../../third_party/protobuf/python/google/protobuf/internal/extension_dict.py
+build pyproto/google/protobuf/internal/message_listener.py: copy ../../third_party/protobuf/python/google/protobuf/internal/message_listener.py
+build pyproto/google/protobuf/internal/python_message.py: copy ../../third_party/protobuf/python/google/protobuf/internal/python_message.py
+build pyproto/google/protobuf/internal/type_checkers.py: copy ../../third_party/protobuf/python/google/protobuf/internal/type_checkers.py
+build pyproto/google/protobuf/internal/well_known_types.py: copy ../../third_party/protobuf/python/google/protobuf/internal/well_known_types.py
+build pyproto/google/protobuf/internal/wire_format.py: copy ../../third_party/protobuf/python/google/protobuf/internal/wire_format.py
+
+build obj/third_party/protobuf/copy_google_protobuf_internal.stamp: stamp pyproto/google/protobuf/internal/__init__.py pyproto/google/protobuf/internal/_parameterized.py pyproto/google/protobuf/internal/api_implementation.py pyproto/google/protobuf/internal/containers.py pyproto/google/protobuf/internal/decoder.py pyproto/google/protobuf/internal/encoder.py pyproto/google/protobuf/internal/enum_type_wrapper.py pyproto/google/protobuf/internal/extension_dict.py pyproto/google/protobuf/internal/message_listener.py pyproto/google/protobuf/internal/python_message.py pyproto/google/protobuf/internal/type_checkers.py pyproto/google/protobuf/internal/well_known_types.py pyproto/google/protobuf/internal/wire_format.py
+build pyproto/google/third_party/six/six.py: copy ../../third_party/protobuf/third_party/six/six.py
+
+build obj/third_party/protobuf/copy_six.stamp: stamp pyproto/google/third_party/six/six.py
+subninja obj/third_party/protobuf/protobuf_full.ninja
+subninja obj/third_party/protobuf/protobuf_lite.ninja
+subninja obj/third_party/protobuf/protoc.ninja
+subninja obj/third_party/protobuf/protoc_lib.ninja
+build obj/third_party/protobuf/py_proto.stamp: stamp obj/third_party/protobuf/copy_google.stamp obj/third_party/protobuf/copy_google_protobuf.stamp obj/third_party/protobuf/copy_google_protobuf_internal.stamp obj/third_party/protobuf/copy_six.stamp
+build obj/third_party/protobuf/py_proto_runtime.stamp: stamp obj/third_party/protobuf/py_proto.stamp
+subninja obj/third_party/rnnoise/rnn_vad.ninja
+build obj/third_party/rnnoise/rnnoise.stamp: stamp obj/third_party/rnnoise/rnn_vad.stamp
+subninja obj/third_party/usrsctp/usrsctp.ninja
+rule __third_party_yasm_compile_gperf___build_toolchain_linux_clang_x64__rule
+  command = python ../../build/gn_run_binary.py genperf ${in} gen/third_party/yasm/${source_name_part}.c
+  description = ACTION //third_party/yasm:compile_gperf(//build/toolchain/linux:clang_x64)
+  restat = 1
+  pool = build_toolchain_action_pool
+build obj/third_party/yasm/compile_gperf.inputdeps.stamp: stamp ../../build/gn_run_binary.py ./genperf
+
+build gen/third_party/yasm/x86cpu.c: __third_party_yasm_compile_gperf___build_toolchain_linux_clang_x64__rule ../../third_party/yasm/source/patched-yasm/modules/arch/x86/x86cpu.gperf | obj/third_party/yasm/compile_gperf.inputdeps.stamp
+  source_name_part = x86cpu
+build gen/third_party/yasm/x86regtmod.c: __third_party_yasm_compile_gperf___build_toolchain_linux_clang_x64__rule ../../third_party/yasm/source/patched-yasm/modules/arch/x86/x86regtmod.gperf | obj/third_party/yasm/compile_gperf.inputdeps.stamp
+  source_name_part = x86regtmod
+
+build obj/third_party/yasm/compile_gperf.stamp: stamp gen/third_party/yasm/x86cpu.c gen/third_party/yasm/x86regtmod.c
+rule __third_party_yasm_compile_gperf_for_include___build_toolchain_linux_clang_x64__rule
+  command = python ../../build/gn_run_binary.py genperf ${in} gen/third_party/yasm/gen_include/${source_name_part}.c
+  description = ACTION //third_party/yasm:compile_gperf_for_include(//build/toolchain/linux:clang_x64)
+  restat = 1
+  pool = build_toolchain_action_pool
+build obj/third_party/yasm/compile_gperf_for_include.inputdeps.stamp: stamp ../../build/gn_run_binary.py ./genperf
+
+build gen/third_party/yasm/gen_include/x86insn_gas.c: __third_party_yasm_compile_gperf_for_include___build_toolchain_linux_clang_x64__rule ../../third_party/yasm/source/patched-yasm/x86insn_gas.gperf | obj/third_party/yasm/compile_gperf_for_include.inputdeps.stamp
+  source_name_part = x86insn_gas
+build gen/third_party/yasm/gen_include/x86insn_nasm.c: __third_party_yasm_compile_gperf_for_include___build_toolchain_linux_clang_x64__rule ../../third_party/yasm/source/patched-yasm/x86insn_nasm.gperf | obj/third_party/yasm/compile_gperf_for_include.inputdeps.stamp
+  source_name_part = x86insn_nasm
+
+build obj/third_party/yasm/compile_gperf_for_include.stamp: stamp gen/third_party/yasm/gen_include/x86insn_gas.c gen/third_party/yasm/gen_include/x86insn_nasm.c
+rule __third_party_yasm_compile_nasm_macros___build_toolchain_linux_clang_x64__rule
+  command = python ../../build/gn_run_binary.py genmacro gen/third_party/yasm/gen_include/nasm-macros.c nasm_standard_mac ../../third_party/yasm/source/patched-yasm/modules/parsers/nasm/nasm-std.mac
+  description = ACTION //third_party/yasm:compile_nasm_macros(//build/toolchain/linux:clang_x64)
+  restat = 1
+  pool = build_toolchain_action_pool
+
+build gen/third_party/yasm/gen_include/nasm-macros.c: __third_party_yasm_compile_nasm_macros___build_toolchain_linux_clang_x64__rule | ../../build/gn_run_binary.py ../../third_party/yasm/source/patched-yasm/modules/parsers/nasm/nasm-std.mac ./genmacro
+
+build obj/third_party/yasm/compile_nasm_macros.stamp: stamp gen/third_party/yasm/gen_include/nasm-macros.c
+rule __third_party_yasm_compile_nasm_version___build_toolchain_linux_clang_x64__rule
+  command = python ../../build/gn_run_binary.py genmacro gen/third_party/yasm/gen_include/nasm-version.c nasm_version_mac gen/third_party/yasm/version.mac
+  description = ACTION //third_party/yasm:compile_nasm_version(//build/toolchain/linux:clang_x64)
+  restat = 1
+  pool = build_toolchain_action_pool
+
+build gen/third_party/yasm/gen_include/nasm-version.c: __third_party_yasm_compile_nasm_version___build_toolchain_linux_clang_x64__rule | ../../build/gn_run_binary.py gen/third_party/yasm/version.mac obj/third_party/yasm/generate_version.stamp ./genmacro
+
+build obj/third_party/yasm/compile_nasm_version.stamp: stamp gen/third_party/yasm/gen_include/nasm-version.c
+rule __third_party_yasm_compile_re2c___build_toolchain_linux_clang_x64__rule
+  command = python ../../build/gn_run_binary.py re2c -b -o gen/third_party/yasm/${source_name_part}.c ${in}
+  description = ACTION //third_party/yasm:compile_re2c(//build/toolchain/linux:clang_x64)
+  restat = 1
+  pool = build_toolchain_action_pool
+build obj/third_party/yasm/compile_re2c.inputdeps.stamp: stamp ../../build/gn_run_binary.py ./re2c
+
+build gen/third_party/yasm/gas-token.c: __third_party_yasm_compile_re2c___build_toolchain_linux_clang_x64__rule ../../third_party/yasm/source/patched-yasm/modules/parsers/gas/gas-token.re | obj/third_party/yasm/compile_re2c.inputdeps.stamp
+  source_name_part = gas-token
+build gen/third_party/yasm/nasm-token.c: __third_party_yasm_compile_re2c___build_toolchain_linux_clang_x64__rule ../../third_party/yasm/source/patched-yasm/modules/parsers/nasm/nasm-token.re | obj/third_party/yasm/compile_re2c.inputdeps.stamp
+  source_name_part = nasm-token
+
+build obj/third_party/yasm/compile_re2c.stamp: stamp gen/third_party/yasm/gas-token.c gen/third_party/yasm/nasm-token.c
+rule __third_party_yasm_compile_re2c_lc3b___build_toolchain_linux_clang_x64__rule
+  command = python ../../build/gn_run_binary.py re2c -s -o gen/third_party/yasm/lc3bid.c ../../third_party/yasm/source/patched-yasm/modules/arch/lc3b/lc3bid.re
+  description = ACTION //third_party/yasm:compile_re2c_lc3b(//build/toolchain/linux:clang_x64)
+  restat = 1
+  pool = build_toolchain_action_pool
+
+build gen/third_party/yasm/lc3bid.c: __third_party_yasm_compile_re2c_lc3b___build_toolchain_linux_clang_x64__rule | ../../build/gn_run_binary.py ../../third_party/yasm/source/patched-yasm/modules/arch/lc3b/lc3bid.re ./re2c
+
+build obj/third_party/yasm/compile_re2c_lc3b.stamp: stamp gen/third_party/yasm/lc3bid.c
+rule __third_party_yasm_compile_win64_gas___build_toolchain_linux_clang_x64__rule
+  command = python ../../build/gn_run_binary.py genmacro gen/third_party/yasm/gen_include/win64-gas.c win64_gas_stdmac ../../third_party/yasm/source/patched-yasm/modules/objfmts/coff/win64-gas.mac
+  description = ACTION //third_party/yasm:compile_win64_gas(//build/toolchain/linux:clang_x64)
+  restat = 1
+  pool = build_toolchain_action_pool
+
+build gen/third_party/yasm/gen_include/win64-gas.c: __third_party_yasm_compile_win64_gas___build_toolchain_linux_clang_x64__rule | ../../build/gn_run_binary.py ../../third_party/yasm/source/patched-yasm/modules/objfmts/coff/win64-gas.mac ./genmacro
+
+build obj/third_party/yasm/compile_win64_gas.stamp: stamp gen/third_party/yasm/gen_include/win64-gas.c
+rule __third_party_yasm_compile_win64_nasm___build_toolchain_linux_clang_x64__rule
+  command = python ../../build/gn_run_binary.py genmacro gen/third_party/yasm/gen_include/win64-nasm.c win64_nasm_stdmac ../../third_party/yasm/source/patched-yasm/modules/objfmts/coff/win64-nasm.mac
+  description = ACTION //third_party/yasm:compile_win64_nasm(//build/toolchain/linux:clang_x64)
+  restat = 1
+  pool = build_toolchain_action_pool
+
+build gen/third_party/yasm/gen_include/win64-nasm.c: __third_party_yasm_compile_win64_nasm___build_toolchain_linux_clang_x64__rule | ../../build/gn_run_binary.py ../../third_party/yasm/source/patched-yasm/modules/objfmts/coff/win64-nasm.mac ./genmacro
+
+build obj/third_party/yasm/compile_win64_nasm.stamp: stamp gen/third_party/yasm/gen_include/win64-nasm.c
+rule __third_party_yasm_generate_license___build_toolchain_linux_clang_x64__rule
+  command = python ../../build/gn_run_binary.py genstring license_msg gen/third_party/yasm/gen_include/license.c ../../third_party/yasm/source/patched-yasm/COPYING
+  description = ACTION //third_party/yasm:generate_license(//build/toolchain/linux:clang_x64)
+  restat = 1
+  pool = build_toolchain_action_pool
+
+build gen/third_party/yasm/gen_include/license.c: __third_party_yasm_generate_license___build_toolchain_linux_clang_x64__rule | ../../build/gn_run_binary.py ../../third_party/yasm/source/patched-yasm/COPYING ./genstring
+
+build obj/third_party/yasm/generate_license.stamp: stamp gen/third_party/yasm/gen_include/license.c
+rule __third_party_yasm_generate_module___build_toolchain_linux_clang_x64__rule
+  command = python ../../build/gn_run_binary.py genmodule ../../third_party/yasm/source/patched-yasm/libyasm/module.in ../../third_party/yasm/source/config/Makefile gen/third_party/yasm/module.c
+  description = ACTION //third_party/yasm:generate_module(//build/toolchain/linux:clang_x64)
+  restat = 1
+  pool = build_toolchain_action_pool
+
+build gen/third_party/yasm/module.c: __third_party_yasm_generate_module___build_toolchain_linux_clang_x64__rule | ../../build/gn_run_binary.py ../../third_party/yasm/source/patched-yasm/libyasm/module.in ../../third_party/yasm/source/config/Makefile ./genmodule
+
+build obj/third_party/yasm/generate_module.stamp: stamp gen/third_party/yasm/module.c
+rule __third_party_yasm_generate_version___build_toolchain_linux_clang_x64__rule
+  command = python ../../build/gn_run_binary.py genversion gen/third_party/yasm/version.mac
+  description = ACTION //third_party/yasm:generate_version(//build/toolchain/linux:clang_x64)
+  restat = 1
+  pool = build_toolchain_action_pool
+
+build gen/third_party/yasm/version.mac: __third_party_yasm_generate_version___build_toolchain_linux_clang_x64__rule | ../../build/gn_run_binary.py ./genversion
+
+build obj/third_party/yasm/generate_version.stamp: stamp gen/third_party/yasm/version.mac
+subninja obj/third_party/yasm/genmacro.ninja
+subninja obj/third_party/yasm/genmodule.ninja
+subninja obj/third_party/yasm/genperf.ninja
+subninja obj/third_party/yasm/genstring.ninja
+subninja obj/third_party/yasm/genversion.ninja
+subninja obj/third_party/yasm/re2c.ninja
+subninja obj/third_party/yasm/yasm.ninja
+subninja obj/third_party/yasm/yasm_utils.ninja
+subninja obj/third_party/zlib/minizip.ninja
+subninja obj/third_party/zlib/zlib.ninja
+subninja obj/third_party/zlib/zlib_adler32_simd.ninja
+subninja obj/third_party/zlib/zlib_bench.ninja
+subninja obj/third_party/zlib/zlib_crc32_simd.ninja
+subninja obj/third_party/zlib/zlib_inflate_chunk_simd.ninja
+subninja obj/third_party/zlib/zlib_x86_simd.ninja
+subninja obj/video/frame_dumping_decoder.ninja
+subninja obj/video/screenshare_loopback.ninja
+subninja obj/video/sv_loopback.ninja
+subninja obj/video/video.ninja
+subninja obj/video/video_full_stack_tests.ninja
+subninja obj/video/video_loopback.ninja
+subninja obj/video/video_loopback_lib.ninja
+subninja obj/video/video_mocks.ninja
+subninja obj/video/video_pc_full_stack_tests.ninja
+subninja obj/video/video_quality_test.ninja
+subninja obj/video/video_replay.ninja
+subninja obj/video/video_stream_decoder_impl.ninja
+subninja obj/video/video_stream_encoder_impl.ninja
+subninja obj/video/video_tests.ninja
