@@ -107,6 +107,16 @@ ADD_LIBRARY(rtc_base_static STATIC ${rtc_base_list})
 SET_TARGET_PROPERTIES(rtc_base_static PROPERTIES OUTPUT_NAME rtc_base)
 
 
+SET(rtc_task_queue_list
+    sequenced_task_checker_impl.cc
+	weak_ptr.cc
+	)		
+INCLUDE_DIRECTORIES(${PROJECT_SOURCE_DIR}
+	${PROJECT_SOURCE_DIR}/../../
+	../base
+	)
+ADD_LIBRARY(rtc_task_queue_static STATIC ${rtc_task_queue_list})
+SET_TARGET_PROPERTIES(rtc_task_queue_static PROPERTIES OUTPUT_NAME rtc_task_queue)
 
 
 

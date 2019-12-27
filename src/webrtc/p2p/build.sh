@@ -8,7 +8,6 @@ function PrintUsage()
 	echo -e "EGG:"
 	echo -e "./build.sh arm-linux"
 }
-
 function GenerateCmakeFile()
 {
 	CmakeFile="./build/ToolChain.cmake"
@@ -16,7 +15,6 @@ function GenerateCmakeFile()
 	echo "SET(CMAKE_C_COMPILER \"$1-gcc\")" >> $CmakeFile
 	echo "SET(CMAKE_CXX_COMPILER \"$1-g++\")" >> $CmakeFile
 }
-
 function BuildLib()
 {
 	echo -e "Start building ..."
@@ -66,14 +64,15 @@ function CopyLib()
 	fi
 	
 	cd webrtc
-	if [ -e "base" ]; then
-		echo "base exit"
+	if [ -e "p2p" ]; then
+		echo "p2p exit"
 	else
-		mkdir base
+		mkdir p2p
 	fi
-	cp $CurPwd/build/base/librtc_base_approved.a .
-	cp $CurPwd/build/base/libbase.a .
-	cp $CurPwd/build/base/librtc_task_queue.a .	
+	
+	cd p2p
+	cp $CurPwd/build/lib/liblibstunprober.a .
+	cp $CurPwd/build/lib/librtc_p2p.a .
 }
 
 if [ $# == 0 ]; then
