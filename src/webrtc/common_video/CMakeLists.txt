@@ -40,34 +40,7 @@ SET_TARGET_PROPERTIES(common_video_static PROPERTIES OUTPUT_NAME common_video)
 
 
 
-SET(audio_codecs_api_list
-    audio_codecs/audio_decoder.cc
-    audio_codecs/audio_format.cc
-	)		
-INCLUDE_DIRECTORIES(${PROJECT_SOURCE_DIR}
-	${PROJECT_SOURCE_DIR}/../../
-	)
-ADD_LIBRARY(audio_codecs_api_static STATIC ${audio_codecs_api_list})
-SET_TARGET_PROPERTIES(audio_codecs_api_static PROPERTIES OUTPUT_NAME audio_codecs_api)
 
-SET(builtin_audio_decoder_factory_list
-    builtin_audio_decoder_factory.cc
-	)		
-INCLUDE_DIRECTORIES(${PROJECT_SOURCE_DIR}
-	${PROJECT_SOURCE_DIR}/../../
-	)
-ADD_LIBRARY(builtin_audio_decoder_factory_static STATIC ${builtin_audio_decoder_factory_list})
-SET_TARGET_PROPERTIES(builtin_audio_decoder_factory_static PROPERTIES OUTPUT_NAME builtin_audio_decoder_factory)
-#
-SET(audio_codecs_api_list
-    audio_decoder.cc
-    audio_format.cc
-	)		
-INCLUDE_DIRECTORIES(${PROJECT_SOURCE_DIR}
-	${PROJECT_SOURCE_DIR}/../../
-	)
-ADD_LIBRARY(audio_codecs_api_static STATIC ${audio_codecs_api_list})
-SET_TARGET_PROPERTIES(audio_codecs_api_static PROPERTIES OUTPUT_NAME audio_codecs_api)
 
 
 
