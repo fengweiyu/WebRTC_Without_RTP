@@ -71,7 +71,14 @@ function CopyLib()
 	fi
 	
 	cd modules
+	if [ -e "media_file" ]; then
+		echo "media_file exit"
+	else
+		mkdir media_file
+	fi
 	
+	cd media_file
+	cp $CurPwd/build/lib/libmedia_file.a .	
 	
 }
 
@@ -79,48 +86,11 @@ if [ $# == 0 ]; then
 	PrintUsage
 	exit -1
 else
-	cd audio_coding
-	sh build.sh $1
-	if [ $? -ne 0]; then
-		exit -1
-	fi
-	cd ..
-	
-	cd audio_device
-	sh build.sh $1
-	if [ $? -ne 0]; then
-		exit -1
-	fi
-	cd ..
-	
-	cd media_file
-	sh build.sh $1
-	if [ $? -ne 0]; then
-		exit -1
-	fi
-	cd ..
-	
-	cd utility
-	sh build.sh $1
-	if [ $? -ne 0]; then
-		exit -1
-	fi
-	cd ..
-	
-	cd audio_mixer
-	sh build.sh $1
-	if [ $? -ne 0]; then
-		exit -1
-	fi
-	cd ..	
-	
-	cd audio_processing
-	sh build.sh $1
-	if [ $? -ne 0]; then
-		exit -1
-	fi
-	cd ..
+	GenerateCmakeFile $1
+	BuildLib
+	CopyLib ../../../build
 fi
+
 
 
 

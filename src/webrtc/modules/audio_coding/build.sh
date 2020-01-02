@@ -86,7 +86,9 @@ function CopyLib()
 	cp $CurPwd/build/lib/libisac_common.a .	
 	cp $CurPwd/build/lib/libisac_fix_c.a .	
 	cp $CurPwd/build/lib/libneteq_decoder_enum.a .		
-	cp $CurPwd/build/lib/libisac_fix_c.a .		
+	cp $CurPwd/build/lib/libaudio_format_conversion.a .		
+	cp $CurPwd/build/lib/libisac.a .			
+	cp $CurPwd/build/lib/libisac_common.a .
 	
 }
 

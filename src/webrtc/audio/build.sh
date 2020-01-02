@@ -79,27 +79,6 @@ if [ $# == 0 ]; then
 	PrintUsage
 	exit -1
 else
-	cd audio_coding
-	sh build.sh $1
-	if [ $? -ne 0]; then
-		exit -1
-	fi
-	cd ..
-	
-	cd audio_device
-	sh build.sh $1
-	if [ $? -ne 0]; then
-		exit -1
-	fi
-	cd ..
-	
-	cd media_file
-	sh build.sh $1
-	if [ $? -ne 0]; then
-		exit -1
-	fi
-	cd ..
-	
 	cd utility
 	sh build.sh $1
 	if [ $? -ne 0]; then
@@ -107,19 +86,7 @@ else
 	fi
 	cd ..
 	
-	cd audio_mixer
-	sh build.sh $1
-	if [ $? -ne 0]; then
-		exit -1
-	fi
-	cd ..	
-	
-	cd audio_processing
-	sh build.sh $1
-	if [ $? -ne 0]; then
-		exit -1
-	fi
-	cd ..
+
 fi
 
 

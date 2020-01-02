@@ -117,11 +117,36 @@ INCLUDE_DIRECTORIES(${PROJECT_SOURCE_DIR}
 ADD_LIBRARY(neteq_decoder_enum_static STATIC ${neteq_decoder_enum_list})
 SET_TARGET_PROPERTIES(neteq_decoder_enum_static PROPERTIES OUTPUT_NAME neteq_decoder_enum)
 
+SET(audio_format_conversion_list
+    codecs/audio_format_conversion.cc
+	)		
+INCLUDE_DIRECTORIES(${PROJECT_SOURCE_DIR}
+	${PROJECT_SOURCE_DIR}/../../
+	../base
+	)
+ADD_LIBRARY(audio_format_conversion_static STATIC ${audio_format_conversion_list})
+SET_TARGET_PROPERTIES(audio_format_conversion_static PROPERTIES OUTPUT_NAME audio_format_conversion)
 
+SET(isac_list
+    codecs/isac/main/source/audio_decoder_isac.cc
+    codecs/isac/main/source/audio_encoder_isac.cc
+	)		
+INCLUDE_DIRECTORIES(${PROJECT_SOURCE_DIR}
+	${PROJECT_SOURCE_DIR}/../../
+	../base
+	)
+ADD_LIBRARY(isac_static STATIC ${isac_list})
+SET_TARGET_PROPERTIES(isac_static PROPERTIES OUTPUT_NAME isac)
 
-
-
-
+SET(isac_common_list
+    codecs/isac/locked_bandwidth_info.cc
+	)		
+INCLUDE_DIRECTORIES(${PROJECT_SOURCE_DIR}
+	${PROJECT_SOURCE_DIR}/../../
+	../base
+	)
+ADD_LIBRARY(isac_common_static STATIC ${isac_common_list})
+SET_TARGET_PROPERTIES(isac_common_static PROPERTIES OUTPUT_NAME isac_common)
 
 SET(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/build/lib)
 
