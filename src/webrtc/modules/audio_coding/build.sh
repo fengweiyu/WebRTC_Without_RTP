@@ -71,7 +71,22 @@ function CopyLib()
 	fi
 	
 	cd modules
+	if [ -e "audio_coding" ]; then
+		echo "audio_coding exit"
+	else
+		mkdir audio_coding
+	fi
 	
+	cd audio_coding
+	cp $CurPwd/build/lib/libaudio_encoder_interface.a .
+	cp $CurPwd/build/lib/libvideo_frame_api.a .
+	cp $CurPwd/build/lib/libaudio_codecs_api.a .
+	cp $CurPwd/build/lib/libbuiltin_audio_decoder_factory.a .
+	cp $CurPwd/build/lib/librent_a_codec.a .
+	cp $CurPwd/build/lib/libisac_common.a .	
+	cp $CurPwd/build/lib/libisac_fix_c.a .	
+	cp $CurPwd/build/lib/libneteq_decoder_enum.a .		
+	cp $CurPwd/build/lib/libisac_fix_c.a .		
 	
 }
 
@@ -79,34 +94,11 @@ if [ $# == 0 ]; then
 	PrintUsage
 	exit -1
 else
-	cd audio_coding
-	sh build.sh $1
-	if [ $? -ne 0]; then
-		exit -1
-	fi
-	cd ..
-	
-	cd audio_device
-	sh build.sh $1
-	if [ $? -ne 0]; then
-		exit -1
-	fi
-	cd ..
-	
-	cd base
-	sh build.sh $1
-	if [ $? -ne 0]; then
-		exit -1
-	fi
-	cd ..
-	
-	cd call
-	sh build.sh $1
-	if [ $? -ne 0]; then
-		exit -1
-	fi
-	cd ..
+	GenerateCmakeFile $1
+	BuildLib
+	CopyLib ../../../build
 fi
+
 
 
 

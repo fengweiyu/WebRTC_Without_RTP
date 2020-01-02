@@ -16,7 +16,7 @@ project (WebRTC)
 SET(CMAKE_CXX_FLAGS "-g -DWEBRTC_POSIX")
 
 SET(audio_encoder_interface_list
-	audio_coding/codecs/audio_encoder.cc
+	codecs/audio_encoder.cc
 	)		
 INCLUDE_DIRECTORIES(${PROJECT_SOURCE_DIR}
 	${PROJECT_SOURCE_DIR}/../../
@@ -27,7 +27,7 @@ SET_TARGET_PROPERTIES(audio_encoder_interface_static PROPERTIES OUTPUT_NAME audi
 
 
 SET(builtin_audio_decoder_factory_internal_list
-    audio_coding/codecs/builtin_audio_decoder_factory_internal.cc
+    codecs/builtin_audio_decoder_factory_internal.cc
 	)		
 INCLUDE_DIRECTORIES(${PROJECT_SOURCE_DIR}
 	${PROJECT_SOURCE_DIR}/../../
@@ -37,8 +37,8 @@ ADD_LIBRARY(builtin_audio_decoder_factory_internal_static STATIC ${builtin_audio
 SET_TARGET_PROPERTIES(builtin_audio_decoder_factory_internal_static PROPERTIES OUTPUT_NAME builtin_audio_decoder_factory_internal)
 
 SET(rent_a_codec_list
-    audio_coding/acm2/acm_codec_database.cc
-    audio_coding/acm2/rent_a_codec.cc
+    acm2/acm_codec_database.cc
+    acm2/rent_a_codec.cc
 	)		
 INCLUDE_DIRECTORIES(${PROJECT_SOURCE_DIR}
 	${PROJECT_SOURCE_DIR}/../../
@@ -49,7 +49,7 @@ SET_TARGET_PROPERTIES(rent_a_codec_static PROPERTIES OUTPUT_NAME rent_a_codec)
 
 
 SET(audio_encoder_interface_list
-    audio_coding/codecs/audio_encoder.cc
+    codecs/audio_encoder.cc
 	)		
 INCLUDE_DIRECTORIES(${PROJECT_SOURCE_DIR}
 	${PROJECT_SOURCE_DIR}/../../
@@ -60,7 +60,7 @@ SET_TARGET_PROPERTIES(audio_encoder_interface_static PROPERTIES OUTPUT_NAME audi
 
 
 SET(isac_common_list
-    audio_coding/codecs/isac/locked_bandwidth_info.cc
+    codecs/isac/locked_bandwidth_info.cc
 	)		
 INCLUDE_DIRECTORIES(${PROJECT_SOURCE_DIR}
 	${PROJECT_SOURCE_DIR}/../../
@@ -71,33 +71,33 @@ SET_TARGET_PROPERTIES(isac_common_static PROPERTIES OUTPUT_NAME isac_common)
 
 
 SET(isac_fix_c_list
-    audio_coding/codecs/isac/fix/source/arith_routines.c
-    audio_coding/codecs/isac/fix/source/arith_routines_hist.c
-    audio_coding/codecs/isac/fix/source/arith_routines_logist.c
-    audio_coding/codecs/isac/fix/source/bandwidth_estimator.c
-    audio_coding/codecs/isac/fix/source/decode.c
-    audio_coding/codecs/isac/fix/source/decode_bwe.c
-    audio_coding/codecs/isac/fix/source/decode_plc.c
-    audio_coding/codecs/isac/fix/source/encode.c
-    audio_coding/codecs/isac/fix/source/entropy_coding.c
-    audio_coding/codecs/isac/fix/source/filterbank_tables.c
-    audio_coding/codecs/isac/fix/source/filterbanks.c
-    audio_coding/codecs/isac/fix/source/filters.c
-    audio_coding/codecs/isac/fix/source/initialize.c
-    audio_coding/codecs/isac/fix/source/isacfix.c
-    audio_coding/codecs/isac/fix/source/lattice.c
-    audio_coding/codecs/isac/fix/source/lattice_c.c
-    audio_coding/codecs/isac/fix/source/lpc_masking_model.c
-    audio_coding/codecs/isac/fix/source/lpc_tables.c
-    audio_coding/codecs/isac/fix/source/pitch_estimator.c
-    audio_coding/codecs/isac/fix/source/pitch_estimator_c.c
-    audio_coding/codecs/isac/fix/source/pitch_filter.c
-    audio_coding/codecs/isac/fix/source/pitch_filter_c.c
-    audio_coding/codecs/isac/fix/source/pitch_gain_tables.c
-    audio_coding/codecs/isac/fix/source/pitch_lag_tables.c
-    audio_coding/codecs/isac/fix/source/spectrum_ar_model_tables.c
-    audio_coding/codecs/isac/fix/source/transform.c
-    audio_coding/codecs/isac/fix/source/transform_tables.c 
+    codecs/isac/fix/source/arith_routines.c
+    codecs/isac/fix/source/arith_routines_hist.c
+    codecs/isac/fix/source/arith_routines_logist.c
+    codecs/isac/fix/source/bandwidth_estimator.c
+    codecs/isac/fix/source/decode.c
+    codecs/isac/fix/source/decode_bwe.c
+    codecs/isac/fix/source/decode_plc.c
+    codecs/isac/fix/source/encode.c
+    codecs/isac/fix/source/entropy_coding.c
+    codecs/isac/fix/source/filterbank_tables.c
+    codecs/isac/fix/source/filterbanks.c
+    codecs/isac/fix/source/filters.c
+    codecs/isac/fix/source/initialize.c
+    codecs/isac/fix/source/isacfix.c
+    codecs/isac/fix/source/lattice.c
+    codecs/isac/fix/source/lattice_c.c
+    codecs/isac/fix/source/lpc_masking_model.c
+    codecs/isac/fix/source/lpc_tables.c
+    codecs/isac/fix/source/pitch_estimator.c
+    codecs/isac/fix/source/pitch_estimator_c.c
+    codecs/isac/fix/source/pitch_filter.c
+    codecs/isac/fix/source/pitch_filter_c.c
+    codecs/isac/fix/source/pitch_gain_tables.c
+    codecs/isac/fix/source/pitch_lag_tables.c
+    codecs/isac/fix/source/spectrum_ar_model_tables.c
+    codecs/isac/fix/source/transform.c
+    codecs/isac/fix/source/transform_tables.c 
 	)		
 INCLUDE_DIRECTORIES(${PROJECT_SOURCE_DIR}
 	${PROJECT_SOURCE_DIR}/../../
@@ -108,7 +108,7 @@ SET_TARGET_PROPERTIES(isac_fix_c_static PROPERTIES OUTPUT_NAME isac_fix_c)
 
 
 SET(neteq_decoder_enum_list
-    audio_coding/neteq/neteq_decoder_enum.cc
+    neteq/neteq_decoder_enum.cc
 	)		
 INCLUDE_DIRECTORIES(${PROJECT_SOURCE_DIR}
 	${PROJECT_SOURCE_DIR}/../../
@@ -116,6 +116,7 @@ INCLUDE_DIRECTORIES(${PROJECT_SOURCE_DIR}
 	)
 ADD_LIBRARY(neteq_decoder_enum_static STATIC ${neteq_decoder_enum_list})
 SET_TARGET_PROPERTIES(neteq_decoder_enum_static PROPERTIES OUTPUT_NAME neteq_decoder_enum)
+
 
 
 

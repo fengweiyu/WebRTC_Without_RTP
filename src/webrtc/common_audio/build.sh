@@ -64,49 +64,26 @@ function CopyLib()
 	fi
 	
 	cd webrtc
-	if [ -e "modules" ]; then
-		echo "modules exit"
+	if [ -e "common_audio" ]; then
+		echo "common_audio exit"
 	else
-		mkdir modules
+		mkdir common_audio
 	fi
 	
-	cd modules
-	
-	
+	cd common_audio
+	cp $CurPwd/build/lib/libcommon_audio.a .
+
 }
 
 if [ $# == 0 ]; then
 	PrintUsage
 	exit -1
 else
-	cd audio_coding
-	sh build.sh $1
-	if [ $? -ne 0]; then
-		exit -1
-	fi
-	cd ..
-	
-	cd audio_device
-	sh build.sh $1
-	if [ $? -ne 0]; then
-		exit -1
-	fi
-	cd ..
-	
-	cd base
-	sh build.sh $1
-	if [ $? -ne 0]; then
-		exit -1
-	fi
-	cd ..
-	
-	cd call
-	sh build.sh $1
-	if [ $? -ne 0]; then
-		exit -1
-	fi
-	cd ..
+	GenerateCmakeFile $1
+	BuildLib
+	CopyLib ../../../build
 fi
+
 
 
 
