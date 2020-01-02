@@ -26,28 +26,19 @@ ADD_LIBRARY(call_interfaces_static STATIC ${call_interfaces_list})
 SET_TARGET_PROPERTIES(call_interfaces_static PROPERTIES OUTPUT_NAME call_interfaces)
 
 
-SET(video_frame_api_list
-    video/i420_buffer.cc
-    video/video_frame.cc
+SET(call_list
+    bitrate_allocator.cc
+    call.cc
+    flexfec_receive_stream_impl.cc
 	)		
 INCLUDE_DIRECTORIES(${PROJECT_SOURCE_DIR}
 	${PROJECT_SOURCE_DIR}/../../
 	../base
-	../system_wrappers
 	)
-ADD_LIBRARY(video_frame_api_static STATIC ${video_frame_api_list})
-SET_TARGET_PROPERTIES(video_frame_api_static PROPERTIES OUTPUT_NAME video_frame_api)
+ADD_LIBRARY(call_static STATIC ${call_list})
+SET_TARGET_PROPERTIES(call_static PROPERTIES OUTPUT_NAME call)
 
 
-SET(audio_codecs_api_list
-    audio_decoder.cc
-    audio_format.cc
-	)		
-INCLUDE_DIRECTORIES(${PROJECT_SOURCE_DIR}
-	${PROJECT_SOURCE_DIR}/../../
-	)
-ADD_LIBRARY(audio_codecs_api_static STATIC ${audio_codecs_api_list})
-SET_TARGET_PROPERTIES(audio_codecs_api_static PROPERTIES OUTPUT_NAME audio_codecs_api)
 
 
 
