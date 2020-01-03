@@ -86,7 +86,9 @@ else
 	fi
 	cd ..
 	
-
+	GenerateCmakeFile $1
+	BuildLib
+	CopyLib ../../../build
 fi
 
 

@@ -100,6 +100,83 @@ else
 	fi
 	cd ..
 	
+	cd common_audio
+	sh build.sh $1
+	if [ $? -ne 0]; then
+		exit -1
+	fi
+	cd ..
+	
+	cd common_video
+	sh build.sh $1
+	if [ $? -ne 0]; then
+		exit -1
+	fi
+	cd ..
+	
+	cd logging
+	sh build.sh $1
+	if [ $? -ne 0]; then
+		exit -1
+	fi
+	cd ..
+	
+	cd media
+	sh build.sh $1
+	if [ $? -ne 0]; then
+		exit -1
+	fi
+	cd ..
+	
+	cd modules
+	sh build.sh $1
+	if [ $? -ne 0]; then
+		exit -1
+	fi
+	cd ..
+	
+	cd p2p
+	sh build.sh $1
+	if [ $? -ne 0]; then
+		exit -1
+	fi
+	cd ..
+	
+	cd pc
+	sh build.sh $1
+	if [ $? -ne 0]; then
+		exit -1
+	fi
+	cd ..
+	
+	cd stats
+	sh build.sh $1
+	if [ $? -ne 0]; then
+		exit -1
+	fi
+	cd ..
+	
+	cd system_wrappers
+	sh build.sh $1
+	if [ $? -ne 0]; then
+		exit -1
+	fi
+	cd ..
+	
+	cd video
+	sh build.sh $1
+	if [ $? -ne 0]; then
+		exit -1
+	fi
+	cd ..
+	
+	cd voice_engine
+	sh build.sh $1
+	if [ $? -ne 0]; then
+		exit -1
+	fi
+	cd ..
+	
 	GenerateCmakeFile $1
 	BuildLib
 	CopyLib ../../../build

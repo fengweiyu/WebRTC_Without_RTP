@@ -11,8 +11,9 @@ project (WebRTC)
 SET(CMAKE_CXX_FLAGS "-g")
 
 SET(SRC_LIST
-	src/webrtc/base/ssladapter.cc
-	
+    src/conductor.cc
+	src/defaults.cc
+	src/peer_connection_client.cc",
 	example/main.cc	
 	)
 		
@@ -22,7 +23,7 @@ INCLUDE_DIRECTORIES(${PROJECT_SOURCE_DIR}
 	)
 
 ADD_EXECUTABLE(webrtc ${SRC_LIST})
-#TARGET_LINK_LIBRARIES(webrtc pthread -lm)
+#TARGET_LINK_LIBRARIES(webrtc pthread -lm )
 
 SET(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/build/lib)
 #TARGET_LINK_LIBRARIES(crnode log4cpp thrift)

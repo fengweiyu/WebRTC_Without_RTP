@@ -38,6 +38,12 @@ else
 		exit -1
 	fi
 	cd ..
+	
+	cd ..
+	GenerateCmakeFile $1
+	BuildLib
+	CopyLib ../../../build
+	
 fi
 
 

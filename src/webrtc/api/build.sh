@@ -75,7 +75,7 @@ function CopyLib()
 	cp $CurPwd/build/lib/libvideo_frame_api.a .
 	cp $CurPwd/build/lib/libaudio_codecs_api.a .
 	cp $CurPwd/build/lib/libbuiltin_audio_decoder_factory.a .
-#	cp $CurPwd/build/lib/libvideo_frame_api.a .
+
 }
 
 if [ $# == 0 ]; then
