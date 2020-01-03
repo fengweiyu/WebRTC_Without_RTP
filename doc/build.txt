@@ -1,0 +1,298 @@
+libjingle_peerconnection_test_api
+	libjingle_peerconnection_api
+		rtc_stats_api
+	../base:rtc_base_approved
+//webrtc/api:video_frame_api
+	../system_wrappers
+		..:webrtc_common
+
+webrtc/base:rtc_base
+
+webrtc/media:rtc_media
+  deps += [
+    :rtc_media_base
+		 deps += [
+		..:webrtc_common
+		../api:libjingle_peerconnection_api
+		../api:video_frame_api
+		../api/audio_codecs:audio_codecs_api
+		../base:rtc_base
+		../base:rtc_base_approved
+		../call:call_interfaces
+				  deps = [
+				..:webrtc_common
+				../api:audio_mixer_api audio/audio_mixer.h
+				../api:transport_apicall/transport.h
+				../api/audio_codecs:audio_codecs_api
+				../base:rtc_base
+				../base:rtc_base_approved
+				../modules/audio_coding:audio_encoder_interface
+			  ]
+		../common_video:common_video
+			  deps = [
+				..:webrtc_common
+				../base:rtc_base
+				../base:rtc_task_queue
+				../system_wrappers
+			  ]
+		../p2p
+		  public_deps = [
+			:libstunprober
+					  deps = [
+						..:webrtc_common
+						../base:rtc_base
+					  ]
+			:rtc_p2p
+				  deps = [
+					../base:rtc_base
+				  ]
+			]
+
+		]
+    ..:webrtc_common
+    ../api:call_api call/audio_sink.h
+    ../api:transport_api
+    ../api:video_frame_api
+    ../api/audio_codecs:audio_codecs_api
+		  deps = [
+			../..:webrtc_common
+			../../base:rtc_base_approved
+		  ]
+    ../api/audio_codecs:builtin_audio_decoder_factory
+			  deps = [
+			:audio_codecs_api
+			../../base:rtc_base_approved
+			../../modules/audio_coding:builtin_audio_decoder_factory_internal
+		  ]
+    ../base:rtc_base
+    ../base:rtc_base_approved
+    ../call
+		  public_deps = [
+			:call_interfaces
+			../api:call_api call/audio_sink.h
+		  ]
+    ../common_video:common_video
+    ../modules/audio_coding:rent_a_codec
+	  deps = [
+           ../../api/audio_codecs:audio_codecs_api
+           ../..:webrtc_common
+           ../../base:rtc_base_approved
+           ../../system_wrappers
+          :audio_coding_module_typedefs include/audio_coding_module_typedefs.h
+           :audio_encoder_interface
+           :isac_common
+           :isac_fix_c
+           :neteq_decoder_enum
+         ] + audio_codec_deps
+		 
+    ../modules/audio_device:audio_device
+		  deps = [
+			../..:webrtc_common
+			../../base:rtc_base_approved
+			../../base:rtc_task_queue
+			../../common_audio
+				  deps = [
+					:sinc_resampler  resampler/sinc_resampler.h
+					..:webrtc_common
+					../base:gtest_prod gtest_prod_util.h
+					../base:rtc_base_approved
+					../system_wrappers
+				  ]
+			
+			../../system_wrappers
+			../utility
+				  deps = [
+					../..:webrtc_common
+					../../audio/utility:audio_frame_operations
+						  deps = [
+							../..:webrtc_common
+							../../base:rtc_base_approved
+							../../modules/audio_coding:audio_format_conversion
+						  ]	
+					
+					../../base:rtc_task_queue
+					../../common_audio
+					../../system_wrappers
+					../media_file
+				  ]
+			
+		  ]
+	
+    ../modules/audio_mixer:audio_mixer_impl
+		  public_deps = [
+			../../api:audio_mixer_api audio/audio_mixer.h
+		  ]
+
+		  deps = [
+			:audio_frame_manipulator
+			../..:webrtc_common
+			../../audio/utility:audio_frame_operations
+			../../base:rtc_base_approved
+			../../system_wrappers
+			../audio_processing
+				  deps = [
+					../..:webrtc_common
+					../../audio/utility:audio_frame_operations
+					../../base:gtest_prod
+					../audio_coding:isac
+						  deps = [
+							:audio_encoder_interface
+							:isac_common
+							../../api/audio_codecs:audio_codecs_api
+						  ]
+					
+					
+				  ]
+			
+		  ]
+	
+	
+    ../modules/audio_processing:audio_processing
+    ../modules/video_capture:video_capture_module
+    ../modules/video_coding
+		  deps = [
+		:video_coding_utility
+		:webrtc_h264
+		:webrtc_i420
+		:webrtc_vp8
+		:webrtc_vp9
+		../..:webrtc_common
+		../../base:rtc_base
+		../../base:rtc_base_approved
+		../../base:rtc_numerics
+		../../base:rtc_task_queue
+		../../common_video
+		../../system_wrappers
+		../rtp_rtcp:rtp_rtcp
+			  deps = [
+				../..:webrtc_common
+				../../api:transport_api
+				../../base:gtest_prod
+				../../base:rtc_base_approved
+				../../base:rtc_task_queue
+				../../call:call_interfaces
+				../../common_video
+				../../logging:rtc_event_log_api rtc_event_log/rtc_event_log.h
+				../../system_wrappers
+				../remote_bitrate_estimator
+			  ]
+		
+		../utility:utility
+	   ]
+	
+    ../modules/video_coding:webrtc_h264
+		  deps = [
+			:video_coding_utility
+			../../base:rtc_base_approved
+			../../media:rtc_media_base
+			../../system_wrappers
+		  ]
+	
+    ../modules/video_coding:webrtc_vp8
+    ../modules/video_coding:webrtc_vp9
+    ../p2p:rtc_p2p
+    ../system_wrappers
+    ../video
+		 deps = [
+		..:webrtc_common
+		../api:transport_api
+		../base:rtc_base_approved
+		../base:rtc_numerics
+		../base:rtc_task_queue
+		../common_video
+		../logging:rtc_event_log_api
+		../media:rtc_media_base
+		../modules/bitrate_controller
+		../modules/congestion_controller
+		../modules/pacing
+		../modules/remote_bitrate_estimator
+		../modules/rtp_rtcp
+		../modules/utility
+		../modules/video_coding
+		../modules/video_processing
+		../system_wrappers
+		../voice_engine
+	  ]
+	
+	
+    ../voice_engine
+		  deps = [
+		:audio_level
+		:file_player
+		:file_recorder
+		..:webrtc_common
+		../api:audio_mixer_api
+		../api:call_api
+		../api:transport_api
+		../api/audio_codecs:audio_codecs_api
+		../api/audio_codecs:builtin_audio_decoder_factory
+		../audio/utility:audio_frame_operations
+		../base:rtc_base_approved
+		../common_audio
+		../logging:rtc_event_log_api
+		../modules/audio_coding:audio_format_conversion
+		../modules/audio_coding:rent_a_codec
+		../modules/audio_conference_mixer
+		../modules/audio_device
+		../modules/audio_processing
+		../modules/bitrate_controller
+		../modules/media_file
+		../modules/pacing
+		../modules/rtp_rtcp
+		../modules/utility
+		../system_wrappers
+  ]
+	
+	
+  ]
+  
+//webrtc/modules/video_capture:video_capture_module
+  
+//webrtc/pc:libjingle_peerconnection  
+    deps = [
+    :rtc_pc
+		  deps = [
+		../api:call_api
+		../base:rtc_base
+		../media
+		]
+    ../api:call_api call/audio_sink.h
+    ../api:rtc_stats_api
+		  sources = [
+			stats/rtcstats.h
+			stats/rtcstats_objects.h
+			stats/rtcstatscollectorcallback.h
+			stats/rtcstatsreport.h
+		  ]
+    ../call
+    ../media
+		group(media) {
+	    public_deps = [
+		:rtc_media
+		:rtc_media_base
+	  ]
+	}
+    ../stats
+	  group(stats) {
+	  public_deps = [
+		:rtc_stats
+		  deps = [
+			../api:rtc_stats_api
+			../base:rtc_base_approved
+		  ]
+		
+		
+	  ]
+}
+"//webrtc/system_wrappers:field_trial_default",
+//webrtc/system_wrappers:metrics_default",
+
+
+
+  
+  
+cmake失败，应当交叉编译工具不支持的缘故，暴露C++11不支持等错误，以及可能缺少配置项，但是看不出来缺少啥
+GN+toolchain方式尝试
+使用旧代码，重新配置gn麻烦，缺少第三方库配置麻烦，第三方库版本兼容等麻烦，没有实际验过旧的代码可能有问题，
+使用新的，编译过的
+
