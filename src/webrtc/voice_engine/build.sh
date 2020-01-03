@@ -64,13 +64,17 @@ function CopyLib()
 	fi
 	
 	cd webrtc
-	if [ -e "modules" ]; then
-		echo "modules exit"
+	if [ -e "voice_engine" ]; then
+		echo "voice_engine exit"
 	else
-		mkdir modules
+		mkdir voice_engine
 	fi
 	
-	cd modules
+	cd voice_engine
+	cp $CurPwd/build/lib/libvoice_engine.a .
+	cp $CurPwd/build/lib/libaudio_level.a .
+	cp $CurPwd/build/lib/libfile_player.a .	
+	cp $CurPwd/build/lib/libfile_recorder.a .	
 	
 	
 }
@@ -79,97 +83,11 @@ if [ $# == 0 ]; then
 	PrintUsage
 	exit -1
 else
-	cd audio_coding
-	sh build.sh $1
-	if [ $? -ne 0]; then
-		exit -1
-	fi
-	cd ..
-	
-	cd audio_device
-	sh build.sh $1
-	if [ $? -ne 0]; then
-		exit -1
-	fi
-	cd ..
-	
-	cd media_file
-	sh build.sh $1
-	if [ $? -ne 0]; then
-		exit -1
-	fi
-	cd ..
-	
-	cd utility
-	sh build.sh $1
-	if [ $? -ne 0]; then
-		exit -1
-	fi
-	cd ..
-	
-	cd audio_mixer
-	sh build.sh $1
-	if [ $? -ne 0]; then
-		exit -1
-	fi
-	cd ..	
-	
-	cd audio_processing
-	sh build.sh $1
-	if [ $? -ne 0]; then
-		exit -1
-	fi
-	cd ..
-	
-	cd video_capture
-	sh build.sh $1
-	if [ $? -ne 0]; then
-		exit -1
-	fi
-	cd ..	
-	
-	cd video_coding
-	sh build.sh $1
-	if [ $? -ne 0]; then
-		exit -1
-	fi
-	cd ..	
-	
-	cd rtp_rtcp
-	sh build.sh $1
-	if [ $? -ne 0]; then
-		exit -1
-	fi
-	cd ..	
-	
-	cd remote_bitrate_estimator
-	sh build.sh $1
-	if [ $? -ne 0]; then
-		exit -1
-	fi
-	cd ..
-	
-	cd bitrate_controller
-	sh build.sh $1
-	if [ $? -ne 0]; then
-		exit -1
-	fi
-	cd ..	
-	
-	cd congestion_controller
-	sh build.sh $1
-	if [ $? -ne 0]; then
-		exit -1
-	fi
-	cd ..	
-	
-	cd pacing
-	sh build.sh $1
-	if [ $? -ne 0]; then
-		exit -1
-	fi
-	cd ..	
+	GenerateCmakeFile $1
+	BuildLib
+	CopyLib ../../../build
 fi
+
 
 
 

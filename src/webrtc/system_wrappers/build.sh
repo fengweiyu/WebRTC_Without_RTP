@@ -64,12 +64,16 @@ function CopyLib()
 	fi
 	
 	cd webrtc
-	if [ -e "api" ]; then
-		echo "api exit"
+	if [ -e "system_wrappers" ]; then
+		echo "system_wrappers exit"
 	else
-		mkdir api
+		mkdir system_wrappers
 	fi
-	cp $CurPwd/build/lib/libapi.a .
+	cp $CurPwd/build/lib/libsystem_wrappers.a .
+	cp $CurPwd/build/lib/liblibjingle_peerconnection_api.a .
+	cp $CurPwd/build/lib/libfield_trial_default.a .	
+	cp $CurPwd/build/lib/libmetrics_default.a .	
+
 	
 }
 
