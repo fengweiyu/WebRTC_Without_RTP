@@ -118,7 +118,15 @@ INCLUDE_DIRECTORIES(${PROJECT_SOURCE_DIR}
 ADD_LIBRARY(rtc_task_queue_static STATIC ${rtc_task_queue_list})
 SET_TARGET_PROPERTIES(rtc_task_queue_static PROPERTIES OUTPUT_NAME rtc_task_queue)
 
-
+SET(rtc_numerics_list
+    numerics/exp_filter.cc
+	)		
+INCLUDE_DIRECTORIES(${PROJECT_SOURCE_DIR}
+	${PROJECT_SOURCE_DIR}/../../
+	../base
+	)
+ADD_LIBRARY(rtc_numerics_static STATIC ${rtc_numerics_list})
+SET_TARGET_PROPERTIES(rtc_numerics_static PROPERTIES OUTPUT_NAME rtc_numerics)
 
 
 

@@ -120,6 +120,35 @@ else
 		exit -1
 	fi
 	cd ..
+	
+	cd video_capture
+	sh build.sh $1
+	if [ $? -ne 0]; then
+		exit -1
+	fi
+	cd ..	
+	
+	cd video_coding
+	sh build.sh $1
+	if [ $? -ne 0]; then
+		exit -1
+	fi
+	cd ..	
+	
+	cd rtp_rtcp
+	sh build.sh $1
+	if [ $? -ne 0]; then
+		exit -1
+	fi
+	cd ..	
+	
+	cd remote_bitrate_estimator
+	sh build.sh $1
+	if [ $? -ne 0]; then
+		exit -1
+	fi
+	cd ..
+	
 fi
 
 

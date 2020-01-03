@@ -8,7 +8,6 @@ function PrintUsage()
 	echo -e "EGG:"
 	echo -e "./build.sh arm-linux"
 }
-
 function GenerateCmakeFile()
 {
 	CmakeFile="./build/ToolChain.cmake"
@@ -16,7 +15,6 @@ function GenerateCmakeFile()
 	echo "SET(CMAKE_C_COMPILER \"$1-gcc\")" >> $CmakeFile
 	echo "SET(CMAKE_CXX_COMPILER \"$1-g++\")" >> $CmakeFile
 }
-
 function BuildLib()
 {
 	echo -e "Start building ..."
@@ -66,16 +64,26 @@ function CopyLib()
 	fi
 	
 	cd webrtc
-	if [ -e "base" ]; then
-		echo "base exit"
+	if [ -e "modules" ]; then
+		echo "modules exit"
 	else
-		mkdir base
+		mkdir modules
 	fi
-	cp $CurPwd/build/base/librtc_base_approved.a .
-	cp $CurPwd/build/base/libbase.a .
-	cp $CurPwd/build/base/librtc_task_queue.a .	
-	cp $CurPwd/build/base/librtc_numerics.a .		
 	
+	cd modules
+	if [ -e "video_coding" ]; then
+		echo "video_coding exit"
+	else
+		mkdir video_coding
+	fi
+	
+	cd video_coding
+	cp $CurPwd/build/lib/libvideo_coding.a .	
+	cp $CurPwd/build/lib/libvideo_coding_utility.a .
+	cp $CurPwd/build/lib/libwebrtc_h264.a .
+	cp $CurPwd/build/lib/libwebrtc_i420.a .
+	cp $CurPwd/build/lib/libwebrtc_vp8.a .
+	cp $CurPwd/build/lib/libwebrtc_vp9.a .
 	
 }
 

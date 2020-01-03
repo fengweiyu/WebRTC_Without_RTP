@@ -8,7 +8,6 @@ function PrintUsage()
 	echo -e "EGG:"
 	echo -e "./build.sh arm-linux"
 }
-
 function GenerateCmakeFile()
 {
 	CmakeFile="./build/ToolChain.cmake"
@@ -16,7 +15,6 @@ function GenerateCmakeFile()
 	echo "SET(CMAKE_C_COMPILER \"$1-gcc\")" >> $CmakeFile
 	echo "SET(CMAKE_CXX_COMPILER \"$1-g++\")" >> $CmakeFile
 }
-
 function BuildLib()
 {
 	echo -e "Start building ..."
@@ -66,16 +64,21 @@ function CopyLib()
 	fi
 	
 	cd webrtc
-	if [ -e "base" ]; then
-		echo "base exit"
+	if [ -e "modules" ]; then
+		echo "modules exit"
 	else
-		mkdir base
+		mkdir modules
 	fi
-	cp $CurPwd/build/base/librtc_base_approved.a .
-	cp $CurPwd/build/base/libbase.a .
-	cp $CurPwd/build/base/librtc_task_queue.a .	
-	cp $CurPwd/build/base/librtc_numerics.a .		
 	
+	cd modules
+	if [ -e "remote_bitrate_estimator" ]; then
+		echo "remote_bitrate_estimator exit"
+	else
+		mkdir remote_bitrate_estimator
+	fi
+	
+	cd remote_bitrate_estimator
+	cp $CurPwd/build/lib/libremote_bitrate_estimator.a .	
 	
 }
 
