@@ -55,7 +55,7 @@ function BuildLib()
 
 function CopyLib()
 {
-	CurPwd = $PWD
+	CurPwd=$PWD
 	cd $1
 	if [ -e "lib" ]; then
 		echo "lib exit"
@@ -78,7 +78,7 @@ function CopyLib()
 	fi
 	
 	cd pc
-	cp $CurPwd/build/lib/libjingle_peerconnection.a .
+	cp $CurPwd/build/lib/liblibjingle_peerconnection.a .
 	cp $CurPwd/build/lib/librtc_pc.a .
 }
 

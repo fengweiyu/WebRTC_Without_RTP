@@ -9,7 +9,11 @@ SET(CMAKE_TOOLCHAIN_FILE "build/ToolChain.cmake")
 add_definitions(-std=c++11)
 add_definitions(-DWEBRTC_LINUX)
 # -fno-rtti 禁止运行时类型信息 不加会出现某些包含纯虚函数的类 undefine reference 暂时也没搞懂原因
-add_definitions(-D -fno-rtti)
+#add_definitions(-D -fno-rtti)
+add_definitions(-fno-rtti)
+#libsrtp需要
+add_definitions(-DHAVE_NETINET_IN_H)
+
 project (WebRTC)
  
 #SET(CMAKE_C_FLAGS "-g")
@@ -42,7 +46,10 @@ SET(libjingle_peerconnection_list
     webrtcsessiondescriptionfactory.cc
 	)		
 INCLUDE_DIRECTORIES(${PROJECT_SOURCE_DIR}
+	${PROJECT_SOURCE_DIR}/../
 	${PROJECT_SOURCE_DIR}/../../
+	${PROJECT_SOURCE_DIR}/../third_party/libsrtp/include
+	${PROJECT_SOURCE_DIR}/../third_party/libsrtp/crypto/include	
 	)
 ADD_LIBRARY(libjingle_peerconnection_static STATIC ${libjingle_peerconnection_list})
 SET_TARGET_PROPERTIES(libjingle_peerconnection_static PROPERTIES OUTPUT_NAME libjingle_peerconnection)
