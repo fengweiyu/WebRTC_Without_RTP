@@ -4,16 +4,23 @@ function PrintUsage()
 {
 	echo -e "Usage:"
 	echo -e "./build.sh $ToolChain"
-	echo -e "ToolChain: arm-linux"
+	echo -e "ToolChain: arm-linux/x86"
 	echo -e "EGG:"
 	echo -e "./build.sh arm-linux"
+	echo -e " or ./build.sh x86"
 }
 function GenerateCmakeFile()
 {
+	mkdir -p build
 	CmakeFile="./build/ToolChain.cmake"
 	echo "SET(CMAKE_SYSTEM_NAME \"Linux\")" > $CmakeFile
-	echo "SET(CMAKE_C_COMPILER \"$1-gcc\")" >> $CmakeFile
-	echo "SET(CMAKE_CXX_COMPILER \"$1-g++\")" >> $CmakeFile
+	if [ $1 == x86 ]; then
+		echo "SET(CMAKE_C_COMPILER \"gcc\")" >> $CmakeFile	
+		echo "SET(CMAKE_CXX_COMPILER \"g++\")" >> $CmakeFile	
+	else
+		echo "SET(CMAKE_C_COMPILER \"$1-gcc\")" >> $CmakeFile
+		echo "SET(CMAKE_CXX_COMPILER \"$1-g++\")" >> $CmakeFile
+	fi
 }
 function BuildLib()
 {
