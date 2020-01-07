@@ -56,7 +56,7 @@ function BuildLib()
 
 function CopyLib()
 {
-	CurPwd = $PWD
+	CurPwd=$PWD
 	cd $1
 	if [ -e "lib" ]; then
 		echo "lib exit"

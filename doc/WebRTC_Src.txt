@@ -63,6 +63,9 @@ ninja 类似makefile，会去调用编译程序进行编译操作，其依赖的文件是build.ninja
 
 理论上修改为arm-linux-gxx是可行的，只需在toolchain,ninja中修改clang编译器为arm-linx-gxx即可。
 
+应该是加上参数(custom_toolchain)
+./build/config/BUILDCONFIG.gn:264:  set_default_toolchain(custom_toolchain)
+./build/config/BUILDCONFIG.gn:266:  set_default_toolchain(_default_toolchain)
 
 
 
