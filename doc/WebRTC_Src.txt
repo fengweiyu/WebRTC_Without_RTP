@@ -105,6 +105,12 @@ openjdk version "1.8.0_91"
 sudo apt-get install openjdk-8-jdk
 
 
+*************************************************************************************
+G:\WebRTC_Comp\webrtc\src\build\config\BUILDCONFIG.gn
+if (custom_toolchain != "") {
+  set_default_toolchain(custom_toolchain)
+} else if (_default_toolchain != "") {
+  set_default_toolchain(_default_toolchain)
+}
 
-
-
+可见配置编译参数custom_toolchain 可实现交叉编译

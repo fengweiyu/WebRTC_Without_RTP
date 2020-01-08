@@ -288,10 +288,9 @@ webrtc/media:rtc_media
 //webrtc/system_wrappers:metrics_default",
 
 
-/work/workspace/WebRTC_Without_RTP/src/webrtc/base/../third_party/openssl/include/openssl/e_os2.h:13:34: fatal error: openssl/opensslconf.h: 没有那个文件或目录
- # include <openssl/opensslconf.h>
-改源码需要拉分支  
-  
+缺失开源库，导致版本不对应，引发重定义以及功能可能对接不上的问题
+
+
 cmake失败，应当交叉编译工具不支持的缘故，暴露C++11不支持等错误，以及可能缺少配置项，但是看不出来缺少啥
 GN+toolchain方式尝试
 使用旧代码，重新配置gn麻烦，缺少第三方库配置麻烦，第三方库版本兼容等麻烦，没有实际验过旧的代码可能有问题，
