@@ -103,6 +103,20 @@ openjdk version "1.8.0_91"
 
 其他版本ubuntu建议直接安装openjdk8
 sudo apt-get install openjdk-8-jdk
+*********************************************************************
+win h264
+cd /work/worksapce/webrtc/depot/depot_tools
+export PATH="$PWD":"$PATH"
+export
+cd ../../src
+gn gen out/h264 --ide=vs2017 --args="proprietary_codecs=true rtc_use_h264=true"
+
+3.4 编译源码
+ninja -C ./out/h264
+编译完成之后，打开./out/h264中的vs解决方案，便可以使用vs进行编译调试。
+
+4 调整H264编码的优先级
+打开./out/h264中webrtc的解决方案，找到src/media中的rtc_internal_video_codecs项目的internal_encoder_factory.cc文件26行：
 
 
 *************************************************************************************
