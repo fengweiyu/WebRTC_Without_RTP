@@ -109,16 +109,24 @@ cd /work/worksapce/webrtc/depot/depot_tools
 export PATH="$PWD":"$PATH"
 export
 cd ../../src
-gn gen out/h264 --ide=vs2017 --args="proprietary_codecs=true rtc_use_h264=true"
+#gn gen out/h264 --ide=vs2017 --args="proprietary_codecs=true rtc_use_h264=true" 32位
+#gn gen out/h264 --ide=vs2019 --args="proprietary_codecs=true rtc_use_h264=true ffmpeg_branding="Chrome" is_debug=true target_cpu="x86" rtc_include_tests=false"
+gn gen out/x64h264 --ide=vs2017 --args='proprietary_codecs=true rtc_use_h264=true target_cpu="x64"'
+
 
 3.4 编译源码
-ninja -C ./out/h264
+#ninja -C ./out/h264
+ninja -C ./out/x64h264
 编译完成之后，打开./out/h264中的vs解决方案，便可以使用vs进行编译调试。
+
+1>ninja: Entering directory `D:\webrtc_src_linux_and_win\src\out\x64h264\'
+1>ninja: fatal: CreateProcess: %1 不是有效的 Win32 应用程序。
+
 
 4 调整H264编码的优先级
 打开./out/h264中webrtc的解决方案，找到src/media中的rtc_internal_video_codecs项目的internal_encoder_factory.cc文件26行：
-
-
+https://segmentfault.com/a/1190000021359782
+https://www.jianshu.com/p/f5ff16b3c427
 *************************************************************************************
 G:\WebRTC_Comp\webrtc\src\build\config\BUILDCONFIG.gn
 if (custom_toolchain != "") {
